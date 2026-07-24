@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prism Launcher - Ошибка</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#4331b4",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "surface-container": "#1d1f28",
+                    "on-tertiary-fixed": "#2f1500",
+                    "surface-container-high": "#282a32",
+                    "inverse-on-surface": "#2e3039",
+                    "on-primary-fixed": "#160066",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary-fixed": "#e4dfff",
+                    "on-background": "#e1e1ed",
+                    "text-secondary": "#8A8F9C",
+                    "status-error": "#EF4444",
+                    "tertiary-fixed": "#ffdcc3",
+                    "surface-tint": "#c6bfff",
+                    "surface-variant": "#33343d",
+                    "on-secondary-container": "#b7afff",
+                    "primary": "#c6bfff",
+                    "status-success": "#4ADE80",
+                    "on-secondary-fixed": "#160066",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb77d",
+                    "primary-container": "#6c5ce7",
+                    "text-primary": "#FFFFFF",
+                    "surface-dim": "#11131b",
+                    "inverse-primary": "#5847d2",
+                    "on-surface": "#e1e1ed",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-container-low": "#191b23",
+                    "primary-fixed": "#e4dfff",
+                    "error": "#ffb4ab",
+                    "surface": "#11131b",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "on-secondary": "#28069c",
+                    "inverse-surface": "#e1e1ed",
+                    "background": "#11131b",
+                    "outline": "#928ea0",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-elevated": "#20232F",
+                    "on-primary-container": "#faf6ff",
+                    "on-primary": "#2900a0",
+                    "secondary": "#c6bfff",
+                    "outline-variant": "#474554",
+                    "surface-container-lowest": "#0c0e16",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "tertiary-container": "#ac5d00",
+                    "status-warning": "#F59E0B",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-tertiary": "#4d2600",
+                    "surface-card": "#1B1E29",
+                    "surface-container-highest": "#33343d",
+                    "surface-bright": "#373942",
+                    "on-surface-variant": "#c8c4d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "detail-panel-width": "320px",
+                    "list-gap": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "mono": ["JetBrains Mono", "monospace"]
+            },
+            "fontSize": {
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12141C;
+            color: #e1e1ed;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .error-glow {
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
+        }
+        .glass-panel {
+            background: rgba(27, 30, 41, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #474554;
+            border-radius: 10px;
+        }
+        @keyframes pulse-error {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-error {
+            animation: pulse-error 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md h-screen w-screen flex items-center justify-center p-gutter">
+<!-- Top Navigation Bar (Partial Implementation for Shell Context) -->
+<header class="fixed top-0 left-0 h-16 w-full bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant flex items-center justify-between px-gutter z-50">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">layers</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Prism Launcher</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-bright transition-all duration-200 rounded">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-bright transition-all duration-200 rounded">
+<span class="material-symbols-outlined">check_box_outline_blank</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-status-error/20 hover:text-status-error transition-all duration-200 rounded">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Error Modal Container -->
+<div class="relative w-full max-w-2xl z-10">
+<!-- Error Border Glow -->
+<div class="absolute -inset-1 bg-gradient-to-r from-status-error/40 via-status-error/10 to-status-error/40 rounded-xl blur opacity-30"></div>
+<div class="relative glass-panel border border-outline-variant rounded-xl overflow-hidden shadow-2xl flex flex-col">
+<!-- Header Section -->
+<div class="p-6 border-b border-outline-variant flex items-start gap-5">
+<div class="flex-shrink-0 w-14 h-14 bg-status-error/10 border border-status-error/30 rounded-xl flex items-center justify-center animate-pulse-error">
+<span class="material-symbols-outlined text-status-error text-[32px]" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<div class="flex-grow">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">Minecraft неожиданно завершил работу</h1>
+<div class="flex items-center gap-2 text-status-error font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-status-error"></span>
+<span>Ошибка инициализации рендерера (Код выхода: -1)</span>
+</div>
+</div>
+</div>
+<!-- Content / Stacktrace Section -->
+<div class="p-6 space-y-4">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden">
+<div class="px-4 py-2 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Отчёт об ошибке (Stacktrace)</span>
+<button class="text-primary hover:underline font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                            Копировать
+                        </button>
+</div>
+<div class="p-4 h-48 overflow-y-auto custom-scrollbar font-mono text-[12px] leading-relaxed text-text-secondary">
+<p class="text-status-error">[14:22:08] [Render thread/ERROR]: Failed to initialize OpenGL</p>
+<p>org.lwjgl.LWJGLException: Pixel format not accelerated</p>
+<p class="ml-4">at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method) ~[lwjgl-2.9.4.jar:?]</p>
+<p class="ml-4">at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52) ~[lwjgl-2.9.4.jar:?]</p>
+<p class="ml-4">at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247) ~[lwjgl-2.9.4.jar:?]</p>
+<p class="ml-4">at org.lwjgl.opengl.Display.createWindow(Display.java:306) ~[lwjgl-2.9.4.jar:?]</p>
+<p class="ml-4 text-status-warning">at org.lwjgl.opengl.Display.create(Display.java:848) ~[lwjgl-2.9.4.jar:?]</p>
+<p class="ml-4">at net.minecraft.client.Minecraft.init(Minecraft.java:490) [Minecraft.class:?]</p>
+<p class="ml-4">at net.minecraft.client.Minecraft.run(Minecraft.java:378) [Minecraft.class:?]</p>
+<p class="ml-4">at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]</p>
+<p>--- END OF TRACE ---</p>
+<p class="mt-4 text-on-surface">Рекомендуемое действие: Проверьте драйверы видеокарты или настройки Java.</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+                    Ваши данные игры и сохранения не пострадали. Вы можете отправить этот отчет разработчикам Prism Launcher для помощи в решении проблемы.
+                </p>
+</div>
+<!-- Footer / Action Buttons -->
+<div class="px-6 py-5 bg-surface-container-low border-t border-outline-variant flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<button class="px-4 h-10 border border-outline-variant text-on-surface hover:bg-surface-bright transition-all duration-200 rounded-lg font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">description</span>
+                        Показать журнал
+                    </button>
+<button class="px-4 h-10 bg-surface-elevated text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant rounded-lg font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">bug_report</span>
+                        Сообщить об ошибке
+                    </button>
+</div>
+<button class="px-6 h-10 bg-gradient-to-r from-[#6C5CE7] to-[#7C6FF0] text-white hover:brightness-110 active:scale-95 transition-all duration-200 rounded-lg font-label-md text-label-md font-bold shadow-lg shadow-primary-container/20">
+                    Закрыть
+                </button>
+</div>
+</div>
+</div>
+<!-- Bottom Status Bar -->
+<footer class="fixed bottom-0 w-full h-8 px-4 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between font-label-sm text-label-sm text-text-secondary z-50">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 text-status-error font-bold">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                Minecraft 1.21.1 • Ошибка исполнения
+            </span>
+<span>Аварийное завершение</span>
+</div>
+<div class="flex items-center gap-4">
+<span>Общее время игры: 4ч 32мин</span>
+</div>
+</footer>
+<!-- Background Decoration -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-status-error/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] rounded-full bg-primary-container/5 blur-[120px]"></div>
+</div>
+<script>
+        // Micro-interaction for the "Copy" button
+        const copyBtn = document.querySelector('button.text-primary');
+        copyBtn?.addEventListener('click', () => {
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px]">check</span> Скопировано';
+            copyBtn.classList.add('text-status-success');
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('text-status-success');
+            }, 2000);
+        });
+
+        // Close button logic
+        document.querySelector('.bg-gradient-to-r').addEventListener('click', () => {
+            document.querySelector('.relative.w-full.max-w-2xl').style.transform = 'scale(0.95)';
+            document.querySelector('.relative.w-full.max-w-2xl').style.opacity = '0';
+            document.querySelector('.relative.w-full.max-w-2xl').style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            setTimeout(() => {
+               alert('Экран закрыт. Перенаправление на главный дашборд...');
+            }, 300);
+        });
+    </script>
+</body></html>

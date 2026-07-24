@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prism Launcher - Общие настройки</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#4331b4",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "surface-container": "#1d1f28",
+                    "on-tertiary-fixed": "#2f1500",
+                    "surface-container-high": "#282a32",
+                    "inverse-on-surface": "#2e3039",
+                    "on-primary-fixed": "#160066",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary-fixed": "#e4dfff",
+                    "on-background": "#e1e1ed",
+                    "text-secondary": "#8A8F9C",
+                    "status-error": "#EF4444",
+                    "tertiary-fixed": "#ffdcc3",
+                    "surface-tint": "#c6bfff",
+                    "surface-variant": "#33343d",
+                    "on-secondary-container": "#b7afff",
+                    "primary": "#c6bfff",
+                    "status-success": "#4ADE80",
+                    "on-secondary-fixed": "#160066",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb77d",
+                    "primary-container": "#6c5ce7",
+                    "text-primary": "#FFFFFF",
+                    "surface-dim": "#11131b",
+                    "inverse-primary": "#5847d2",
+                    "on-surface": "#e1e1ed",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-container-low": "#191b23",
+                    "primary-fixed": "#e4dfff",
+                    "error": "#ffb4ab",
+                    "surface": "#11131b",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "on-secondary": "#28069c",
+                    "inverse-surface": "#e1e1ed",
+                    "background": "#11131b",
+                    "outline": "#928ea0",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-elevated": "#20232F",
+                    "on-primary-container": "#faf6ff",
+                    "on-primary": "#2900a0",
+                    "secondary": "#c6bfff",
+                    "outline-variant": "#474554",
+                    "surface-container-lowest": "#0c0e16",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "tertiary-container": "#ac5d00",
+                    "status-warning": "#F59E0B",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-tertiary": "#4d2600",
+                    "surface-card": "#1B1E29",
+                    "surface-container-highest": "#33343d",
+                    "surface-bright": "#373942",
+                    "on-surface-variant": "#c8c4d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "detail-panel-width": "320px",
+                    "list-gap": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #11131b;
+            color: #e1e1ed;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-panel {
+            background: rgba(27, 30, 41, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(71, 69, 84, 0.3);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #474554;
+            border-radius: 10px;
+        }
+
+        /* Toggle Switch Styling */
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #6c5ce7;
+        }
+        .toggle-checkbox:checked + .toggle-label::after {
+            transform: translateX(18px);
+        }
+
+        /* Hover Glow */
+        .selection-glow:hover {
+            border-color: #6C5CE7;
+            box-shadow: 0 0 12px rgba(108, 92, 231, 0.2);
+        }
+    </style>
+</head>
+<body class="flex h-screen w-screen overflow-hidden">
+<!-- Sidebar Component (Shared Identity) -->
+<aside class="w-sidebar-width h-screen border-r border-outline-variant bg-surface-container flex flex-col py-container-margin gap-list-gap flex-shrink-0">
+<div class="px-6 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="A professional high-fidelity vector logo for Prism Launcher, featuring an abstract geometric prism refracting vibrant purple and indigo light against a dark metallic background. The style is modern, sleek, and technical, fitting a premium software tool for power users. Deep shadows and high-contrast highlights accentuate its 3D depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiuPXXBAmRaJ10gQ4Lko6eI3Yk1GxkOQGTh6xflasEp8_0IK7GIVYdDyZAiXUl_bh-54JlA7yTVC6K0EJtMesLhzVbczNu1cX6xyz2mhnnDOAIqzcdAYnbIl-11JCg65Jg4S-c9dk7Zdr0kgcGJyNUUYOYrD2mwQMLhYUPP86wPXkRFLrbANiUHJwCViG2UjmU4sg24FhPQZkd5Sj8ME7yiQ3vXvW-5pYvkp1VeLqj3pTrbzDwVr3f1g"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Prism Launcher</h1>
+<p class="font-label-md text-label-md text-text-secondary">11.0.3</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">grid_view</span>
+<span class="font-label-md text-label-md">Экземпляры</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">package</span>
+<span class="font-label-md text-label-md">Сборки</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">extension</span>
+<span class="font-label-md text-label-md">Плагины</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">palette</span>
+<span class="font-label-md text-label-md">Темы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 bg-primary/10 text-primary border-l-2 border-primary font-bold transition-all duration-200 rounded-r-lg group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md text-label-md">Настройки</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary-container rounded-lg font-bold flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md text-label-md">Добавить экземпляр</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background relative overflow-hidden">
+<!-- Top Navigation Bar Component -->
+<header class="h-16 w-full flex items-center justify-between px-gutter bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant z-10">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="bg-surface-dim border border-outline-variant rounded-lg pl-10 pr-4 py-1.5 w-64 text-body-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all" placeholder="Поиск настроек... (Ctrl + K)" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Справка</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Обновить</a>
+</nav>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 hover:bg-surface-bright rounded transition-colors text-text-secondary">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="p-1.5 hover:bg-surface-bright rounded transition-colors text-text-secondary">
+<span class="material-symbols-outlined">check_box_outline_blank</span>
+</button>
+<button class="p-1.5 hover:bg-status-error/20 hover:text-status-error rounded transition-colors text-text-secondary">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait-style avatar of a tech-savvy user in a stylized digital art format. The character wears high-tech headphones and is bathed in a purple and teal neon glow, reflecting the software's gaming aesthetic. Minimalist and professional, set against a dark grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU0jNw2SMvbNg4-iupC-VaxZtAhcEBsgX2Uf66EDHngVDqe9hI5Qloaagyr3XkJwQWdXJ8aKyA7XqMJ5jUso36PdR3J_Jy3mss0pX6p7TQ6_d8qlhF-PhQ7OZ5ETNefmDYS_cYdM-KnMjCKpb-QH1UVh6LBep2vgKqcheShFKmji35EuHdRFVNbY6Buftdimc98SEx5jOsOBnP4bq2Gu4TgFFul6c3yC_LtuBne6btgldtmY-QCe7-PA"/>
+</div>
+</div>
+</header>
+<!-- Page Header -->
+<div class="px-8 pt-8 pb-6 bg-gradient-to-b from-surface-container/30 to-transparent">
+<h2 class="font-headline-lg text-headline-lg text-text-primary mb-1">Общие настройки</h2>
+<p class="font-body-md text-body-md text-text-secondary">Управление базовым поведением и локализацией лаунчера</p>
+</div>
+<!-- Settings Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto px-8 pb-24 custom-scrollbar">
+<div class="max-w-4xl space-y-6">
+<!-- Section 1: Язык интерфейса -->
+<div class="bg-surface-card p-card-padding rounded-xl border border-outline-variant hover:border-outline transition-all selection-glow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">language</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Язык интерфейса</h3>
+<p class="font-label-md text-label-md text-text-secondary">Выберите предпочитаемый язык для меню и уведомлений</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<button class="w-full flex items-center justify-between bg-surface-dim border border-outline-variant rounded-lg px-4 py-3 text-body-md hover:bg-surface-variant transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-xl">🇷🇺</span>
+<span>Русский (Russian)</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Section 2: Поведение при закрытии -->
+<div class="bg-surface-card p-card-padding rounded-xl border border-outline-variant hover:border-outline transition-all selection-glow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">logout</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Поведение при закрытии окна</h3>
+<p class="font-label-md text-label-md text-text-secondary">Что делать, когда вы нажимаете кнопку «Закрыть»</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<button class="w-full flex items-center justify-between bg-surface-dim border border-outline-variant rounded-lg px-4 py-3 text-body-md hover:bg-surface-variant transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">system_update_alt</span>
+<span>Сворачивать в трей</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Section 3: Обновления и аналитика -->
+<div class="bg-surface-card p-card-padding rounded-xl border border-outline-variant hover:border-outline transition-all selection-glow">
+<div class="flex items-start gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Обновления и аналитика</h3>
+<p class="font-label-md text-label-md text-text-secondary">Настройте автоматизацию и помощь в улучшении продукта</p>
+</div>
+</div>
+<div class="space-y-4">
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md block">Автопроверка обновлений</span>
+<span class="font-label-md text-label-md text-text-secondary">Регулярно проверять наличие новых версий лаунчера</span>
+</div>
+<div class="relative">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="toggle-label block w-10 h-5 bg-surface-variant rounded-full transition-colors border border-outline-variant"></div>
+<div class="absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform duration-200 shadow-sm after:content-['']"></div>
+</div>
+</label>
+<div class="h-px bg-outline-variant/30 w-full"></div>
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md block">Отправка анонимной аналитики</span>
+<span class="font-label-md text-label-md text-text-secondary">Помогите нам сделать Prism лучше, делясь данными об ошибках</span>
+</div>
+<div class="relative">
+<input class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="toggle-label block w-10 h-5 bg-surface-variant rounded-full transition-colors border border-outline-variant"></div>
+<div class="absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform duration-200 shadow-sm"></div>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 4: Запуск экземпляров -->
+<div class="bg-surface-card p-card-padding rounded-xl border border-outline-variant hover:border-outline transition-all selection-glow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Запуск экземпляров</h3>
+<p class="font-label-md text-label-md text-text-secondary">Состояние лаунчера во время активной игры</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<button class="w-full flex items-center justify-between bg-surface-dim border border-outline-variant rounded-lg px-4 py-3 text-body-md hover:bg-surface-variant transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">visibility_off</span>
+<span>Сворачивать лаунчер</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Bar -->
+<div class="absolute bottom-8 right-8 flex items-center gap-3 z-20">
+<button class="px-6 py-2.5 rounded-lg font-label-md text-label-md text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-all">
+                Отмена
+            </button>
+<button class="px-8 py-2.5 bg-primary-container text-on-primary-container rounded-lg font-bold font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+                Сохранить
+            </button>
+</div>
+<!-- Status Footer Component -->
+<footer class="fixed bottom-0 w-full h-8 px-4 flex items-center justify-between border-t border-outline-variant bg-surface-container-lowest font-label-sm text-label-sm">
+<div class="flex items-center gap-4 text-text-secondary">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+                    Minecraft 1.21.1 • Готово к игре
+                </span>
+<span class="hover:text-on-surface transition-colors cursor-default">Общее время игры: 4ч 32мин</span>
+</div>
+<div class="flex items-center gap-4 text-text-secondary">
+<button class="hover:text-on-surface transition-colors">Аварийное завершение</button>
+<button class="hover:text-on-surface transition-colors">Версия 11.0.3-build.452</button>
+</div>
+</footer>
+</main>
+<!-- Background Atmospheric Effect -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-30">
+
+</div>
+<script>
+        // Micro-interactions for toggles
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const thumb = this.nextElementSibling.nextElementSibling;
+                if(this.checked) {
+                    thumb.style.transform = 'translateX(20px)';
+                } else {
+                    thumb.style.transform = 'translateX(0)';
+                }
+            });
+        });
+
+        // Initialize state for checked inputs
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            if(toggle.checked) {
+                const thumb = toggle.nextElementSibling.nextElementSibling;
+                thumb.style.transform = 'translateX(20px)';
+            }
+        });
+    </script>
+</body></html>

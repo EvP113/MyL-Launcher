@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prism Launcher - Учётные записи</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#160066",
+                    "on-secondary": "#28069c",
+                    "surface-container": "#1d1f28",
+                    "surface-variant": "#33343d",
+                    "primary": "#c6bfff",
+                    "on-primary": "#2900a0",
+                    "status-error": "#EF4444",
+                    "text-secondary": "#8A8F9C",
+                    "inverse-primary": "#5847d2",
+                    "inverse-surface": "#e1e1ed",
+                    "tertiary-container": "#ac5d00",
+                    "on-error": "#690005",
+                    "outline-variant": "#474554",
+                    "status-success": "#4ADE80",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-surface-variant": "#c8c4d7",
+                    "surface-elevated": "#20232F",
+                    "on-surface": "#e1e1ed",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "background": "#11131b",
+                    "primary-fixed": "#e4dfff",
+                    "secondary-fixed": "#e4dfff",
+                    "inverse-on-surface": "#2e3039",
+                    "on-tertiary-fixed": "#2f1500",
+                    "tertiary-fixed": "#ffdcc3",
+                    "outline": "#928ea0",
+                    "on-primary-fixed": "#160066",
+                    "surface-card": "#1B1E29",
+                    "on-background": "#e1e1ed",
+                    "text-primary": "#FFFFFF",
+                    "on-tertiary": "#4d2600",
+                    "primary-container": "#6c5ce7",
+                    "surface": "#11131b",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-container-high": "#282a32",
+                    "on-primary-container": "#faf6ff",
+                    "tertiary": "#ffb77d",
+                    "status-warning": "#F59E0B",
+                    "surface-dim": "#11131b",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#191b23",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary": "#c6bfff",
+                    "on-secondary-container": "#b7afff",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-tint": "#c6bfff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-lowest": "#0c0e16",
+                    "surface-bright": "#373942",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "secondary-container": "#4331b4",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "surface-container-highest": "#33343d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "list-gap": "8px",
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "detail-panel-width": "320px",
+                    "container-margin": "24px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-glow {
+            box-shadow: 0 0 12px rgba(108, 92, 231, 0.3);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #474554; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #928ea0; }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="w-sidebar-width h-screen border-r border-outline-variant bg-surface-container flex flex-col py-container-margin gap-list-gap">
+<div class="px-6 mb-4">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A professional, high-resolution logo for Prism Launcher, featuring a stylized Minecraft grass block with prismatic light refractions and a modern, technical aesthetic. The lighting is soft and ambient against a deep corporate dark background, evoking reliability and precision. The colors are deep greens, earthy browns, and subtle purple accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXeZIgjOnGzHCvPaqscfgLulQRVkzB3MhjS8IWlBbLBL7GhHVjUNX9F9207o9ymRv8cOwnIJnzJZ4-Y6JXtsX4t3a81eENtSjZ_yTQgW7qCTSP0cxwujW4VPILGNnqtfBD7PPxIMSe2MLaxkv4-KeeWwHMpYIP68n6ACB4-C7jGIMVv7uiSM3ftT4zwqjv_mtnPLG6dSYi3XXBNh_G9ZlWBeTKh2TEz63ZeIfXzx-HjGIrkeeGGGdWZQ"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Prism Launcher</h1>
+<p class="font-label-md text-label-md text-text-secondary">11.0.3</p>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 hover:bg-primary-container/90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Добавить экземпляр
+            </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-text-secondary hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-label-md">Экземпляры</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-text-secondary hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">package</span>
+<span class="font-label-md text-label-md">Сборки</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-text-secondary hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label-md text-label-md">Плагины</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-text-secondary hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-label-md text-label-md">Темы</span>
+</a>
+<a class="bg-primary/10 text-primary border-l-2 border-primary font-bold flex items-center gap-3 px-6 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Настройки</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-4 border-t border-outline-variant/30">
+<div class="bg-surface-container-low rounded-xl p-3">
+<div class="flex items-center gap-3 mb-2">
+<img class="w-8 h-8 rounded-md" data-alt="A small, stylized Minecraft avatar head icon with a green face and dark pixelated details, representing the user profile within the launcher UI. The style is clean, pixel-art accurate, and integrated seamlessly into a high-density modern gaming management application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5s0Gvo7ZTaS78RoBwEH7wZtXFOC2_C10Mk_L_xx1HN7WfMozGubot0UDxUTS5AxgmNCUuidTOaMooaX5_y7SK_qheqLZsyNPji4oBi-XWMCQSEiR63LzO5eHomdMkxubkZueZsWXhrW9YNSGOYIqYXJNUsEG3szNfcMYeRLzGjhA63ts3SUhQG82g7uodcfl5GSIxzzPttTbcqZI2bH4NWoG9AF8eeKuvua2p3j-xN8qsE1aNmbst7g"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-bold truncate">Prism Launcher</p>
+<p class="font-label-sm text-label-sm text-status-success flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+                            Последняя версия
+                        </p>
+</div>
+</div>
+<div class="flex justify-between items-center text-text-secondary pt-2">
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-on-surface transition-colors">terminal</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-on-surface transition-colors">forum</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-on-surface transition-colors">send</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background relative">
+<!-- TopNavBar Anchor -->
+<header class="h-16 w-full flex items-center justify-between px-gutter bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant shadow-sm z-10">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 pl-10 pr-16 text-body-sm font-body-sm focus:ring-1 focus:ring-primary" placeholder="Поиск в настройках..." type="text"/>
+<kbd class="absolute right-3 top-1/2 -translate-y-1/2 bg-surface-variant px-1.5 py-0.5 rounded text-[10px] text-text-secondary font-mono">Ctrl + K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-bright transition-all text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                    Справка
+                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-bright transition-all text-primary font-bold font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">cloud_download</span>
+                    Обновить
+                </button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded hover:bg-surface-bright transition-all"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<button class="p-1.5 rounded hover:bg-surface-bright transition-all"><span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span></button>
+<button class="p-1.5 rounded hover:bg-surface-bright transition-all text-status-error/70 hover:text-status-error"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+</div>
+</header>
+<!-- Settings Content -->
+<div class="flex-1 overflow-y-auto p-container-margin flex gap-6">
+<!-- Left Navigation (Settings Sub-menu) -->
+<div class="w-56 flex-shrink-0 flex flex-col gap-1">
+<h2 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider px-3 mb-2">Настройки</h2>
+<a class="px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">Основные</a>
+<a class="px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">Java</a>
+<a class="px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">Minecraft</a>
+<a class="px-3 py-2 rounded-lg bg-primary-container/20 text-primary font-bold font-label-md text-label-md flex items-center justify-between" href="#">
+                    Учётные записи
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</a>
+<a class="px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">Прокси</a>
+<a class="px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">Внешние инструменты</a>
+</div>
+<!-- Settings Canvas (Bento/Card Layout) -->
+<div class="flex-1 max-w-4xl">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-1">Учётные записи</h3>
+<p class="font-body-md text-body-md text-text-secondary">Управление вашими профилями Microsoft и Mojang</p>
+</div>
+<button class="bg-primary-container px-6 py-2.5 rounded-lg text-on-primary-container font-label-md text-label-md font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                        Добавить аккаунт
+                    </button>
+</div>
+<!-- Account Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Active Account Card -->
+<div class="bg-surface-elevated border border-primary/50 rounded-xl p-5 active-glow relative group cursor-pointer transition-all hover:bg-surface-container-highest">
+<div class="absolute top-4 right-4">
+<span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter border border-primary/30">Активен</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="w-16 h-16 rounded-lg border-2 border-primary/30" data-alt="A detailed, vibrant 3D rendering of a Minecraft skin head avatar with glowing green digital accents. The character has a technical headset and pixel-art eyes, set against a dark glassmorphism background with subtle purple rim lighting. High contrast, professional gaming profile style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPjISA-URXFXupQvI8nc5NXQL85MFr3-5RWaYTo9Fnbo22ErHqx7TQ6G6qguBl1Xxm1hVK4ZdpH2O3h1eu4Bm1OQVtw2Fgr7p5p3i_g_nsu999lLFMxz4DEdHqjqjTCCr-xromaeNS90X4rgPm7gFun1f0UB0QgYthAteiRkFD8LKWjcmQrJbE8DqOF-jXRjnltDR0dSC9sb63Zh-YsebTR9Xn5o24WD3FZGfVrShcFK_Xf6NqmhO59g"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-status-success rounded-full border-2 border-surface-elevated flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-on-surface">EvP1</h4>
+<p class="font-label-md text-label-md text-text-secondary">Microsoft Account</p>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 bg-surface-variant hover:bg-surface-bright py-2 rounded-lg font-label-md text-label-md transition-colors">Настройки</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-surface-bright rounded-lg text-text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Secondary Account Card -->
+<div class="bg-surface-container border border-outline-variant/30 rounded-xl p-5 relative group cursor-pointer transition-all hover:border-outline-variant hover:bg-surface-container-high">
+<div class="flex items-center gap-4 opacity-80 group-hover:opacity-100 transition-opacity">
+<div class="relative">
+<div class="w-16 h-16 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant/50">
+<span class="material-symbols-outlined text-[32px] text-text-secondary">account_circle</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-on-surface">Steve_Master</h4>
+<p class="font-label-md text-label-md text-text-secondary">Mojang Account</p>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 py-2 rounded-lg font-label-md text-label-md transition-all font-bold">Сделать активным</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Add Account Placeholder -->
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 group cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">add</span>
+</div>
+<p class="font-label-md text-label-md text-text-secondary group-hover:text-on-surface">Добавить ещё один профиль</p>
+</div>
+</div>
+<!-- Detailed Settings Section -->
+<div class="mt-10 bg-surface-container/50 border border-outline-variant/20 rounded-2xl p-6">
+<h5 class="font-label-md text-label-md font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">security</span>
+                        Безопасность и хранение
+                    </h5>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant/30 transition-colors">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Автоматический вход</p>
+<p class="font-body-sm text-body-sm text-text-secondary">Использовать последний активный аккаунт при запуске</p>
+</div>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer shadow-inner">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant/30 transition-colors">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Зашифрованное хранилище</p>
+<p class="font-body-sm text-body-sm text-text-secondary">Хранить токены доступа в системном хранилище ключей</p>
+</div>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer shadow-inner">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Anchor -->
+<footer class="fixed bottom-0 w-full h-8 px-4 flex items-center justify-between border-t border-outline-variant bg-surface-container-lowest text-label-sm font-label-sm z-20">
+<div class="flex items-center gap-4 text-text-secondary">
+<span class="text-on-surface font-bold">Minecraft 1.21.1</span>
+<span class="flex items-center gap-1.5 text-status-success font-bold">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+                    Готово к игре
+                </span>
+</div>
+<div class="flex items-center gap-6 text-text-secondary">
+<span class="hover:text-on-surface cursor-default transition-colors">Общее время игры: 3ч 57мин</span>
+<span class="text-status-error/80 hover:text-status-error cursor-default transition-colors">Аварийное завершение</span>
+<span class="hover:text-on-surface cursor-default transition-colors">Общее время игры: 4ч 32мин</span>
+</div>
+</footer>
+</main>
+<!-- Detail Panel (Optional Sidebar for specific item settings) -->
+<aside class="w-detail-panel-width hidden xl:flex flex-col border-l border-outline-variant bg-surface-container py-container-margin px-gutter">
+<h2 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-6">Детали профиля</h2>
+<div class="bg-surface-elevated rounded-2xl p-4 mb-6 border border-outline-variant/30">
+<div class="flex flex-col items-center text-center mb-4">
+<img class="w-24 h-24 rounded-2xl mb-4 border-2 border-primary/20 shadow-xl shadow-primary/10" data-alt="A zoomed-in, high-fidelity render of a Minecraft skin profile picture. The face shows detailed pixel shading, vibrant colors, and a modern digital glow. The lighting is dramatic, highlighting the blocky contours of the character. Corporate tech aesthetic with a gaming edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7TIG-JHV9HiyT5qRlKBdFTNRO1PxAsY7uetiWNVsy5JcvCaVCsUyp8vhp4Bl9JjCDpHqu3RJvgvNCLki1pUqHOhbfRMn1kaQSfrLLgNlZvTIxEm1H3wCCvUwGuwpPavWYCbaiz8m7VI3QaeDEJTmEiUYNvvfa1YcjlFijdjUOkPJ3a31vNxFXRg5Hz-bSa-zXK0qeQ-nuFjLx6sDijiLzeZ79bh7l0U3Q5YlX6yAX41-DaPmxIRzFsA"/>
+<h3 class="font-headline-md text-headline-md text-on-surface">EvP1</h3>
+<p class="font-label-md text-label-md text-text-secondary">ID: 48b2-f90a-112c</p>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-text-secondary">Статус</span>
+<span class="font-label-sm text-label-sm text-status-success bg-status-success/10 px-2 py-0.5 rounded">Валиден</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-text-secondary">Тип</span>
+<span class="font-label-sm text-label-sm text-on-surface">Microsoft</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-label-sm text-label-sm text-text-secondary">Добавлен</span>
+<span class="font-label-sm text-label-sm text-on-surface">21.07.2024</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-variant transition-colors text-on-surface group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-primary">refresh</span>
+<span class="font-label-md text-label-md">Обновить токен</span>
+</button>
+<button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-variant transition-colors text-on-surface group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-primary">edit</span>
+<span class="font-label-md text-label-md">Изменить никнейм</span>
+</button>
+<div class="h-4"></div>
+<button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-status-error/10 transition-colors text-status-error group">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-label-md text-label-md">Выйти из аккаунта</span>
+</button>
+</div>
+</aside>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => el.style.transform = 'scale(0.97)');
+            el.addEventListener('mouseup', () => el.style.transform = 'scale(1)');
+            el.addEventListener('mouseleave', () => el.style.transform = 'scale(1)');
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-1', 'ring-primary/50');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-1', 'ring-primary/50');
+        });
+    </script>
+</body></html>

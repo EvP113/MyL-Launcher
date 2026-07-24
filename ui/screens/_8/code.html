@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prism Launcher - Экземпляры</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#160066",
+                    "on-secondary": "#28069c",
+                    "surface-container": "#1d1f28",
+                    "surface-variant": "#33343d",
+                    "primary": "#c6bfff",
+                    "on-primary": "#2900a0",
+                    "status-error": "#EF4444",
+                    "text-secondary": "#8A8F9C",
+                    "inverse-primary": "#5847d2",
+                    "inverse-surface": "#e1e1ed",
+                    "tertiary-container": "#ac5d00",
+                    "on-error": "#690005",
+                    "outline-variant": "#474554",
+                    "status-success": "#4ADE80",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-surface-variant": "#c8c4d7",
+                    "surface-elevated": "#20232F",
+                    "on-surface": "#e1e1ed",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "background": "#11131b",
+                    "primary-fixed": "#e4dfff",
+                    "secondary-fixed": "#e4dfff",
+                    "inverse-on-surface": "#2e3039",
+                    "on-tertiary-fixed": "#2f1500",
+                    "tertiary-fixed": "#ffdcc3",
+                    "outline": "#928ea0",
+                    "on-primary-fixed": "#160066",
+                    "surface-card": "#1B1E29",
+                    "on-background": "#e1e1ed",
+                    "text-primary": "#FFFFFF",
+                    "on-tertiary": "#4d2600",
+                    "primary-container": "#6c5ce7",
+                    "surface": "#11131b",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-container-high": "#282a32",
+                    "on-primary-container": "#faf6ff",
+                    "tertiary": "#ffb77d",
+                    "status-warning": "#F59E0B",
+                    "surface-dim": "#11131b",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#191b23",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary": "#c6bfff",
+                    "on-secondary-container": "#b7afff",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-tint": "#c6bfff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-lowest": "#0c0e16",
+                    "surface-bright": "#373942",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "secondary-container": "#4331b4",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "surface-container-highest": "#33343d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "list-gap": "8px",
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "detail-panel-width": "320px",
+                    "container-margin": "24px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #11131b;
+            color: #e1e1ed;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .sidebar-active-indicator {
+            position: absolute;
+            left: 0;
+            width: 3px;
+            height: 24px;
+            background: #c6bfff;
+            border-radius: 0 4px 4px 0;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="flex h-screen w-screen selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="w-sidebar-width h-screen border-r border-outline-variant bg-surface-container flex flex-col py-container-margin gap-list-gap shrink-0 z-50">
+<!-- Brand Header -->
+<div class="px-6 mb-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-variant flex items-center justify-center">
+<img alt="Prism Launcher Logo" class="w-full h-full object-cover" data-alt="A pixel-art style 3D block representing the Prism Launcher logo, resembling a Minecraft grass block with vibrant green and earthy brown tones, set against a clean dark background for a professional gaming feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3FKWyKz08P_gcbT0Cwc8jQF3qfgyNxP14ue_y27gK8g1R3dMhX3qUtrPXcC-fakCRH_uALLcmTmd34u01PkXpySG0n2xh087UjV249TMkysBMzgrxYoDfcuBiwnb4_K1UsIFklgEBiBF2a1hzh7LgRMRGnRRQW_ysRcTnybsDCrsOTSDL9scVk76tUG9Z0pfhv-E2-4WYlQxnMT4PIxaMDZTVNzyW-IAYlqR4A-aZZ7ReBlBRAMqCw"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Prism Launcher</h1>
+<p class="font-label-sm text-label-sm text-text-secondary">11.0.3</p>
+</div>
+</div>
+<!-- Action Button -->
+<div class="px-4 mb-4">
+<button class="w-full h-11 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined">add</span>
+                Добавить экземпляр
+            </button>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 px-2 space-y-1">
+<!-- Active Item: Экземпляры -->
+<a class="relative flex items-center gap-3 px-4 py-2 bg-primary/10 text-primary border-l-2 border-primary font-bold rounded-r-lg group transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-label-md">Экземпляры</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">package</span>
+<span class="font-label-md text-label-md">Сборки</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label-md text-label-md">Плагины</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-label-md text-label-md">Темы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Настройки</span>
+</a>
+</nav>
+<!-- Groups Footer Section -->
+<div class="mt-auto px-4">
+<div class="flex items-center justify-between px-2 mb-2">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Группы</span>
+<span class="material-symbols-outlined text-text-secondary cursor-pointer hover:text-on-surface">add</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between px-3 py-1.5 bg-surface-variant rounded-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">apps</span>
+<span class="font-label-md text-label-md">Все</span>
+</div>
+<span class="bg-primary/20 text-primary px-1.5 rounded font-label-sm text-label-sm">0</span>
+</div>
+<div class="flex items-center justify-between px-3 py-1.5 text-text-secondary hover:bg-surface-variant/50 rounded-md transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="font-label-md text-label-md">Избранное</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Card Footer -->
+<div class="mx-4 mt-4 p-3 bg-surface-container-low rounded-xl border border-outline-variant">
+<div class="flex items-center gap-2 mb-2">
+<img alt="Launcher small logo" class="w-6 h-6 rounded" data-alt="A miniature 3D Minecraft grass cube icon, stylized for a tech launcher, with clean edges and bright saturation, presented as a small identification badge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnO8VTENAiTVzWuT7WxYh1mslI6luljiq_iPj2n-zH6mLiN9cQNQZMdS-04IlvH5env9XHXIXZNUbgfDMZIoOBJnHRE5yOJQyQ0iTx6H6wRVzp1iTNzu7fYhr0Cd9XmsfqNJErXdJxYQeeFn-72bWckpKWv1yII7rXorZQ6lKiQ9pkeUm_PopQ-Fc_m2EWNcgVnkYNzq3GmOu_b_dtEkqqhJ36aP1f7huiGTDy6Lv_8bqF7wdTJtZmkg"/>
+<div class="leading-none">
+<p class="font-label-md text-label-md font-bold">Prism Launcher</p>
+<p class="text-[10px] text-text-secondary">Release 11.0.3</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-status-success mb-3">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-medium">У вас последняя версия</span>
+</div>
+<div class="flex justify-between text-text-secondary">
+<span class="material-symbols-outlined text-[18px] hover:text-on-surface cursor-pointer">code</span>
+<span class="material-symbols-outlined text-[18px] hover:text-on-surface cursor-pointer">chat</span>
+<span class="material-symbols-outlined text-[18px] hover:text-on-surface cursor-pointer">send</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background">
+<!-- TopNavBar -->
+<header class="h-16 w-full flex items-center justify-between px-gutter bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shrink-0 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg pl-10 pr-16 py-2 font-body-md text-body-md text-on-surface focus:ring-1 focus:ring-primary placeholder:text-text-secondary" placeholder="Поиск..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-variant rounded text-[10px] text-text-secondary font-sans">Ctrl</kbd>
+<span class="text-text-secondary text-[10px] self-center">+</span>
+<kbd class="px-1.5 py-0.5 bg-surface-variant rounded text-[10px] text-text-secondary font-sans">K</kbd>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<a class="flex items-center gap-1.5 font-label-md text-label-md hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+                        Справка
+                    </a>
+<a class="flex items-center gap-1.5 font-label-md text-label-md hover:text-on-surface transition-colors text-primary font-bold" href="#">
+<span class="material-symbols-outlined text-[20px]">cloud_download</span>
+                        Обновить
+                    </a>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A highly detailed close-up of a digital gaming avatar profile picture, showcasing a minimalist geometric creature with glowing purple eyes against a tech-inspired dark navy background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBExag9y517yo7mp72Ba0F-D5ORxThPcaXtLj9JflT1ovQ62R_5tId6n9x_qJkzdcilPTKlsNJ1TFze5ous_MIyS3A9E3NgPnCxn_hsldx0m1fyJbI5dc74421DCE-mDS-J8o-iXAknuihHLJ88ebvf1vtxTOcBsYodOwf9ScChX027iZWJtcg3bGV7NdQo-qMpBtClETmHIyt41SFJIVwcSLgJVqNdGjybdHBSkI_ip31sy4FlhQSqZA"/>
+</div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-text-secondary hover:text-on-surface cursor-pointer text-[20px]">remove</span>
+<span class="material-symbols-outlined text-text-secondary hover:text-on-surface cursor-pointer text-[20px]">check_box_outline_blank</span>
+<span class="material-symbols-outlined text-status-error/70 hover:text-status-error cursor-pointer text-[20px]">close</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas / Empty State Content -->
+<section class="flex-1 flex flex-col items-center justify-center relative p-gutter overflow-hidden">
+<!-- Atmospheric background effect -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-lg">
+<!-- Illustration Placeholder -->
+<div class="w-80 h-80 mb-8 flex items-center justify-center relative group">
+<!-- Rotating decorative element -->
+<div class="absolute inset-0 border-2 border-dashed border-primary/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+<div class="w-64 h-64 bg-surface-container rounded-3xl border border-outline-variant shadow-2xl flex flex-col items-center justify-center p-8 transition-transform duration-500 group-hover:scale-105">
+
+<span class="material-symbols-outlined text-[80px] text-text-secondary/40 mb-4" style="font-variation-settings: 'FILL' 1;">layers_clear</span>
+<div class="h-1.5 w-16 bg-outline-variant rounded-full mb-2"></div>
+<div class="h-1.5 w-24 bg-outline-variant/50 rounded-full"></div>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Здесь пока пусто</h2>
+<p class="font-body-md text-body-md text-text-secondary mb-8">Создайте свой первый игровой экземпляр, чтобы начать приключение. Вы можете установить чистую версию Minecraft или выбрать из тысяч готовых сборок.</p>
+<button class="px-8 py-3 bg-gradient-to-r from-[#6C5CE7] to-[#7C6FF0] text-white font-label-md text-label-md rounded-xl flex items-center gap-3 shadow-[0_0_20px_rgba(108,92,231,0.3)] hover:shadow-[0_0_30px_rgba(108,92,231,0.5)] active:scale-95 transition-all duration-300">
+<span class="material-symbols-outlined">add_circle</span>
+                    Создать первый экземпляр
+                </button>
+<div class="mt-12 flex gap-4">
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-outline-variant/30 bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">cloud_download</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Импорт zip</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-outline-variant/30 bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Поиск сборок</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="fixed bottom-0 w-full h-8 px-4 flex items-center justify-between border-t border-outline-variant bg-surface-container-lowest font-label-sm text-label-sm text-text-secondary z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[14px]">view_in_ar</span>
+                    Minecraft 1.21.1
+                </div>
+<div class="flex items-center gap-2 text-status-success font-bold">
+<div class="w-2 h-2 rounded-full bg-status-success shadow-[0_0_6px_rgba(74,222,128,0.5)]"></div>
+                    Готово к игре
+                </div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 hover:text-on-surface cursor-default transition-colors">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                    Общее время игры: 3ч 57мин
+                </div>
+<div class="flex items-center gap-1.5 text-status-error/80 hover:text-status-error cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                    Аварийное завершение
+                </div>
+<div class="flex items-center gap-1.5 hover:text-on-surface cursor-default transition-colors">
+<span class="material-symbols-outlined text-[14px]">history</span>
+                    Общее время игры: 4ч 32мин
+                </div>
+</div>
+</footer>
+</main>
+<script>
+        // Simple micro-interaction for active selection simulation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('bg-primary/10')) return; // already active
+                
+                // Clear others
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-primary/10', 'text-primary', 'border-l-2', 'border-primary', 'font-bold');
+                    l.classList.add('text-text-secondary', 'hover:text-on-surface', 'hover:bg-surface-variant');
+                });
+
+                // Set active
+                link.classList.add('bg-primary/10', 'text-primary', 'border-l-2', 'border-primary', 'font-bold');
+                link.classList.remove('text-text-secondary', 'hover:text-on-surface', 'hover:bg-surface-variant');
+            });
+        });
+    </script>
+</body></html>

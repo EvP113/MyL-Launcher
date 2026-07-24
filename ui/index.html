@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html class="dark" lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/styles.css"/>
+  <style>
+    html, body { background: #11131b; }
+
+    /* Dynamic Density Settings (Compact / Normal / Spacious) */
+    button, input[type="button"], input[type="submit"], .density-btn, .btn-primary, .btn-secondary {
+      line-height: 1 !important;
+    }
+
+    body.density-compact p,
+    body.density-compact label {
+      line-height: 1.35 !important;
+    }
+    body.density-compact .p-4 { padding: 0.75rem !important; }
+    body.density-compact .p-5 { padding: 0.875rem !important; }
+    body.density-compact .p-6 { padding: 1rem !important; }
+    body.density-compact .py-6 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+    body.density-compact .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    body.density-compact .gap-6 { gap: 1rem !important; }
+
+    body.density-spacious p,
+    body.density-spacious label {
+      line-height: 1.7 !important;
+    }
+    body.density-spacious .p-4 { padding: 1.35rem !important; }
+    body.density-spacious .p-5 { padding: 1.6rem !important; }
+    body.density-spacious .p-6 { padding: 2rem !important; }
+    body.density-spacious .py-6 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+    body.density-spacious .px-8 { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
+    body.density-spacious .gap-6 { gap: 2rem !important; }
+    #btn-close:hover { background: #EF4444; color: #fff; }
+    #btn-close:hover .material-symbols-outlined { color: #fff; }
+    .page { display: none; opacity: 0; transition: opacity 0.2s ease; }
+    .page.active { display: flex; flex-direction: column; opacity: 1; }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-animate { animation: backdropIn 0.2s ease forwards; }
+    .modal-animate > div { animation: modalIn 0.25s ease forwards; }
+    .modal-animate.modal-closing { animation: backdropIn 0.15s ease reverse forwards; }
+    .modal-animate.modal-closing > div { animation: modalIn 0.15s ease reverse forwards; }
+    .version-row:hover { background: rgba(198, 191, 255, 0.05); }
+    .version-row.selected { background: #6c5ce7; color: #ffffff; }
+    .sidebar-item-active { background: #6c5ce7; color: #ffffff; }
+    .version-table-container { border: 1px solid #474554; background: #11131b; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #33343d; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #474554; }
+
+    .progress-shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Custom Toggles, Animations & Themes */
+    .no-animations *, .no-animations *::before, .no-animations *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+    /* Themes (Dark, Onyx, Ember, Light) */
+    /* 1. Midnight Onyx Theme */
+    html.theme-onyx, html.theme-onyx body { background-color: #050505 !important; }
+    html.theme-onyx .bg-background, html.theme-onyx .bg-surface-dim, html.theme-onyx .bg-surface { background-color: #050505 !important; }
+    html.theme-onyx .bg-surface-card, html.theme-onyx .bg-surface-container, html.theme-onyx .bg-surface-container-low { background-color: #0d0d0d !important; }
+    html.theme-onyx .bg-surface-elevated, html.theme-onyx .bg-surface-variant { background-color: #181818 !important; }
+    html.theme-onyx .bg-primary-container { background-color: #ffffff !important; color: #000000 !important; }
+    html.theme-onyx .bg-primary-container * { color: #000000 !important; }
+    html.theme-onyx .bg-primary { background-color: #ffffff !important; }
+    html.theme-onyx .text-primary { color: #ffffff !important; }
+    html.theme-onyx .border-primary { border-color: #ffffff !important; }
+    html.theme-onyx .border-l-primary { border-left-color: #ffffff !important; }
+    html.theme-onyx .sidebar-item-active, html.theme-onyx .version-row.selected { background-color: #ffffff !important; color: #000000 !important; }
+    html.theme-onyx .sidebar-item-active *, html.theme-onyx .version-row.selected * { color: #000000 !important; }
+    html.theme-onyx .bg-primary\/10 { background-color: rgba(255, 255, 255, 0.1) !important; }
+    html.theme-onyx .bg-primary\/20 { background-color: rgba(255, 255, 255, 0.2) !important; }
+    html.theme-onyx .border-primary\/30 { border-color: rgba(255, 255, 255, 0.3) !important; }
+    html.theme-onyx .border-primary\/50 { border-color: rgba(255, 255, 255, 0.5) !important; }
+    html.theme-onyx input[type="range"], html.theme-onyx .accent-primary { accent-color: #ffffff !important; }
+    html.theme-onyx .group:hover .group-hover\:text-primary { color: #ffffff !important; }
+    html.theme-onyx .fixed.inset-0 { background-color: rgba(5, 5, 5, 0.75) !important; }
+
+    /* 2. Ember Flow Theme */
+    html.theme-ember, html.theme-ember body { background-color: #141118 !important; }
+    html.theme-ember .bg-background, html.theme-ember .bg-surface-dim, html.theme-ember .bg-surface { background-color: #141118 !important; }
+    html.theme-ember .bg-surface-card, html.theme-ember .bg-surface-container, html.theme-ember .bg-surface-container-low { background-color: #1e1924 !important; }
+    html.theme-ember .bg-surface-elevated, html.theme-ember .bg-surface-variant { background-color: #282130 !important; }
+    html.theme-ember .bg-primary-container { background-color: #ea580c !important; color: #ffffff !important; }
+    html.theme-ember .bg-primary-container * { color: #ffffff !important; }
+    html.theme-ember .bg-primary { background-color: #ff9d42 !important; }
+    html.theme-ember .text-primary { color: #ff9d42 !important; }
+    html.theme-ember .border-primary { border-color: #ff9d42 !important; }
+    html.theme-ember .border-l-primary { border-left-color: #ff9d42 !important; }
+    html.theme-ember .sidebar-item-active, html.theme-ember .version-row.selected { background-color: #ea580c !important; color: #ffffff !important; }
+    html.theme-ember .sidebar-item-active *, html.theme-ember .version-row.selected * { color: #ffffff !important; }
+    html.theme-ember .bg-primary\/10 { background-color: rgba(255, 157, 66, 0.12) !important; }
+    html.theme-ember .bg-primary\/20 { background-color: rgba(255, 157, 66, 0.25) !important; }
+    html.theme-ember .border-primary\/30 { border-color: rgba(255, 157, 66, 0.3) !important; }
+    html.theme-ember .border-primary\/50 { border-color: rgba(255, 157, 66, 0.5) !important; }
+    html.theme-ember input[type="range"], html.theme-ember .accent-primary { accent-color: #ea580c !important; }
+    html.theme-ember .group:hover .group-hover\:text-primary { color: #ff9d42 !important; }
+    html.theme-ember .fixed.inset-0 { background-color: rgba(20, 17, 24, 0.75) !important; }
+
+    /* 3. Cloud White Theme */
+    html.theme-light, html.theme-light body { background-color: #f5f5f7 !important; color: #1c1c1e !important; }
+    html.theme-light .bg-background, html.theme-light .bg-surface-dim, html.theme-light .bg-surface { background-color: #f5f5f7 !important; }
+    html.theme-light .bg-surface-card, html.theme-light .bg-surface-container, html.theme-light .bg-surface-container-low { background-color: #ffffff !important; }
+    html.theme-light .bg-surface-elevated, html.theme-light .bg-surface-variant { background-color: #e5e5ea !important; }
+    html.theme-light .text-on-surface { color: #1c1c1e !important; }
+    html.theme-light .text-text-secondary { color: #636366 !important; }
+    html.theme-light .bg-primary-container { background-color: #2563eb !important; color: #ffffff !important; }
+    html.theme-light .bg-primary-container * { color: #ffffff !important; }
+    html.theme-light .bg-primary { background-color: #2563eb !important; }
+    html.theme-light .text-primary { color: #2563eb !important; }
+    html.theme-light .border-primary { border-color: #2563eb !important; }
+    html.theme-light .border-l-primary { border-left-color: #2563eb !important; }
+    html.theme-light .sidebar-item-active, html.theme-light .version-row.selected { background-color: #2563eb !important; color: #ffffff !important; }
+    html.theme-light .sidebar-item-active *, html.theme-light .version-row.selected * { color: #ffffff !important; }
+    html.theme-light .bg-primary\/10 { background-color: rgba(37, 99, 235, 0.1) !important; }
+    html.theme-light .bg-primary\/20 { background-color: rgba(37, 99, 235, 0.2) !important; }
+    html.theme-light .border-primary\/30 { border-color: rgba(37, 99, 235, 0.3) !important; }
+    html.theme-light .border-primary\/50 { border-color: rgba(37, 99, 235, 0.5) !important; }
+    html.theme-light input[type="range"], html.theme-light .accent-primary { accent-color: #2563eb !important; }
+    html.theme-light .group:hover .group-hover\:text-primary { color: #2563eb !important; }
+    html.theme-light .fixed.inset-0 { background-color: rgba(0, 0, 0, 0.35) !important; }
+    html.theme-light .border-outline-variant, html.theme-light .border-outline-variant\/30 { border-color: rgba(0, 0, 0, 0.1) !important; }
+    html.theme-light .bg-surface-container-high { background-color: #e5e5ea !important; }
+    html.theme-light .bg-surface-container-high .material-symbols-outlined { color: #1c1c1e !important; }
+
+    /* Fix Modal Dialogs, Inputs, Tables & Placeholders in Light Theme */
+    html.theme-light .bg-surface-elevated {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    html.theme-light input,
+    html.theme-light select,
+    html.theme-light textarea,
+    html.theme-light .bg-surface-dim {
+      background-color: #f0f0f4 !important;
+      color: #1c1c1e !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    html.theme-light input::placeholder,
+    html.theme-light textarea::placeholder {
+      color: #8e8e93 !important;
+    }
+    html.theme-light .version-table-container {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    html.theme-light .version-row {
+      color: #1c1c1e !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.theme-light .version-row:hover {
+      background-color: rgba(37, 99, 235, 0.08) !important;
+    }
+    html.theme-light .version-row.selected {
+      background-color: #2563eb !important;
+      color: #ffffff !important;
+    }
+    html.theme-light .version-row.selected * {
+      color: #ffffff !important;
+    }
+    html.theme-light .bg-surface-container-lowest\/30,
+    html.theme-light .bg-surface-container-lowest {
+      background-color: #f0f0f4 !important;
+    }
+    html.theme-light .text-on-surface-variant {
+      color: #48484a !important;
+    }
+    html.theme-light .wizard-source:not(.sidebar-item-active) {
+      color: #48484a !important;
+    }
+    html.theme-light .wizard-source:not(.sidebar-item-active):hover {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .wizard-source.sidebar-item-active {
+      background-color: #2563eb !important;
+      color: #ffffff !important;
+    }
+    html.theme-light .wizard-source.sidebar-item-active * {
+      color: #ffffff !important;
+    }
+
+    /* Fix Tailwind hover utility classes in Light Theme */
+    html.theme-light .hover\:bg-surface-variant:hover {
+      background-color: #e5e5ea !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-variant\/50:hover {
+      background-color: rgba(0, 0, 0, 0.06) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-variant\/80:hover {
+      background-color: rgba(0, 0, 0, 0.08) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-variant\/20:hover {
+      background-color: rgba(0, 0, 0, 0.04) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-bright:hover {
+      background-color: #e5e5ea !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-container-highest:hover {
+      background-color: #e5e5ea !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:bg-surface-container:hover {
+      background-color: #e5e5ea !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .hover\:text-on-surface:hover {
+      color: #1c1c1e !important;
+    }
+
+    /* In Light Theme: make theme-card outer containers white with dark text, keeping inner mini-preview mockups intact */
+    html.theme-light .theme-card {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light .theme-card p,
+    html.theme-light .theme-card span {
+      color: #1c1c1e !important;
+    }
+    html.theme-light .theme-card .text-text-secondary {
+      color: #636366 !important;
+    }
+
+    /* Inner mini-preview mockups inside theme-card in Light Theme */
+    html.theme-light .theme-card[data-theme="dark"] .h-20 {
+      background-color: #181a24 !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    html.theme-light .theme-card[data-theme="dark"] .h-20 .w-8 {
+      background-color: #6c5ce7 !important;
+    }
+    html.theme-light .theme-card[data-theme="dark"] .h-20 .w-full {
+      background-color: #2a2c38 !important;
+    }
+
+    html.theme-light .theme-card[data-theme="onyx"] .h-20 {
+      background-color: #0d0d0d !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    html.theme-light .theme-card[data-theme="onyx"] .h-20 .w-8 {
+      background-color: #ffffff !important;
+    }
+    html.theme-light .theme-card[data-theme="onyx"] .h-20 .w-full {
+      background-color: #1c1c1c !important;
+    }
+
+    html.theme-light .theme-card[data-theme="light"] .h-20 {
+      background-color: #f0f0f4 !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    html.theme-light .theme-card[data-theme="light"] .h-20 .w-8 {
+      background-color: #2563eb !important;
+    }
+    html.theme-light .theme-card[data-theme="light"] .h-20 .w-full {
+      background-color: #e5e5ea !important;
+    }
+
+    html.theme-light .theme-card[data-theme="ember"] .h-20 {
+      background-color: #241a21 !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    html.theme-light .theme-card[data-theme="ember"] .h-20 .w-8 {
+      background-color: #ea580c !important;
+    }
+    html.theme-light .theme-card[data-theme="ember"] .h-20 .w-full {
+      background-color: #382b34 !important;
+    }
+
+    /* Console Output Theme Overrides */
+    html.theme-light #console-output {
+      background-color: #ffffff !important;
+      color: #1c1c1e !important;
+      border-top-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    html.theme-light #console-output .text-text-secondary {
+      color: #8e8e93 !important;
+    }
+
+    html.theme-onyx #console-output {
+      background-color: #050505 !important;
+      color: #e5e5e5 !important;
+      border-top-color: #1c1c1c !important;
+    }
+    html.theme-onyx #console-output .text-text-secondary {
+      color: #666666 !important;
+    }
+
+    html.theme-ember #console-output {
+      background-color: #141118 !important;
+      color: #f3f3f5 !important;
+      border-top-color: #282130 !important;
+    }
+    html.theme-ember #console-output .text-text-secondary {
+      color: #a097a8 !important;
+    }
+
+    /* Header & Footer Theme Overrides */
+    html.theme-light header {
+      background-color: #ffffff !important;
+      border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light header #btn-minimize,
+    html.theme-light header #btn-maximize,
+    html.theme-light header #btn-close {
+      color: #1c1c1e !important;
+    }
+    html.theme-light header #btn-minimize:hover,
+    html.theme-light header #btn-maximize:hover {
+      background-color: #e5e5ea !important;
+      color: #000000 !important;
+    }
+    html.theme-light footer {
+      background-color: #ffffff !important;
+      border-top-color: rgba(0, 0, 0, 0.1) !important;
+      color: #1c1c1e !important;
+    }
+    html.theme-light footer span {
+      color: #636366 !important;
+    }
+
+    html.theme-onyx header {
+      background-color: #050505 !important;
+      border-bottom-color: #1c1c1c !important;
+      color: #ffffff !important;
+    }
+    html.theme-onyx footer {
+      background-color: #050505 !important;
+      border-top-color: #1c1c1c !important;
+      color: #888888 !important;
+    }
+
+    html.theme-ember header {
+      background-color: #141118 !important;
+      border-bottom-color: #282130 !important;
+      color: #f3f3f5 !important;
+    }
+    html.theme-ember footer {
+      background-color: #141118 !important;
+      border-top-color: #282130 !important;
+      color: #a097a8 !important;
+    }
+
+    /* Mod Cards: Hover-only Border (no permanent border) */
+    .installed-mod-row {
+      border: 1px solid transparent !important;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .installed-mod-row:hover {
+      border-color: rgba(108, 92, 231, 0.4) !important;
+    }
+    /* Mod version dropdown: custom arrow */
+    #drawer-version-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%236c5ce7' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      padding-right: 28px;
+    }
+    /* Mod detail drawer slide-in animation */
+    #mod-detail-drawer { transition: opacity 0.2s ease, transform 0.2s ease; }
+    #mod-detail-drawer.hidden { opacity: 0; transform: translateX(-8px); }
+    #mod-detail-drawer:not(.hidden) { opacity: 1; transform: translateX(0); }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden text-on-surface font-body-md bg-background">
+
+  <!-- TITLEBAR -->
+  <header data-tauri-drag-region class="h-10 w-full flex items-center justify-between bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant z-50 shrink-0">
+    <div class="flex items-center gap-2 pl-3" data-tauri-drag-region>
+      <div class="w-6 h-6 rounded bg-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+      </div>
+      <span class="font-label-md text-label-md text-on-surface font-bold">MyL</span>
+    </div>
+    <div class="flex items-center" data-tauri-drag-region>
+      <button id="btn-minimize" class="w-10 h-10 flex items-center justify-center text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[16px]">remove</span>
+      </button>
+      <button id="btn-maximize" class="w-10 h-10 flex items-center justify-center text-text-secondary hover:text-on-surface hover:bg-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[16px]">crop_square</span>
+      </button>
+      <button id="btn-close" class="w-10 h-10 flex items-center justify-center text-text-secondary transition-colors">
+        <span class="material-symbols-outlined text-[16px]">close</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-surface-card border-r border-outline-variant flex flex-col justify-between py-4 shrink-0">
+      <div class="px-4 mb-4">
+        <button id="btn-add-instance" class="w-full bg-primary-container text-on-primary-container py-3 px-4 rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-primary-container/20">
+          <span class="material-symbols-outlined">add</span> Новый экземпляр
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto flex flex-col justify-between">
+        <div class="px-2 space-y-1" id="nav-links">
+          <a data-page="instances" class="nav-link flex items-center gap-3 px-4 py-2.5 bg-primary/10 text-primary border-l-2 border-primary font-bold rounded-r-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+            <span class="font-label-md text-label-md">Экземпляры</span>
+          </a>
+          <a data-page="accounts" class="nav-link flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-label-md">Аккаунты</span>
+          </a>
+
+          <a data-page="console" class="nav-link flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">terminal</span>
+            <span class="font-label-md text-label-md">Консоль</span>
+          </a>
+          <a data-page="settings" class="nav-link flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-label-md text-label-md">Настройки</span>
+          </a>
+        </div>
+      </nav>
+      <!-- Active Account Widget (lifted above fixed footer) -->
+      <div class="px-3 pt-2 pb-10 border-t border-outline-variant/30 shrink-0">
+        <div id="sidebar-active-account" class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-outline-variant/30 cursor-pointer hover:border-primary/40 transition-all shadow-sm">
+          <canvas id="active-acc-head-canvas" width="32" height="32" class="w-8 h-8 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50"></canvas>
+          <div class="flex-1 overflow-hidden min-w-0">
+            <div id="active-acc-name" class="font-bold text-on-surface text-body-sm truncate leading-tight">—</div>
+            <div id="active-acc-type" class="font-label-sm text-label-sm text-text-secondary truncate leading-tight mt-0.5">Офлайн</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-1 flex flex-col overflow-hidden bg-background">
+      <div class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- PAGE: Instances -->
+        <div id="page-instances" class="page active flex-1 flex flex-col overflow-hidden">
+          <div class="flex items-center justify-between px-8 py-6 shrink-0">
+            <div>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface">Мои экземпляры</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary">Управление сборками Minecraft</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2 bg-surface-card px-3 py-1.5 rounded-lg border border-outline-variant">
+                <span class="material-symbols-outlined text-text-secondary text-[18px]">view_module</span>
+                <span class="font-label-md text-label-md text-text-secondary">Всего экземпляров: <strong id="instance-count" class="text-on-surface font-bold">0</strong></span>
+              </div>
+              <div class="flex items-center bg-surface-card rounded-lg border border-outline-variant p-1 gap-1">
+                <button id="btn-view-grid" class="p-1.5 bg-surface-variant text-primary rounded shadow-sm" title="По квадратикам (Grid)"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+                <button id="btn-view-list" class="p-1.5 text-text-secondary hover:text-on-surface" title="По списку (List)"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div id="empty-state" class="flex-1 flex flex-col items-center justify-center gap-6 px-8">
+            <div class="w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center">
+              <span class="material-symbols-outlined text-[48px] text-text-secondary">inbox</span>
+            </div>
+            <div class="text-center max-w-sm">
+              <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-2">Экземпляры не найдены</h3>
+              <p class="font-body-md text-body-md text-text-secondary">Создайте новый экземпляр или импортируйте существующую сборку.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button id="btn-create-first" class="px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Создать экземпляр</button>
+              <button id="btn-import-first" class="px-6 py-2.5 bg-surface-card hover:bg-surface-bright text-on-surface font-label-md text-label-md border border-outline-variant rounded-lg transition-all">Импортировать ZIP</button>
+            </div>
+          </div>
+
+          <div id="instance-grid" class="flex-1 overflow-y-auto px-8 pb-20 hidden">
+            <div id="instances-container" class="space-y-6"></div>
+          </div>
+        </div>
+
+        <!-- PAGE: Accounts -->
+        <div id="page-accounts" class="page flex-1 flex flex-col overflow-hidden">
+          <div class="flex items-center justify-between px-8 py-6 shrink-0">
+            <div>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface">Управление аккаунтами</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary">Авторизация Microsoft и офлайн аккаунты</p>
+            </div>
+            <button id="btn-add-account" class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-[18px]">add</span> Добавить аккаунт
+            </button>
+          </div>
+
+          <div class="flex-1 overflow-y-auto px-8 pb-20">
+            <div id="accounts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div id="add-account-placeholder" class="border-2 border-dashed border-outline-variant hover:border-primary/50 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-center cursor-pointer transition-all hover:bg-surface-variant/20 min-h-[160px]">
+                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+                  <span class="material-symbols-outlined text-text-secondary">add</span>
+                </div>
+                <p class="font-headline-md text-headline-md text-on-surface">Добавить аккаунт</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE: Mods Browser -->
+        <div id="page-mods" class="page flex-1 flex flex-col overflow-hidden">
+          <div class="flex items-center justify-between px-8 py-6 shrink-0 border-b border-outline-variant/30">
+            <div>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface">Каталог модов</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary">Поиск и загрузка модификаций с Modrinth</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <select id="mod-target-instance" class="bg-surface-card border border-outline-variant text-body-sm text-on-surface rounded-lg px-3 py-1.5 focus:outline-none max-w-[200px]" title="Целевая сборка для установки">
+                <option value="">Целевая сборка: Текущая</option>
+              </select>
+              <div class="flex items-center gap-2 bg-surface-card border border-outline-variant rounded-lg px-3 py-1.5 w-64">
+                <span class="material-symbols-outlined text-text-secondary">search</span>
+                <input id="mod-search-input" type="text" placeholder="Поиск модов..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none"/>
+              </div>
+              <select id="mod-loader-filter" class="bg-surface-card border border-outline-variant text-body-sm text-on-surface rounded-lg px-3 py-1.5 focus:outline-none">
+                <option value="">Все загрузчики</option>
+                <option value="fabric">Fabric</option>
+                <option value="forge">Forge</option>
+                <option value="neoforge">NeoForge</option>
+                <option value="quilt">Quilt</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="mod-scroll-container" class="flex-1 overflow-y-auto px-8 py-6">
+            <div id="mod-results" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="text-center py-12 text-text-secondary col-span-2">
+                <div class="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+                <p>Загрузка каталога модов...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE: Console -->
+        <div id="page-console" class="page flex-1 flex flex-col overflow-hidden">
+          <div class="flex items-center justify-between px-8 py-4 shrink-0 border-b border-outline-variant/30">
+            <div>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface">Консоль игры</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary">Логи в реальном времени запущенных процессов Minecraft</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-2 text-body-sm cursor-pointer text-text-secondary">
+                <input id="console-autoscroll" type="checkbox" checked class="rounded border-outline-variant text-primary focus:ring-primary"/>
+                <span>Автоскролл</span>
+              </label>
+              <button id="btn-clear-console" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">clear_all</span> Очистить
+              </button>
+            </div>
+          </div>
+          <div class="flex-1 overflow-y-auto p-6 bg-surface-card border-t border-outline-variant/30 font-mono text-body-sm text-on-surface select-text leading-relaxed space-y-1" id="console-output">
+            <div class="text-text-secondary italic">Ожидание запуска игры... Логи процесса Minecraft появятся здесь.</div>
+          </div>
+        </div>
+
+        <!-- PAGE: Settings -->
+        <div id="page-settings" class="page flex-1 flex flex-col overflow-hidden">
+          <div class="px-8 py-6 shrink-0 border-b border-outline-variant/30">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface">Настройки лаунчера</h1>
+            <p class="font-body-sm text-body-sm text-text-secondary">Кастомизация темы, шрифтов и глобальных параметров Java</p>
+          </div>
+
+          <div class="flex-1 overflow-y-auto px-8 py-6 space-y-8">
+            <!-- Section 1: Themes (SVG 2/_12) -->
+            <section class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Тема оформления</h3>
+                <span class="text-label-sm text-text-secondary">Выберите встроенный стиль</span>
+              </div>
+              <div class="grid grid-cols-4 gap-4">
+                <div class="theme-card border-2 border-primary rounded-xl p-4 bg-[#11131b] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="dark">
+                  <div class="h-20 rounded-lg bg-[#181a24] mb-3 p-2 flex flex-col justify-between border border-outline-variant/30">
+                    <div class="w-8 h-2 bg-primary rounded"></div>
+                    <div class="w-full h-3 bg-surface-container rounded"></div>
+                  </div>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary">Prism Dark (Дефолт)</p>
+                  <p class="text-label-sm text-text-secondary">Тёмная тема с фиолетовым акцентом</p>
+                </div>
+
+                <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#050505] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="onyx">
+                  <div class="h-20 rounded-lg bg-[#0d0d0d] mb-3 p-2 flex flex-col justify-between border border-outline-variant/30">
+                    <div class="w-8 h-2 bg-white rounded"></div>
+                    <div class="w-full h-3 bg-surface-variant rounded"></div>
+                  </div>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary">Midnight Onyx</p>
+                  <p class="text-label-sm text-text-secondary">Глубокий чёрный цвет</p>
+                </div>
+
+                <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#ffffff] text-black cursor-pointer hover:scale-[1.02] transition-all group" data-theme="light">
+                  <div class="h-20 rounded-lg bg-[#f0f0f4] mb-3 p-2 flex flex-col justify-between border border-gray-300">
+                    <div class="w-8 h-2 bg-blue-600 rounded"></div>
+                    <div class="w-full h-3 bg-gray-200 rounded"></div>
+                  </div>
+                  <p class="font-label-md text-label-md font-bold text-gray-900 group-hover:text-blue-600">Cloud White</p>
+                  <p class="text-label-sm text-gray-600">Светлая лаконичная тема</p>
+                </div>
+
+                <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#181216] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="ember">
+                  <div class="h-20 rounded-lg bg-[#241a21] mb-3 p-2 flex flex-col justify-between border border-outline-variant/30">
+                    <div class="w-8 h-2 bg-orange-500 rounded"></div>
+                    <div class="w-full h-3 bg-surface-container rounded"></div>
+                  </div>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-orange-400">Ember Flow</p>
+                  <p class="text-label-sm text-text-secondary">Тёплые оранжевые тона</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 2: Typography & Density (SVG 2/_12) -->
+            <section class="grid grid-cols-2 gap-6">
+              <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Размер шрифта</h4>
+                  <span id="font-size-val" class="font-mono text-primary font-bold">14px</span>
+                </div>
+                <input id="font-size-slider" type="range" min="11" max="18" step="0.1" value="14" class="w-full accent-primary cursor-pointer"/>
+                <p class="text-label-sm text-text-secondary">Настройка базового кегля для элементов интерфейса</p>
+              </div>
+
+              <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
+                <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Плотность текста (Density)</h4>
+                <div class="flex gap-2">
+                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="compact">Компактная</button>
+                  <button class="density-btn flex-1 py-2 bg-primary/10 text-primary rounded-lg font-label-md text-label-md font-bold border border-primary/30" data-density="normal">Обычная</button>
+                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="spacious">Просторная</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3: General Launcher Options (SVG 2/_10) -->
+            <section class="bg-surface-card rounded-xl border border-outline-variant p-6 space-y-6">
+              <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Поведение и Запуск</h3>
+
+              <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30">
+                <div>
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Действие после запуска игры</h4>
+                  <p class="font-body-sm text-body-sm text-text-secondary">Поведение главного окна лаунчера при старте Minecraft</p>
+                </div>
+                <select id="global-window-action" class="bg-surface-dim border border-outline-variant rounded-lg px-4 py-2 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+                  <option value="minimize">Свернуть лаунчер</option>
+                  <option value="close">Закрыть лаунчер</option>
+                  <option value="keep">Оставить открытым</option>
+                </select>
+              </div>
+
+              <!-- Default JVM Arguments Text Area (Visible & Editable) -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Java аргументы по умолчанию</h4>
+                  <span class="text-label-sm text-text-secondary">Универсальные флаги для всех версий</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-text-secondary">Оптимизированные аргументы JVM. Пользователь может свободно изменять их при необходимости:</p>
+                <textarea id="global-default-jvm-args" rows="3" class="w-full bg-surface-dim border border-outline-variant rounded-lg p-3 text-body-sm text-on-surface font-mono focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed" placeholder="-Xmx2G -XX:+UnlockExperimentalVMOptions">-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M</textarea>
+              </div>
+            </section>
+
+            <!-- Section 4: Interface Toggles (SVG 2/_10) -->
+            <section class="bg-surface-card rounded-xl border border-outline-variant divide-y divide-outline-variant/30">
+              <div class="flex items-center justify-between p-5">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">animation</span>
+                  <div>
+                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Анимации интерфейса</h4>
+                    <p class="font-body-sm text-body-sm text-text-secondary">Плавные переходы и эффекты наведения</p>
+                  </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input checked type="checkbox" class="sr-only peer" id="toggle-animations"/>
+                  <div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary-container after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between p-5">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">analytics</span>
+                  <div>
+                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Автопроверка обновлений</h4>
+                    <p class="font-body-sm text-body-sm text-text-secondary">Регулярно проверять новые версии компонентов</p>
+                  </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input checked type="checkbox" class="sr-only peer" id="toggle-updates"/>
+                  <div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary-container after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                </label>
+              </div>
+            </section>
+
+            <div class="flex justify-end gap-3 pt-4">
+              <button id="btn-save-settings" class="px-8 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">Сохранить настройки</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- DETAIL PANEL -->
+    <aside id="detail-panel" class="w-[320px] h-full bg-surface-card border-l border-outline-variant p-4 flex-col overflow-y-auto shrink-0 hidden">
+      <div class="flex flex-col items-center gap-4 mb-6">
+        <div id="detail-icon-box" class="w-20 h-20 rounded-2xl bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
+          <span class="material-symbols-outlined text-[32px] text-text-secondary" id="detail-icon">deployed_code</span>
+        </div>
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-2">
+            <h2 class="font-headline-md text-headline-md font-bold text-on-surface" id="detail-name">—</h2>
+          </div>
+          <div class="inline-block mt-2 px-3 py-1 bg-status-success/10 border border-status-success/30 rounded-full" id="detail-status-container">
+            <span class="text-status-success font-label-md text-label-md font-bold" id="detail-status">Готов к запуску</span>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-3 mb-6">
+        <button class="w-full bg-primary-container text-white rounded-lg flex items-center overflow-hidden hover:brightness-110 active:scale-[0.98] transition-all group" id="btn-launch">
+          <div class="flex-1 py-3 px-4 flex items-center justify-center gap-2" id="btn-launch-content">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span class="font-label-md text-label-md font-bold">Запустить</span>
+          </div>
+        </button>
+      </div>
+      <div class="space-y-1 mb-6">
+        <button id="btn-edit-instance" class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">edit</span>
+          <span class="font-label-md text-label-md">Настройки сборки</span>
+        </button>
+        <button id="btn-open-folder" class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">folder_open</span>
+          <span class="font-label-md text-label-md">Папка экземпляра</span>
+        </button>
+        <button id="btn-delete-instance" class="w-full flex items-center gap-3 px-3 py-2 text-status-error hover:bg-status-error/10 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-status-error">delete</span>
+          <span class="font-label-md text-label-md">Удалить</span>
+        </button>
+      </div>
+      <div class="border-t border-outline-variant pt-4">
+        <h4 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-3">Информация</h4>
+        <div class="space-y-2">
+          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary">Версия:</span><span class="font-label-md text-label-md text-on-surface" id="detail-version">—</span></div>
+          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary">Загрузчик:</span><span class="font-label-md text-label-md text-on-surface" id="detail-loader">—</span></div>
+          <div class="flex flex-col gap-1"><span class="font-label-md text-label-md text-text-secondary">Путь:</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate font-mono bg-surface-container-lowest p-1.5 rounded border border-outline-variant/30" id="detail-path" title="">—</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FOOTER & PROGRESS BAR (Taken 1-to-1 from MC/code.html) -->
+  <div id="download-progress-box" class="hidden fixed bottom-12 left-1/2 -translate-x-1/2 z-[150] w-full max-w-2xl bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden p-6 space-y-4">
+    <div class="flex justify-between items-end">
+      <div class="space-y-1">
+        <span class="text-label-sm font-label-sm text-primary uppercase tracking-wider">Текущий процесс</span>
+        <p class="text-body-md font-body-md text-on-surface"><span id="download-progress-status">Загрузка ресурсов...</span> <span id="download-progress-sub" class="font-bold"></span></p>
+      </div>
+      <span id="download-progress-percent" class="text-headline-md font-headline-md text-primary">0%</span>
+    </div>
+    <!-- Animated Progress Bar from MC/code.html -->
+    <div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden border border-outline-variant/30">
+      <div id="download-progress-inner" class="h-full bg-primary-container relative transition-all duration-300 ease-out flex items-center" style="width: 0%;">
+        <div class="absolute inset-0 progress-shimmer"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-4 bg-white/20 blur-sm"></div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 pt-2">
+      <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
+        <p class="text-label-sm font-label-sm text-text-secondary">Скорость</p>
+        <p id="download-progress-speed" class="text-body-md font-body-md text-on-surface font-semibold">4.2 MB/s</p>
+      </div>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
+        <p class="text-label-sm font-label-sm text-text-secondary">Осталось</p>
+        <p id="download-progress-eta" class="text-body-md font-body-md text-on-surface font-semibold">~15 сек</p>
+      </div>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
+        <p class="text-label-sm font-label-sm text-text-secondary">Потоки</p>
+        <p id="download-progress-threads" class="text-body-md font-body-md text-on-surface font-semibold">24 активных</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="h-8 w-full px-4 fixed bottom-0 z-50 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between text-on-surface font-label-sm text-label-sm shrink-0">
+    <span class="text-text-secondary">MyL v0.1.0</span>
+    <span class="text-text-secondary" id="global-status-text">Готов к работе</span>
+  </footer>
+
+  <!-- MODALS -->
+  <!-- Multi-style Alert Dialog (z-[200] to render above all menus) -->
+  <div id="modal-alert" class="fixed inset-0 z-[200] bg-background/70 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-md bg-surface-elevated border border-outline-variant rounded-xl shadow-2xl overflow-hidden transform transition-all">
+      <div id="modal-alert-bar" class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+      <div class="p-6">
+        <div class="flex items-start gap-4 mb-6">
+          <div id="modal-alert-icon-box" class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+            <span id="modal-alert-icon" class="material-symbols-outlined text-3xl">info</span>
+          </div>
+          <div class="flex-1">
+            <h2 id="modal-alert-title" class="font-headline-md text-headline-md text-on-surface mb-1">Уведомление</h2>
+            <p id="modal-alert-text" class="font-body-md text-body-md text-text-secondary leading-relaxed"></p>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button id="modal-alert-cancel" class="px-5 py-2.5 rounded-lg border border-outline-variant hover:bg-surface-bright text-on-surface font-label-md text-label-md transition-all active:scale-95 hidden">Отмена</button>
+          <button id="modal-alert-ok" class="px-6 py-2.5 rounded-lg bg-primary-container text-white font-label-md text-label-md shadow-lg shadow-primary/20 transition-all active:scale-95 flex items-center gap-2">
+            <span id="modal-alert-ok-icon" class="material-symbols-outlined text-sm">check</span>
+            <span id="modal-alert-ok-text">OK</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Account Type -->
+  <div id="modal-add-account" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
+      <div class="px-6 py-5 border-b border-outline-variant">
+        <h2 class="font-headline-md text-headline-md text-on-surface">Добавить аккаунт</h2>
+      </div>
+      <div class="p-6 space-y-4">
+        <button id="btn-add-msa" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 21 21" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="9" height="9" fill="#F25022"/><rect x="11" y="0" width="9" height="9" fill="#7FBA00"/><rect x="0" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
+          </div>
+          <div class="text-left">
+            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">Microsoft</p>
+            <p class="font-label-md text-label-md text-text-secondary">Войти через Microsoft (MSA)</p>
+          </div>
+        </button>
+        <button id="btn-add-offline" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center">
+            <span class="material-symbols-outlined text-text-secondary text-[24px] group-hover:text-primary">person_off</span>
+          </div>
+          <div class="text-left">
+            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">Офлайн</p>
+            <p class="font-label-md text-label-md text-text-secondary">Произвольный ник, без лицензии</p>
+          </div>
+        </button>
+      </div>
+      <div class="px-6 py-4 border-t border-outline-variant flex justify-end">
+        <button id="btn-modal-account-close" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Microsoft Login Modal -->
+  <div id="modal-msa" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
+      <div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center">
+        <h2 class="font-headline-md text-headline-md text-on-surface">Авторизация Microsoft</h2>
+        <button id="btn-msa-cancel" class="text-text-secondary hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="p-6 text-center space-y-4">
+        <p class="text-body-sm text-text-secondary">Для входа перейдите по ссылке ниже и введите указанный код:</p>
+        <div class="p-3 bg-surface-dim border border-outline-variant rounded-lg">
+          <a id="msa-link" href="#" target="_blank" class="text-primary font-bold text-headline-md underline break-all">https://microsoft.com/link</a>
+        </div>
+        <div class="p-4 bg-surface-container-high border border-primary/40 rounded-xl inline-block">
+          <p class="text-xs text-text-secondary uppercase tracking-widest font-bold mb-1">Код подтверждения</p>
+          <p id="msa-code" class="text-3xl font-mono font-extrabold text-primary select-all">--------</p>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-text-secondary text-body-sm pt-2">
+          <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span id="msa-status-text">Ожидание входа в аккаунт...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offline Username -->
+  <div id="modal-offline" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
+      <div class="px-6 py-5 border-b border-outline-variant">
+        <h2 class="font-headline-md text-headline-md text-on-surface">Офлайн-аккаунт</h2>
+        <p class="text-body-sm text-text-secondary mt-1">Введите желаемый никнейм</p>
+      </div>
+      <div class="p-6">
+        <input id="offline-username" type="text" placeholder="Никнейм..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" maxlength="16"/>
+        <p id="offline-error" class="text-status-error text-body-sm mt-2 hidden"></p>
+      </div>
+      <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-2">
+        <button id="btn-offline-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
+        <button id="btn-offline-submit" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Добавить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instance Creation Wizard -->
+  <div id="modal-wizard" class="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="w-full max-w-[1100px] h-[650px] bg-surface-card rounded-lg border border-outline-variant shadow-2xl overflow-hidden flex flex-col">
+      <div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-6">
+        <div class="w-14 h-14 bg-surface-container-highest rounded-lg border border-outline-variant flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1">grid_view</span>
+        </div>
+        <div class="flex-1 grid grid-cols-2 gap-4">
+          <div class="flex items-center gap-3">
+            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right">Имя:</label>
+            <input id="wizard-name" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Название сборки...">
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right">Группа:</label>
+            <input id="wizard-group" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface-variant focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Без группы">
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 flex overflow-hidden">
+        <div class="w-48 bg-surface-container border-r border-outline-variant flex flex-col overflow-y-auto shrink-0">
+          <button class="wizard-source sidebar-item-active flex items-center gap-2 px-4 py-2.5 text-body-sm font-medium" data-source="custom"><span class="material-symbols-outlined text-sm">grid_view</span> Пользовательский</button>
+          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="import"><span class="material-symbols-outlined text-sm">upload_file</span> Импорт</button>
+          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="modrinth"><span class="material-symbols-outlined text-sm text-status-success">extension</span> Modrinth</button>
+        </div>
+
+        <!-- === CUSTOM PANEL === -->
+        <div id="wizard-panel-custom" class="wizard-panel flex-1 flex overflow-hidden p-4 bg-surface-container-low min-h-0">
+          <div class="flex-1 flex gap-4 min-h-0">
+            <div class="flex-1 flex flex-col gap-2 min-w-0 min-h-0">
+              <div><h3 class="text-body-md font-bold text-on-surface">Пользовательский</h3></div>
+              <div class="version-table-container flex-1 overflow-hidden flex flex-col rounded-sm min-h-0">
+                <div class="flex bg-surface-container-high border-b border-outline-variant text-label-sm font-bold"><div class="px-3 py-1.5 w-48 border-r border-outline-variant">Версия</div><div class="px-3 py-1.5 w-32 border-r border-outline-variant">Выпущено</div><div class="px-3 py-1.5 flex-1">Тип</div></div>
+                <div class="flex-1 overflow-y-auto bg-surface-container-lowest" id="wizard-version-list"><div class="text-center py-8 text-text-secondary">Загрузка...</div></div>
+              </div>
+              <input class="bg-surface-container-lowest border border-outline-variant rounded px-3 py-1 text-body-sm w-full focus:outline-none" placeholder="Поиск..." type="text" id="wizard-search">
+              <div class="flex-1 min-h-0 overflow-hidden flex flex-col" id="wizard-loader-panel"><div class="flex-1 border border-dashed border-outline-variant rounded flex items-center justify-center bg-surface-container-lowest/30"><div class="bg-surface-container-high px-12 py-6 rounded-lg shadow-lg border border-outline-variant"><p class="text-on-surface-variant font-bold text-headline-md">Не выбран загрузчик модов.</p></div></div></div>
+              <input class="bg-surface-container-lowest border border-outline-variant rounded px-3 py-1 text-body-sm w-full focus:outline-none" placeholder="Поиск..." type="text" id="wizard-loader-search">
+            </div>
+            <div class="w-44 shrink-0 flex flex-col gap-2 min-h-0">
+              <div class="text-body-md invisible">‎</div>
+              <div class="flex-1 flex flex-col justify-center space-y-1.5">
+                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1">Показывать</p>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="release"><span class="text-on-surface group-hover:text-primary transition-colors">Релизы</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="snapshot"><span class="text-on-surface group-hover:text-primary transition-colors">Снапшоты</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_beta"><span class="text-on-surface group-hover:text-primary transition-colors">Беты</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_alpha"><span class="text-on-surface group-hover:text-primary transition-colors">Альфы</span></label>
+              </div>
+              <button id="btn-refresh-versions" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded">Обновить</button>
+              <div class="flex-1 flex flex-col justify-center space-y-1.5">
+                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1">Загрузчик модов</p>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value=""><span class="text-on-surface group-hover:text-primary transition-colors">Нет</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="neoforge"><span class="text-on-surface group-hover:text-primary transition-colors">NeoForge</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="forge"><span class="text-on-surface group-hover:text-primary transition-colors">Forge</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="fabric"><span class="text-on-surface group-hover:text-primary transition-colors">Fabric</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="quilt"><span class="text-on-surface group-hover:text-primary transition-colors">Quilt</span></label>
+              </div>
+              <button id="btn-refresh-versions2" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded">Обновить</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- === IMPORT PANEL === -->
+        <div id="wizard-panel-import" class="wizard-panel hidden flex-1 flex flex-col items-center justify-center p-8 bg-surface-container-low gap-6">
+          <div id="wizard-import-drop-zone" class="w-full max-w-lg border-2 border-dashed border-outline-variant rounded-2xl p-10 flex flex-col items-center gap-4 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all group">
+            <span class="material-symbols-outlined text-[64px] text-text-secondary group-hover:text-primary transition-colors">upload_file</span>
+            <div class="text-center">
+              <p class="font-headline-md text-headline-md text-on-surface font-bold">Перетащите архив сюда</p>
+              <p class="text-body-sm text-text-secondary mt-1">или нажмите кнопку ниже для выбора файла</p>
+            </div>
+            <div class="flex flex-wrap gap-2 justify-center">
+              <span class="px-2.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-full text-label-sm text-text-secondary font-mono">.mrpack</span>
+              <span class="px-2.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-full text-label-sm text-text-secondary font-mono">.zip (CurseForge)</span>
+              <span class="px-2.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-full text-label-sm text-text-secondary font-mono">.zip (MultiMC)</span>
+            </div>
+          </div>
+          <button id="btn-wizard-pick-file" class="px-8 py-3 bg-primary-container text-on-primary-container rounded-xl font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all flex items-center gap-2 shadow-lg">
+            <span class="material-symbols-outlined">folder_open</span> Выбрать файл
+          </button>
+          <div id="wizard-import-status" class="text-body-sm text-text-secondary hidden"></div>
+        </div>
+
+        <!-- === MODRINTH MODPACK BROWSER === -->
+        <div id="wizard-panel-modrinth" class="wizard-panel hidden flex-1 flex overflow-hidden bg-surface-container-low">
+          <!-- Left: search + list -->
+          <div class="flex flex-col w-[52%] border-r border-outline-variant shrink-0 overflow-hidden">
+            <div class="p-3 border-b border-outline-variant flex gap-2">
+              <div class="flex-1 flex items-center gap-2 bg-surface-dim border border-outline-variant rounded-lg px-3 py-1.5">
+                <span class="material-symbols-outlined text-text-secondary text-[18px]">search</span>
+                <input id="wizard-modpack-search" type="text" placeholder="Поиск модпаков на Modrinth..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none"/>
+              </div>
+              <select id="wizard-modpack-loader-filter" class="bg-surface-dim border border-outline-variant rounded-lg px-2 py-1.5 text-body-sm text-on-surface focus:outline-none appearance-none cursor-pointer pr-6">
+                <option value="">Все лоадеры</option>
+                <option value="fabric">Fabric</option>
+                <option value="forge">Forge</option>
+                <option value="neoforge">NeoForge</option>
+                <option value="quilt">Quilt</option>
+              </select>
+            </div>
+            <div id="wizard-modpack-list" class="flex-1 overflow-y-auto space-y-1 p-2">
+              <div class="text-center py-12 text-text-secondary">Введите запрос для поиска</div>
+            </div>
+          </div>
+          <!-- Right: details + version select -->
+          <div id="wizard-modpack-detail" class="flex-1 flex flex-col overflow-y-auto p-4 gap-3">
+            <div class="flex-1 flex items-center justify-center text-text-secondary">
+              <div class="text-center">
+                <span class="material-symbols-outlined text-[48px] mb-2 block">extension</span>
+                <p class="text-body-sm">Выберите модпак из списка</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 py-3 bg-surface-container-high border-t border-outline-variant flex items-center justify-end gap-2 shrink-0">
+        <button id="btn-wizard-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
+        <button id="btn-wizard-create" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Создать</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instance Settings Modal -->
+  <div id="modal-instance-settings" class="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="w-full max-w-[1000px] h-[650px] bg-surface-card rounded-lg border border-outline-variant shadow-2xl overflow-hidden flex flex-col">
+      <div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center justify-between shrink-0">
+        <h2 class="font-headline-md text-headline-md text-on-surface" id="settings-modal-title">Настройки экземпляра</h2>
+        <button id="btn-settings-close" class="p-2 hover:bg-surface-variant rounded-lg text-text-secondary transition-colors"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="flex-1 flex overflow-hidden">
+        <!-- Sidebar tabs with w-52 width to fit 'Наборы ресурсов' and 'Наборы шейдеров' on 1 line -->
+        <div class="w-52 bg-surface-container border-r border-outline-variant flex flex-col overflow-y-auto shrink-0">
+          <button class="settings-tab sidebar-item-active flex items-center gap-2 px-3 py-2.5 text-[12px] whitespace-nowrap overflow-hidden text-ellipsis font-medium" data-tab="general"><span class="material-symbols-outlined text-sm">settings</span> Основные</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="java"><span class="material-symbols-outlined text-sm">coffee</span> Java</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="minecraft"><span class="material-symbols-outlined text-sm">box</span> Minecraft</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="mods"><span class="material-symbols-outlined text-sm">extension</span> Моды</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="resourcepacks"><span class="material-symbols-outlined text-sm">palette</span> Наборы ресурсов</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="shaders"><span class="material-symbols-outlined text-sm">blur_on</span> Наборы шейдеров</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="worlds"><span class="material-symbols-outlined text-sm">public</span> Миры</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="servers"><span class="material-symbols-outlined text-sm">dns</span> Серверы</button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="modrinth"><span class="material-symbols-outlined text-sm">download</span> Modrinth</button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6">
+          <div id="settings-tab-general" class="settings-content space-y-4">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Основные настройки</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Иконка</p>
+                  <p class="text-body-sm text-text-secondary">Кастомное изображение для сборки</p>
+                </div>
+                <button id="btn-settings-icon" class="px-3 py-1.5 bg-surface-variant hover:bg-surface-variant/80 border border-outline-variant rounded text-body-sm text-on-surface transition-colors flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[16px]">image</span> Сменить иконку
+                </button>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Название сборки</p>
+                  <p class="text-body-sm text-text-secondary">Отображаемое имя текущего экземпляра</p>
+                </div>
+                <input id="settings-name" type="text" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Группа</p>
+                  <p class="text-body-sm text-text-secondary">Категория для группировки сборок</p>
+                </div>
+                <input id="settings-group-input" type="text" placeholder="Без группы" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Версия Minecraft</p>
+                  <p class="text-body-sm text-text-secondary">Версия игры текущего экземпляра</p>
+                </div>
+                <input id="settings-mc-version" type="text" placeholder="1.20.1" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Загрузчик модов</p>
+                  <p class="text-body-sm text-text-secondary">Vanilla, Fabric, Forge, NeoForge, Quilt</p>
+                </div>
+                <select id="settings-loader" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none">
+                  <option value="">Vanilla</option>
+                  <option value="fabric">Fabric</option>
+                  <option value="forge">Forge</option>
+                  <option value="neoforge">NeoForge</option>
+                  <option value="quilt">Quilt</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="settings-tab-java" class="settings-content space-y-4 hidden">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Настройки Java и Памяти</h3>
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Мин. Память (МБ)</p>
+                  <input id="settings-min-ram" type="number" step="512" min="512" placeholder="1024" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
+                </div>
+                <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Макс. Память (МБ)</p>
+                  <input id="settings-max-ram" type="number" step="512" min="1024" placeholder="4096" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
+                </div>
+              </div>
+              <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
+                <p class="font-label-md text-label-md text-on-surface font-bold">Дополнительные JVM аргументы</p>
+                <p class="text-body-sm text-text-secondary">Дополнительные флаги (без -Xms/-Xmx)</p>
+                <textarea id="settings-jvm-args" rows="3" placeholder="-XX:+UseG1GC" class="w-full bg-surface-dim border border-outline-variant rounded p-2 text-body-sm text-on-surface font-mono focus:ring-1 focus:ring-primary focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div id="settings-tab-minecraft" class="settings-content space-y-4 hidden">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Параметры запуска Minecraft</h3>
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Ширина окна (px)</p>
+                  <input id="settings-game-width" type="number" placeholder="854" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
+                </div>
+                <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Высота окна (px)</p>
+                  <input id="settings-game-height" type="number" placeholder="480" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+                <div>
+                  <p class="font-label-md text-label-md text-on-surface font-bold">Полноэкранный режим</p>
+                  <p class="text-body-sm text-text-secondary">Запускать игру во весь экран</p>
+                </div>
+                <input id="settings-fullscreen" type="checkbox" class="w-5 h-5 accent-primary cursor-pointer"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODS MANAGEMENT TAB -->
+          <div id="settings-tab-mods" class="settings-content space-y-4 hidden">
+            <!-- Installed Mods View -->
+            <div id="instance-mods-list-view" class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface">Установленные моды</h3>
+                  <div class="flex gap-4 text-label-sm text-text-secondary mt-1">
+                    <span>Установлено: <strong id="mods-count-installed" class="text-on-surface">0</strong></span>
+                    <span>Активно: <strong id="mods-count-active" class="text-status-success">0</strong></span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button id="btn-add-mod-file" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[18px]">upload_file</span> Добавить файл
+                  </button>
+                  <button id="btn-open-mods-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                  </button>
+                  <button id="btn-open-mod-search" class="px-4 py-1.5 bg-primary-container text-white rounded-lg font-label-md text-label-md font-bold flex items-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[18px]">add</span> Скачать
+                  </button>
+                </div>
+              </div>
+
+              <!-- Installed mods table -->
+              <div class="bg-surface-container border border-outline-variant rounded-xl overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                  <thead class="bg-surface-container-high border-b border-outline-variant text-label-sm text-text-secondary uppercase">
+                    <tr>
+                      <th class="px-4 py-3">Мод</th>
+                      <th class="px-4 py-3 text-center">Статус</th>
+                      <th class="px-4 py-3 text-right">Действия</th>
+                    </tr>
+                  </thead>
+                  <tbody id="installed-mods-tbody" class="divide-y divide-outline-variant/30">
+                    <tr><td colspan="3" class="text-center py-8 text-text-secondary">Загрузка модов...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Mod Search View (Triggered by "+ Скачать") -->
+            <div id="instance-mods-search-view" class="space-y-4 hidden">
+              <div class="flex items-center gap-3">
+                <button id="btn-back-installed-mods" class="p-2 hover:bg-surface-variant rounded-lg text-on-surface transition-colors" title="Назад">
+                  <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <div class="flex-1 flex items-center gap-2 bg-surface-dim border border-outline-variant rounded-lg px-3 py-1.5">
+                  <span class="material-symbols-outlined text-text-secondary">search</span>
+                  <input id="instance-mod-search-input" type="text" placeholder="Поиск на Modrinth..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none"/>
+                </div>
+              </div>
+
+              <!-- Search Results with Left Slide-out Description Panel -->
+              <div class="relative flex gap-4 h-[420px] overflow-hidden">
+                <!-- Left Slide-out Description Drawer -->
+                <div id="mod-detail-drawer" class="hidden w-72 bg-surface-container-low border border-outline-variant rounded-xl p-4 flex-col overflow-y-auto shrink-0">
+                  <div class="flex justify-between items-start mb-3">
+                    <h4 id="drawer-mod-title" class="font-headline-md text-headline-md font-bold text-on-surface">—</h4>
+                    <button id="btn-close-mod-drawer" class="text-text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-sm">close</span></button>
+                  </div>
+                  <img id="drawer-mod-icon" src="" class="w-16 h-16 rounded-xl object-cover bg-surface-variant mb-3 hidden"/>
+                  <p id="drawer-mod-author" class="text-label-sm text-text-secondary mb-2">Автор: —</p>
+                  <p id="drawer-mod-desc" class="text-body-sm text-on-surface-variant leading-relaxed mb-3">Описание мода...</p>
+
+                  <!-- Version selector (populated from Modrinth) -->
+                  <div id="drawer-version-block" class="mb-3 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                      <p class="text-label-sm text-text-secondary font-bold uppercase tracking-wider">Версия мода</p>
+                      <div id="drawer-versions-spinner" class="hidden w-3.5 h-3.5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                    <select id="drawer-version-select" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-2.5 py-1.5 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary appearance-none cursor-pointer">
+                      <option value="">Загрузка...</option>
+                    </select>
+                    <p id="drawer-version-meta" class="text-[11px] text-text-secondary leading-relaxed"></p>
+                  </div>
+
+                  <button id="btn-drawer-install" class="w-full bg-primary-container text-white py-2 rounded-lg font-bold text-label-md hover:brightness-110 active:scale-95 transition-all mt-auto flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">download</span> Скачать мод
+                  </button>
+                </div>
+
+                <!-- Results List -->
+                <div id="instance-mod-search-results" class="flex-1 overflow-y-auto space-y-2 pr-1">
+                  <div class="text-center py-12 text-text-secondary">Введите запрос для поиска</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESOURCEPACKS TAB -->
+          <div id="settings-tab-resourcepacks" class="settings-content space-y-4 hidden">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">Наборы ресурсов</h3>
+                <p class="text-body-sm text-text-secondary">Установленные текстур-паки</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="btn-open-rp-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                </button>
+              </div>
+            </div>
+            <div id="rp-list-container" class="space-y-2">
+              <div class="text-center py-8 text-text-secondary">Загрузка ресурс-паков...</div>
+            </div>
+          </div>
+
+          <!-- SHADERPACKS TAB -->
+          <div id="settings-tab-shaders" class="settings-content space-y-4 hidden">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">Наборы шейдеров</h3>
+                <p class="text-body-sm text-text-secondary">Установленные графические шейдеры</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="btn-open-sp-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                </button>
+              </div>
+            </div>
+            <div id="sp-list-container" class="space-y-2">
+              <div class="text-center py-8 text-text-secondary">Загрузка шейдеров...</div>
+            </div>
+          </div>
+
+          <!-- WORLDS TAB -->
+          <div id="settings-tab-worlds" class="settings-content space-y-4 hidden">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">Миры</h3>
+                <p class="text-body-sm text-text-secondary">Сохраненные локальные миры</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="btn-import-world-zip" class="px-3 py-1.5 bg-primary-container text-white rounded-lg font-label-md text-label-md font-bold flex items-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[18px]">file_upload</span> Импортировать мир (.zip)
+                </button>
+                <button id="btn-open-worlds-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                </button>
+              </div>
+            </div>
+            <div id="worlds-list-container" class="space-y-2">
+              <div class="text-center py-8 text-text-secondary">Загрузка миров...</div>
+            </div>
+          </div>
+
+          <!-- SERVERS TAB -->
+          <div id="settings-tab-servers" class="settings-content space-y-4 hidden">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">Серверы</h3>
+                <p class="text-body-sm text-text-secondary">Сохраненные сетевые сервера (servers.dat)</p>
+              </div>
+              <button id="btn-open-servers-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+              </button>
+            </div>
+            <div id="servers-list-container" class="space-y-2">
+              <div class="text-center py-8 text-text-secondary">Загрузка серверов...</div>
+            </div>
+          </div>
+
+          <!-- MODRINTH TAB -->
+          <div id="settings-tab-modrinth" class="settings-content space-y-4 hidden">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Интеграция Modrinth</h3>
+            <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-on-surface text-body-md">Обновления сборки</h4>
+                  <p class="text-body-sm text-text-secondary">Проверка новой версии сборки на платформе Modrinth</p>
+                </div>
+                <button id="btn-modrinth-check-update" class="px-4 py-2 bg-primary-container text-white rounded-lg font-bold text-body-sm hover:brightness-110 active:scale-95 transition-all">
+                  Проверить обновления
+                </button>
+              </div>
+              <div id="modrinth-update-status" class="text-body-sm text-text-secondary hidden"></div>
+            </div>
+          </div>
+          <div id="settings-tab-screenshots" class="settings-content space-y-4 hidden"><h3 class="font-headline-md text-headline-md text-on-surface">Снимки экрана</h3><p class="text-body-md text-text-secondary">Скриншоты.</p></div>
+        </div>
+      </div>
+      <div class="px-6 py-3 border-t border-outline-variant flex justify-end gap-2 bg-surface-container-low shrink-0"><button id="btn-settings-cancel" class="px-4 py-2 text-on-surface hover:bg-surface-variant rounded-xl transition-colors font-label-md text-label-md">Отмена</button><button id="btn-settings-save" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-xl font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Сохранить</button></div>
+    </div>
+  </div>
+  <script src="js/backend-api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

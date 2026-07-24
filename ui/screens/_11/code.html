@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prism Launcher - Настройки сети</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#4331b4",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "surface-container": "#1d1f28",
+                    "on-tertiary-fixed": "#2f1500",
+                    "surface-container-high": "#282a32",
+                    "inverse-on-surface": "#2e3039",
+                    "on-primary-fixed": "#160066",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary-fixed": "#e4dfff",
+                    "on-background": "#e1e1ed",
+                    "text-secondary": "#8A8F9C",
+                    "status-error": "#EF4444",
+                    "tertiary-fixed": "#ffdcc3",
+                    "surface-tint": "#c6bfff",
+                    "surface-variant": "#33343d",
+                    "on-secondary-container": "#b7afff",
+                    "primary": "#c6bfff",
+                    "status-success": "#4ADE80",
+                    "on-secondary-fixed": "#160066",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb77d",
+                    "primary-container": "#6c5ce7",
+                    "text-primary": "#FFFFFF",
+                    "surface-dim": "#11131b",
+                    "inverse-primary": "#5847d2",
+                    "on-surface": "#e1e1ed",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-container-low": "#191b23",
+                    "primary-fixed": "#e4dfff",
+                    "error": "#ffb4ab",
+                    "surface": "#11131b",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "on-secondary": "#28069c",
+                    "inverse-surface": "#e1e1ed",
+                    "background": "#11131b",
+                    "outline": "#928ea0",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-elevated": "#20232F",
+                    "on-primary-container": "#faf6ff",
+                    "on-primary": "#2900a0",
+                    "secondary": "#c6bfff",
+                    "outline-variant": "#474554",
+                    "surface-container-lowest": "#0c0e16",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "tertiary-container": "#ac5d00",
+                    "status-warning": "#F59E0B",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-tertiary": "#4d2600",
+                    "surface-card": "#1B1E29",
+                    "surface-container-highest": "#33343d",
+                    "surface-bright": "#373942",
+                    "on-surface-variant": "#c8c4d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "detail-panel-width": "320px",
+                    "list-gap": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #11131b;
+            color: #e1e1ed;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(27, 30, 41, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #c6bfff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(108, 92, 231, 0.3);
+        }
+        input:focus {
+            outline: none;
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-16 w-full flex items-center justify-between px-gutter bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant shadow-sm z-50">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface">Prism Launcher</span>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Настройки</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-bright px-3 py-1.5 rounded transition-all">Справка</button>
+<button class="font-label-md text-label-md text-primary font-bold hover:bg-surface-bright px-3 py-1.5 rounded transition-all">Обновить</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-bright rounded-full transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="p-2 hover:bg-surface-bright rounded-full transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">check_box_outline_blank</span>
+</button>
+<button class="p-2 hover:bg-status-error/10 hover:text-status-error rounded-full transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-sidebar-width h-full bg-surface-container border-r border-outline-variant flex flex-col py-container-margin gap-list-gap overflow-y-auto">
+<div class="px-4 mb-4">
+<div class="flex items-center gap-3 p-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">settings</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Настройки</div>
+<div class="font-label-sm text-label-sm text-text-secondary">v11.0.3</div>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1 px-2">
+<button class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-variant transition-all group">
+<span class="material-symbols-outlined group-hover:text-on-surface">grid_view</span>
+<span class="font-label-md text-label-md">Экземпляры</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-variant transition-all group">
+<span class="material-symbols-outlined group-hover:text-on-surface">package</span>
+<span class="font-label-md text-label-md">Сборки</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-variant transition-all group">
+<span class="material-symbols-outlined group-hover:text-on-surface">extension</span>
+<span class="font-label-md text-label-md">Плагины</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-variant transition-all group">
+<span class="material-symbols-outlined group-hover:text-on-surface">palette</span>
+<span class="font-label-md text-label-md">Темы</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border-l-2 border-primary font-bold">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Настройки</span>
+</button>
+</nav>
+<div class="mt-auto px-4 pt-4 border-t border-outline-variant/30">
+<div class="font-label-sm text-label-sm text-text-secondary mb-2 px-2 uppercase">Фильтры</div>
+<div class="flex flex-col gap-1">
+<button class="flex items-center gap-3 px-3 py-1.5 rounded-md text-text-secondary hover:text-on-surface text-sm transition-all">
+<span class="material-symbols-outlined text-[18px]">apps</span> Все
+                    </button>
+<button class="flex items-center gap-3 px-3 py-1.5 rounded-md text-text-secondary hover:text-on-surface text-sm transition-all">
+<span class="material-symbols-outlined text-[18px]">star</span> Избранное
+                    </button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 bg-surface-dim overflow-y-auto relative">
+<!-- Atmospheric BG Effect -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10"></div>
+<div class="max-w-4xl mx-auto p-12">
+<header class="mb-10">
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Сеть и прокси</h1>
+<p class="font-body-md text-body-md text-text-secondary">Настройка сетевого соединения и прокси-серверов для загрузки игровых файлов и связи с серверами авторизации.</p>
+</header>
+<div class="grid grid-cols-1 gap-8">
+<!-- Section 1: Proxy Type -->
+<section class="bg-surface-card rounded-xl p-card-padding border border-outline-variant/50">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lan</span>
+                            Тип прокси
+                        </h2>
+<div class="flex flex-wrap gap-4">
+<label class="flex-1 min-w-[140px] cursor-pointer group">
+<input checked="" class="hidden peer" name="proxy_type" type="radio" value="none"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center gap-2 group-hover:border-outline">
+<span class="material-symbols-outlined text-3xl text-text-secondary peer-checked:text-primary">block</span>
+<span class="font-label-md text-label-md">Нет</span>
+</div>
+</label>
+<label class="flex-1 min-w-[140px] cursor-pointer group">
+<input class="hidden peer" name="proxy_type" type="radio" value="http"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center gap-2 group-hover:border-outline">
+<span class="material-symbols-outlined text-3xl text-text-secondary peer-checked:text-primary">language</span>
+<span class="font-label-md text-label-md">HTTP</span>
+</div>
+</label>
+<label class="flex-1 min-w-[140px] cursor-pointer group">
+<input class="hidden peer" name="proxy_type" type="radio" value="socks5"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center gap-2 group-hover:border-outline">
+<span class="material-symbols-outlined text-3xl text-text-secondary peer-checked:text-primary">shield_lock</span>
+<span class="font-label-md text-label-md">SOCKS5</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Section 2: Parameters -->
+<section class="bg-surface-card rounded-xl p-card-padding border border-outline-variant/50 relative overflow-hidden">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+                            Параметры соединения
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-text-secondary px-1">Хост</label>
+<div class="relative group">
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface transition-all" placeholder="127.0.0.1" type="text"/>
+<span class="absolute right-3 top-2.5 material-symbols-outlined text-text-secondary opacity-0 group-focus-within:opacity-100 transition-opacity">dns</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-text-secondary px-1">Порт</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface transition-all" placeholder="8080" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-text-secondary px-1">Логин</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface transition-all" placeholder="username" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-text-secondary px-1">Пароль</label>
+<div class="relative">
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-2.5 material-symbols-outlined text-text-secondary hover:text-on-surface transition-colors">visibility_off</button>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-8 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-6 py-2.5 bg-surface-elevated hover:bg-surface-bright text-on-surface font-label-md text-label-md rounded-lg border border-outline-variant transition-all active:scale-95 shadow-sm" onclick="checkConnection()">
+<span class="material-symbols-outlined" id="test-icon">sync_alt</span>
+                                    Проверить соединение
+                                </button>
+<div class="flex items-center gap-2 opacity-0 transition-opacity" id="status-indicator">
+<div class="w-2 h-2 rounded-full bg-status-success animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-status-success">Готово к работе</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-secondary bg-surface-container-lowest px-2 py-1 rounded">Ctrl + T</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Timeout -->
+<section class="bg-surface-card rounded-xl p-card-padding border border-outline-variant/50">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timer</span>
+                                Таймаут
+                            </h2>
+<span class="font-headline-md text-primary bg-primary/10 px-3 py-1 rounded-lg" id="timeout-value">5000 мс</span>
+</div>
+<div class="relative py-4">
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer" max="15000" min="1000" oninput="document.getElementById('timeout-value').innerText = this.value + ' мс'" step="500" type="range" value="5000"/>
+<div class="flex justify-between mt-4 font-label-sm text-label-sm text-text-secondary">
+<span>1 с</span>
+<span>15 с</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-2 italic">
+                            * Максимальное время ожидания ответа от сервера перед сбросом соединения.
+                        </p>
+</section>
+</div>
+<!-- Bottom Actions -->
+<div class="mt-12 flex items-center justify-end gap-4 pb-24">
+<button class="px-8 py-3 rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-bright transition-all">Отмена</button>
+<button class="px-10 py-3 bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-container font-headline-md text-headline-md rounded-lg shadow-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center gap-3 group">
+<span>Сохранить настройки</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full h-8 px-4 flex items-center justify-between border-t border-outline-variant bg-surface-container-lowest z-50">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-on-surface">Minecraft 1.21.1 • Готово к игре</span>
+<div class="h-3 w-px bg-outline-variant"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Общее время игры: 3ч 57мин</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-sm text-label-sm text-text-secondary hover:text-on-surface transition-colors">Аварийное завершение</button>
+<div class="h-3 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm text-status-success font-bold uppercase tracking-tighter">Онлайн</span>
+</div>
+</div>
+</footer>
+<script>
+        function checkConnection() {
+            const btn = document.querySelector('button[onclick="checkConnection()"]');
+            const icon = document.getElementById('test-icon');
+            const status = document.getElementById('status-indicator');
+            
+            icon.classList.add('animate-spin');
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            status.style.opacity = '0';
+
+            setTimeout(() => {
+                icon.classList.remove('animate-spin');
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                status.style.opacity = '1';
+                
+                // Audio or visual haptic feedback
+                const ring = document.createElement('div');
+                ring.className = 'fixed inset-0 pointer-events-none border-4 border-status-success/30 rounded-full animate-ping';
+                document.body.appendChild(ring);
+                setTimeout(() => ring.remove(), 1000);
+            }, 1800);
+        }
+
+        // Add shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                checkConnection();
+            }
+        });
+    </script>
+</body></html>

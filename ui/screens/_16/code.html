@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#4331b4",
+                    "secondary-fixed-dim": "#c6bfff",
+                    "surface-container": "#1d1f28",
+                    "on-tertiary-fixed": "#2f1500",
+                    "surface-container-high": "#282a32",
+                    "inverse-on-surface": "#2e3039",
+                    "on-primary-fixed": "#160066",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#fff5f1",
+                    "secondary-fixed": "#e4dfff",
+                    "on-background": "#e1e1ed",
+                    "text-secondary": "#8A8F9C",
+                    "status-error": "#EF4444",
+                    "tertiary-fixed": "#ffdcc3",
+                    "surface-tint": "#c6bfff",
+                    "surface-variant": "#33343d",
+                    "on-secondary-container": "#b7afff",
+                    "primary": "#c6bfff",
+                    "status-success": "#4ADE80",
+                    "on-secondary-fixed": "#160066",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb77d",
+                    "primary-container": "#6c5ce7",
+                    "text-primary": "#FFFFFF",
+                    "surface-dim": "#11131b",
+                    "inverse-primary": "#5847d2",
+                    "on-surface": "#e1e1ed",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-container-low": "#191b23",
+                    "primary-fixed": "#e4dfff",
+                    "error": "#ffb4ab",
+                    "surface": "#11131b",
+                    "on-secondary-fixed-variant": "#402eb1",
+                    "on-secondary": "#28069c",
+                    "inverse-surface": "#e1e1ed",
+                    "background": "#11131b",
+                    "outline": "#928ea0",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-elevated": "#20232F",
+                    "on-primary-container": "#faf6ff",
+                    "on-primary": "#2900a0",
+                    "secondary": "#c6bfff",
+                    "outline-variant": "#474554",
+                    "surface-container-lowest": "#0c0e16",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "tertiary-container": "#ac5d00",
+                    "status-warning": "#F59E0B",
+                    "primary-fixed-dim": "#c6bfff",
+                    "on-tertiary": "#4d2600",
+                    "surface-card": "#1B1E29",
+                    "surface-container-highest": "#33343d",
+                    "surface-bright": "#373942",
+                    "on-surface-variant": "#c8c4d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "240px",
+                    "card-padding": "16px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "detail-panel-width": "320px",
+                    "list-gap": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #11131b;
+            color: #e1e1ed;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .glass-overlay {
+            background: rgba(17, 19, 27, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        .modal-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+<!-- Mock Background for Context -->
+<div class="fixed inset-0 z-0 grid grid-cols-4 gap-4 p-8 opacity-20 pointer-events-none">
+<div class="bg-surface-card rounded-xl border border-outline-variant h-64 p-4">
+<div class="w-12 h-12 bg-primary/20 rounded-lg mb-4"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/30 rounded mb-2"></div>
+<div class="h-3 w-1/2 bg-on-surface-variant/20 rounded"></div>
+</div>
+<div class="bg-surface-card rounded-xl border border-outline-variant h-64 p-4 border-primary/50 ring-1 ring-primary/30">
+<div class="w-12 h-12 bg-primary/40 rounded-lg mb-4"></div>
+<div class="h-4 w-3/4 bg-on-surface/30 rounded mb-2"></div>
+<div class="h-3 w-1/2 bg-on-surface/20 rounded"></div>
+</div>
+<div class="bg-surface-card rounded-xl border border-outline-variant h-64 p-4">
+<div class="w-12 h-12 bg-primary/20 rounded-lg mb-4"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/30 rounded mb-2"></div>
+<div class="h-3 w-1/2 bg-on-surface-variant/20 rounded"></div>
+</div>
+<div class="bg-surface-card rounded-xl border border-outline-variant h-64 p-4">
+<div class="w-12 h-12 bg-primary/20 rounded-lg mb-4"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/30 rounded mb-2"></div>
+<div class="h-3 w-1/2 bg-on-surface-variant/20 rounded"></div>
+</div>
+</div>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-40 glass-overlay flex items-center justify-center p-6">
+<!-- Modal Container -->
+<div class="relative w-full max-w-md bg-surface-elevated border border-outline-variant rounded-xl modal-shadow overflow-hidden transform transition-all duration-300 animate-in fade-in zoom-in duration-300">
+<!-- Top Decoration Line (Optional but premium) -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-status-error/50 via-status-error to-status-error/50"></div>
+<div class="p-container-margin">
+<!-- Icon & Header -->
+<div class="flex items-start gap-4 mb-6">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-status-error/10 text-status-error">
+<span class="material-symbols-outlined text-3xl" data-icon="warning" style="font-variation-settings: 'FILL' 0;">warning</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Удалить экземпляр MOYA?</h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+                            Это действие необратимо. Все настройки данного экземпляра будут потеряны.
+                        </p>
+</div>
+</div>
+<!-- Action Section -->
+<div class="space-y-6">
+<!-- Checkbox Option -->
+<label class="group flex items-center gap-3 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="relative flex items-center justify-center">
+<input class="peer appearance-none w-5 h-5 border-2 border-outline-variant rounded bg-transparent checked:bg-status-error checked:border-status-error transition-all cursor-pointer" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-[16px] text-on-primary-container opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none" data-icon="check">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Также удалить файлы мира</span>
+</label>
+<!-- Buttons -->
+<div class="flex items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-outline-variant hover:bg-surface-bright text-on-surface font-label-md text-label-md transition-all active:scale-95">
+                            Отмена
+                        </button>
+<button class="px-6 py-2.5 rounded-lg bg-status-error hover:bg-status-error/90 text-white font-label-md text-label-md shadow-lg shadow-status-error/20 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+                            Удалить
+                        </button>
+</div>
+</div>
+</div>
+<!-- Subtle Glossy Finish -->
+<div class="absolute inset-0 pointer-events-none opacity-5 bg-gradient-to-br from-white/10 to-transparent"></div>
+</div>
+</div>
+<!-- Decorative Corner Elements -->
+<div class="fixed bottom-4 left-4 z-50">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/30 text-text-secondary">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm">Minecraft 1.21.1 • Готово к игре</span>
+</div>
+</div>
+<script>
+        // Micro-interaction for the delete button to feel "dangerous"
+        const deleteBtn = document.querySelector('.bg-status-error');
+        deleteBtn.addEventListener('mouseenter', () => {
+            deleteBtn.classList.add('animate-pulse');
+        });
+        deleteBtn.addEventListener('mouseleave', () => {
+            deleteBtn.classList.remove('animate-pulse');
+        });
+
+        // Close modal logic (visual only for this mockup)
+        const cancelBtn = document.querySelector('button:not(.bg-status-error)');
+        cancelBtn.addEventListener('click', () => {
+            document.querySelector('.glass-overlay').classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                alert('Action Cancelled');
+                document.querySelector('.glass-overlay').classList.remove('opacity-0', 'scale-95');
+            }, 300);
+        });
+    </script>
+</body></html>

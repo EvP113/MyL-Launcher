@@ -1,0 +1,16 @@
+# Rust / Tauri build artifacts
+src-tauri/target/
+**/target/
+
+# Node dependencies
+node_modules/
+
+# OS / Editor temporary files
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+
+# Prompts & scratch files
+CLAUDE.md

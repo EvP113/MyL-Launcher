@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="dark" lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/styles.css"/>
+  <style>
+    html, body { background: #11131b; }
+    #btn-close:hover { background: #EF4444; color: #fff; }
+    #btn-close:hover .material-symbols-outlined { color: #fff; }
+    .page { display: none; opacity: 0; transition: opacity 0.2s ease; }
+    .page.active { display: flex; flex-direction: column; opacity: 1; }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden" style="background:#11131b;">
+
+  <!-- ==================== TITLEBAR ==================== -->
+  <header data-tauri-drag-region class="h-10 w-full flex items-center justify-between bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant z-50 shrink-0">
+    <div class="flex items-center gap-2 pl-3" data-tauri-drag-region>
+      <div class="w-6 h-6 rounded bg-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+      </div>
+      <span class="font-label-md text-label-md text-on-surface font-bold">MyL</span>
+    </div>
+    <div class="flex h-full" data-tauri-drag-region>
+      <button id="btn-minimize" class="w-11 h-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[18px]">remove</span>
+      </button>
+      <button id="btn-maximize" class="w-11 h-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span>
+      </button>
+      <button id="btn-close" class="w-11 h-full flex items-center justify-center text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== LAYOUT ==================== -->
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="w-[240px] h-full bg-surface-container border-r border-outline-variant flex flex-col py-6 pb-10 gap-2 shrink-0">
+      <div class="px-4 mb-4">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+          </div>
+          <div>
+            <div class="font-headline-md text-headline-md font-bold text-on-surface">MyL</div>
+            <div class="font-label-md text-label-md text-text-secondary">v0.1.0</div>
+          </div>
+        </div>
+        <button id="btn-add-instance" class="w-full bg-primary-container text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">
+          <span class="material-symbols-outlined">add</span>
+          ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto">
+        <div class="px-2 space-y-1" id="nav-links">
+          <a data-page="instances" class="nav-link flex items-center gap-3 px-4 py-2.5 bg-primary/10 text-primary border-l-2 border-primary font-bold rounded-r-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+          <a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">package</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+          <a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">extension</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+          <a class="flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">palette</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+          <a data-page="accounts" class="nav-link flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+          <a data-page="settings" class="nav-link flex items-center gap-3 px-4 py-2.5 text-text-secondary hover:text-on-surface hover:bg-surface-variant rounded-lg transition-colors duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </a>
+        </div>
+        <div class="mt-8 px-4" id="groups-section">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+            <span class="material-symbols-outlined text-text-secondary text-[18px] cursor-pointer hover:text-on-surface">add</span>
+          </div>
+          <div class="space-y-1" id="groups-list">
+            <div class="flex items-center justify-between px-3 py-2 bg-surface-variant/50 rounded-lg cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px] text-text-secondary">apps</span>
+                <span class="font-label-md text-label-md text-on-surface">ï¿½ï¿½ï¿½</span>
+              </div>
+              <span class="text-[10px] bg-primary-container px-1.5 py-0.5 rounded-full text-white" id="count-all">0</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="px-4 mt-auto">
+        <div class="p-2 bg-surface-container-low rounded-xl border border-outline-variant">
+          <div class="flex items-center gap-3 mb-1">
+            <div class="w-7 h-7 rounded bg-[#1B1E29] p-0.5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-[16px]">deployed_code</span>
+            </div>
+            <div>
+              <div class="font-label-md text-label-md font-bold text-on-surface">MyL</div>
+              <div class="font-label-sm text-label-sm text-text-secondary">Release 0.1.0</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-status-success">
+            <span class="material-symbols-outlined text-[14px] text-status-success">check_circle</span>
+            <span class="font-label-sm text-label-sm">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== CONTENT AREA ========== -->
+    <main class="flex-1 bg-background flex flex-col overflow-hidden relative">
+
+      <!-- ===== PAGE: Instances ===== -->
+      <div id="page-instances" class="page active flex-1 flex flex-col overflow-hidden">
+        <div class="flex items-center justify-between px-8 py-6 shrink-0">
+          <div class="flex items-center gap-3">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface">ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
+            <span class="px-2 py-0.5 bg-surface-container-high rounded-full font-label-md text-label-md text-text-secondary" id="instance-count">0</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center bg-surface-container rounded-lg p-1">
+              <button class="p-1.5 bg-surface-variant text-primary rounded shadow-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span></button>
+              <button class="p-1.5 text-text-secondary hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">list</span></button>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-2 bg-surface-container rounded-lg cursor-pointer hover:bg-surface-variant transition-colors">
+              <span class="font-label-md text-label-md text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+              <span class="material-symbols-outlined text-[18px] text-on-surface">expand_more</span>
+            </div>
+          </div>
+        </div>
+        <div id="empty-state" class="flex-1 flex flex-col items-center justify-center gap-6 px-8">
+          <div class="w-32 h-32 rounded-full bg-surface-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-[64px] text-text-secondary">deployed_code</span>
+          </div>
+          <div class="text-center">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-2">ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h2>
+            <p class="text-body-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+          </div>
+          <div class="flex gap-4">
+            <button class="bg-primary-container text-white py-3 px-6 rounded-lg flex items-center justify-center gap-2 font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">
+              <span class="material-symbols-outlined">add</span> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            </button>
+            <button class="py-3 px-6 bg-surface-elevated text-text-secondary rounded-lg flex items-center justify-center gap-2 font-label-md text-label-md hover:text-on-surface transition-colors border border-outline-variant">
+              <span class="material-symbols-outlined">upload_file</span> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ZIP
+            </button>
+          </div>
+        </div>
+        <div id="instance-grid" class="flex-1 overflow-y-auto px-8 pb-20 hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="instances-container"></div>
+        </div>
+      </div>
+
+      <!-- ===== PAGE: Accounts ===== -->
+      <div id="page-accounts" class="page flex-1 flex flex-col overflow-hidden">
+        <div class="flex items-center justify-between px-8 py-6 shrink-0">
+          <div>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
+            <p class="text-body-md text-text-secondary mt-1">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Microsoft ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+          </div>
+          <button id="btn-add-account" class="bg-primary-container px-6 py-2.5 rounded-lg text-on-primary-container font-label-md text-label-md font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+            <span class="material-symbols-outlined text-[20px]">person_add</span> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto px-8 pb-20">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="accounts-grid"></div>
+          <div id="add-account-placeholder" class="mt-4 border-2 border-dashed border-outline-variant/30 rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 group cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all">
+            <div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">add</span>
+            </div>
+            <p class="font-label-md text-label-md text-text-secondary group-hover:text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PAGE: Settings ===== -->
+      <div id="page-settings" class="page flex-1 flex flex-col overflow-hidden">
+        <div class="flex items-center justify-between px-8 py-6 shrink-0">
+          <h1 class="font-headline-lg text-headline-lg text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
+        </div>
+        <div class="flex-1 overflow-y-auto px-8 pb-20">
+          <div class="max-w-2xl space-y-6">
+            <div class="bg-surface-container/50 border border-outline-variant/20 rounded-2xl p-6">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-4">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h3>
+              <p class="text-body-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.</p>
+            </div>
+            <div class="bg-surface-container/50 border border-outline-variant/20 rounded-2xl p-6">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Java</h3>
+              <p class="text-body-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ ï¿½ Java, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, JVM-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.</p>
+            </div>
+            <div class="bg-surface-container/50 border border-outline-variant/20 rounded-2xl p-6">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Minecraft</h3>
+              <p class="text-body-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Discord Rich Presence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== DETAIL PANEL ========== -->
+    <aside id="detail-panel" class="w-[320px] h-full bg-surface-card border-l border-outline-variant p-4 flex-col overflow-y-auto shrink-0 hidden">
+      <div class="flex flex-col items-center gap-4 mb-8">
+        <div class="w-20 h-20 rounded-2xl bg-surface-container-high flex items-center justify-center shadow-lg">
+          <span class="material-symbols-outlined text-[32px] text-text-secondary" id="detail-icon">deployed_code</span>
+        </div>
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-2">
+            <h2 class="font-headline-md text-headline-md font-bold text-on-surface" id="detail-name">ï¿½</h2>
+            <span class="material-symbols-outlined text-text-secondary hover:text-yellow-400 cursor-pointer">star</span>
+          </div>
+          <div class="inline-block mt-2 px-3 py-1 bg-status-success/10 border border-status-success/30 rounded-full">
+            <span class="text-status-success font-label-md text-label-md font-bold" id="detail-status">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-3 mb-8">
+        <button class="w-full bg-primary-container text-white rounded-lg flex items-center overflow-hidden hover:brightness-110 active:scale-[0.98] transition-all group" id="btn-launch">
+          <div class="flex-1 py-3 px-4 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span class="font-label-md text-label-md font-bold">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+          </div>
+          <div class="w-10 h-full bg-black/10 flex items-center justify-center border-l border-white/10 group-hover:bg-black/20">
+            <span class="material-symbols-outlined text-[18px] text-on-surface">expand_more</span>
+          </div>
+        </button>
+      </div>
+      <div class="space-y-1 mb-8">
+        <button class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">edit</span>
+          <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+        </button>
+        <button class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">folder_open</span>
+          <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+        </button>
+        <button class="w-full flex items-center gap-3 px-3 py-2 text-status-error hover:bg-status-error/10 rounded-lg transition-colors group">
+          <span class="material-symbols-outlined text-[18px] text-status-error">delete</span>
+          <span class="font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+        </button>
+      </div>
+      <div class="border-t border-outline-variant pt-6">
+        <h4 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-4">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h4>
+        <div class="space-y-3">
+          <div class="flex justify-between items-start gap-4">
+            <span class="font-label-md text-label-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:</span>
+            <span class="font-label-md text-label-md text-on-surface text-right" id="detail-version">ï¿½</span>
+          </div>
+          <div class="flex justify-between items-start gap-4">
+            <span class="font-label-md text-label-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:</span>
+            <span class="font-label-md text-label-md text-on-surface text-right" id="detail-loader">ï¿½</span>
+          </div>
+          <div class="flex justify-between items-start gap-4">
+            <span class="font-label-md text-label-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½:</span>
+            <span class="font-label-md text-label-md text-on-surface text-right break-all" id="detail-path">ï¿½</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="h-8 w-full px-4 fixed bottom-0 z-50 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between text-on-surface font-label-sm text-label-sm shrink-0">
+    <div class="flex items-center gap-6">
+      <span class="text-text-secondary" id="footer-version">MyL v0.1.0</span>
+    </div>
+    <div class="flex items-center gap-8">
+      <span class="text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Custom Alert/Confirm Modal -->
+  <div id="modal-alert" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-surface-card rounded-xl border border-outline-variant shadow-2xl">
+      <div class="px-6 py-5">
+        <h3 id="modal-alert-title" class="font-headline-md text-headline-md text-on-surface mb-2"></h3>
+        <p id="modal-alert-text" class="text-body-md text-text-secondary"></p>
+      </div>
+      <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-2">
+        <button id="modal-alert-cancel" class="hidden px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</button>
+        <button id="modal-alert-ok" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Account Type Modal -->
+  <div id="modal-add-account" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
+      <div class="px-6 py-5 border-b border-outline-variant">
+        <h2 class="font-headline-md text-headline-md text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h2>
+        <p class="text-body-sm text-text-secondary mt-1">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+      </div>
+      <div class="p-6 space-y-3">
+        <button id="btn-add-msa" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABdklEQVR4nO3SQQnAQAxE0WhZRXVUM2uiNVWogfS+54UU8j6MgnnxHiM7LpbOO7LjovoIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoP4MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2ApAkSU2bT7bcUl6RHQcAAD84AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoPgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2LcPCgCMPQb3YToAAAAASUVORK5CYII=" class="w-6 h-6" alt="Microsoft"/>
+          </div>
+          <div class="text-left">
+            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">Microsoft</p>
+            <p class="font-label-md text-label-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Microsoft (MSA)</p>
+          </div>
+        </button>
+        <button id="btn-add-offline" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center">
+            <span class="material-symbols-outlined text-text-secondary text-[24px] group-hover:text-primary">person_off</span>
+          </div>
+          <div class="text-left">
+            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+            <p class="font-label-md text-label-md text-text-secondary">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+          </div>
+        </button>
+      </div>
+      <div class="px-6 py-4 border-t border-outline-variant flex justify-end">
+        <button id="btn-modal-account-close" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offline Username Modal -->
+  <div id="modal-offline" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
+      <div class="px-6 py-5 border-b border-outline-variant">
+        <h2 class="font-headline-md text-headline-md text-on-surface">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h2>
+        <p class="text-body-sm text-text-secondary mt-1">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+      </div>
+      <div class="p-6">
+        <input id="offline-username" type="text" placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" maxlength="16"/>
+        <p id="offline-error" class="text-status-error text-body-sm mt-2 hidden"></p>
+      </div>
+      <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-2">
+        <button id="btn-offline-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</button>
+        <button id="btn-offline-submit" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/backend-api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
