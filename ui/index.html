@@ -478,12 +478,12 @@
               <span class="material-symbols-outlined text-[48px] text-text-secondary">inbox</span>
             </div>
             <div class="text-center max-w-sm">
-              <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-2">Экземпляры не найдены</h3>
-              <p class="font-body-md text-body-md text-text-secondary">Создайте новый экземпляр или импортируйте существующую сборку.</p>
+              <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-2" data-i18n="no_instances_title">Экземпляры не найдены</h3>
+              <p class="font-body-md text-body-md text-text-secondary" data-i18n="no_instances_desc">Создайте новый экземпляр или импортируйте существующую сборку.</p>
             </div>
             <div class="flex items-center gap-3">
-              <button id="btn-create-first" class="px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Создать экземпляр</button>
-              <button id="btn-import-first" class="px-6 py-2.5 bg-surface-card hover:bg-surface-bright text-on-surface font-label-md text-label-md border border-outline-variant rounded-lg transition-all">Импортировать ZIP</button>
+              <button id="btn-create-first" class="px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all" data-i18n="btn_create_first">Создать экземпляр</button>
+              <button id="btn-import-first" class="px-6 py-2.5 bg-surface-card hover:bg-surface-bright text-on-surface font-label-md text-label-md border border-outline-variant rounded-lg transition-all" data-i18n="btn_import_first">Импортировать ZIP</button>
             </div>
           </div>
 
@@ -496,10 +496,10 @@
         <div id="page-accounts" class="page flex-1 flex flex-col overflow-hidden">
           <div class="flex items-center justify-between px-8 py-6 shrink-0">
             <div>
-              <h1 class="font-headline-lg text-headline-lg text-on-surface">Управление аккаунтами</h1>
-              <p class="font-body-sm text-body-sm text-text-secondary">Авторизация Microsoft и офлайн аккаунты</p>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface" data-i18n="account_management">Управление аккаунтами</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="account_subtitle">Авторизация Microsoft и офлайн аккаунты</p>
             </div>
-            <button id="btn-add-account" class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+            <button id="btn-add-account" class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all" data-i18n="add_account">
               <span class="material-symbols-outlined text-[18px]">add</span> Добавить аккаунт
             </button>
           </div>
@@ -510,7 +510,7 @@
                 <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
                   <span class="material-symbols-outlined text-text-secondary">add</span>
                 </div>
-                <p class="font-headline-md text-headline-md text-on-surface">Добавить аккаунт</p>
+                <p class="font-headline-md text-headline-md text-on-surface" data-i18n="add_account_placeholder">Добавить аккаунт</p>
               </div>
             </div>
           </div>
@@ -520,19 +520,19 @@
         <div id="page-mods" class="page flex-1 flex flex-col overflow-hidden">
           <div class="flex items-center justify-between px-8 py-6 shrink-0 border-b border-outline-variant/30">
             <div>
-              <h1 class="font-headline-lg text-headline-lg text-on-surface">Каталог модов</h1>
-              <p class="font-body-sm text-body-sm text-text-secondary">Поиск и загрузка модификаций с Modrinth</p>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface" data-i18n="mods_catalog">Каталог модов</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="mods_subtitle">Поиск и загрузка модификаций с Modrinth</p>
             </div>
             <div class="flex items-center gap-3">
               <select id="mod-target-instance" class="bg-surface-card border border-outline-variant text-body-sm text-on-surface rounded-lg px-3 py-1.5 focus:outline-none max-w-[200px]" title="Целевая сборка для установки">
-                <option value="">Целевая сборка: Текущая</option>
+                <option value="" data-i18n="target_build">Целевая сборка: Текущая</option>
               </select>
               <div class="flex items-center gap-2 bg-surface-card border border-outline-variant rounded-lg px-3 py-1.5 w-64">
                 <span class="material-symbols-outlined text-text-secondary">search</span>
-                <input id="mod-search-input" type="text" placeholder="Поиск модов..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none"/>
+                <input id="mod-search-input" type="text" placeholder="Поиск модов..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none" data-i18n-placeholder="search_mods"/>
               </div>
               <select id="mod-loader-filter" class="bg-surface-card border border-outline-variant text-body-sm text-on-surface rounded-lg px-3 py-1.5 focus:outline-none">
-                <option value="">Все загрузчики</option>
+                <option value="" data-i18n="all_loaders">Все загрузчики</option>
                 <option value="fabric">Fabric</option>
                 <option value="forge">Forge</option>
                 <option value="neoforge">NeoForge</option>
@@ -545,7 +545,7 @@
             <div id="mod-results" class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="text-center py-12 text-text-secondary col-span-2">
                 <div class="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p>Загрузка каталога модов...</p>
+                <p data-i18n="loading_mods_catalog">Загрузка каталога модов...</p>
               </div>
             </div>
           </div>
@@ -555,21 +555,21 @@
         <div id="page-console" class="page flex-1 flex flex-col overflow-hidden">
           <div class="flex items-center justify-between px-8 py-4 shrink-0 border-b border-outline-variant/30">
             <div>
-              <h1 class="font-headline-lg text-headline-lg text-on-surface">Консоль игры</h1>
-              <p class="font-body-sm text-body-sm text-text-secondary">Логи в реальном времени запущенных процессов Minecraft</p>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface" data-i18n="game_console">Консоль игры</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="console_subtitle">Логи в реальном времени запущенных процессов Minecraft</p>
             </div>
             <div class="flex items-center gap-3">
               <label class="flex items-center gap-2 text-body-sm cursor-pointer text-text-secondary">
                 <input id="console-autoscroll" type="checkbox" checked class="rounded border-outline-variant text-primary focus:ring-primary"/>
-                <span>Автоскролл</span>
+                <span data-i18n="autoscroll">Автоскролл</span>
               </label>
               <button id="btn-clear-console" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                <span class="material-symbols-outlined text-[16px]">clear_all</span> Очистить
+                <span class="material-symbols-outlined text-[16px]">clear_all</span> <span data-i18n="btn_clear">Очистить</span>
               </button>
             </div>
           </div>
           <div class="flex-1 overflow-y-auto p-6 bg-surface-card border-t border-outline-variant/30 font-mono text-body-sm text-on-surface select-text leading-relaxed space-y-1" id="console-output">
-            <div class="text-text-secondary italic">Ожидание запуска игры... Логи процесса Minecraft появятся здесь.</div>
+            <div class="text-text-secondary italic" data-i18n="console_waiting">Ожидание запуска игры... Логи процесса Minecraft появятся здесь.</div>
           </div>
         </div>
 
@@ -781,7 +781,7 @@
   <div id="download-progress-box" class="hidden fixed bottom-12 left-1/2 -translate-x-1/2 z-[150] w-full max-w-2xl bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden p-6 space-y-4">
     <div class="flex justify-between items-end">
       <div class="space-y-1">
-        <span class="text-label-sm font-label-sm text-primary uppercase tracking-wider">Текущий процесс</span>
+        <span class="text-label-sm font-label-sm text-primary uppercase tracking-wider" data-i18n="dl_current_process">Текущий процесс</span>
         <p class="text-body-md font-body-md text-on-surface"><span id="download-progress-status">Загрузка ресурсов...</span> <span id="download-progress-sub" class="font-bold"></span></p>
       </div>
       <span id="download-progress-percent" class="text-headline-md font-headline-md text-primary">0%</span>
@@ -795,15 +795,15 @@
     </div>
     <div class="grid grid-cols-3 gap-4 pt-2">
       <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
-        <p class="text-label-sm font-label-sm text-text-secondary">Скорость</p>
+        <p class="text-label-sm font-label-sm text-text-secondary" data-i18n="dl_speed">Скорость</p>
         <p id="download-progress-speed" class="text-body-md font-body-md text-on-surface font-semibold">4.2 MB/s</p>
       </div>
       <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
-        <p class="text-label-sm font-label-sm text-text-secondary">Осталось</p>
+        <p class="text-label-sm font-label-sm text-text-secondary" data-i18n="dl_remaining">Осталось</p>
         <p id="download-progress-eta" class="text-body-md font-body-md text-on-surface font-semibold">~15 сек</p>
       </div>
       <div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
-        <p class="text-label-sm font-label-sm text-text-secondary">Потоки</p>
+        <p class="text-label-sm font-label-sm text-text-secondary" data-i18n="dl_threads">Потоки</p>
         <p id="download-progress-threads" class="text-body-md font-body-md text-on-surface font-semibold">24 активных</p>
       </div>
     </div>
@@ -811,7 +811,7 @@
 
   <footer class="h-8 w-full px-4 fixed bottom-0 z-50 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between text-on-surface font-label-sm text-label-sm shrink-0">
     <span class="text-text-secondary">MyL v0.1.0</span>
-    <span class="text-text-secondary" id="global-status-text">Готов к работе</span>
+    <span class="text-text-secondary" id="global-status-text" data-i18n="status_ready">Готов к работе</span>
   </footer>
 
   <!-- MODALS -->
@@ -825,12 +825,12 @@
             <span id="modal-alert-icon" class="material-symbols-outlined text-3xl">info</span>
           </div>
           <div class="flex-1">
-            <h2 id="modal-alert-title" class="font-headline-md text-headline-md text-on-surface mb-1">Уведомление</h2>
+            <h2 id="modal-alert-title" class="font-headline-md text-headline-md text-on-surface mb-1" data-i18n="alert_notification">Уведомление</h2>
             <p id="modal-alert-text" class="font-body-md text-body-md text-text-secondary leading-relaxed"></p>
           </div>
         </div>
         <div class="flex items-center justify-end gap-3 pt-2">
-          <button id="modal-alert-cancel" class="px-5 py-2.5 rounded-lg border border-outline-variant hover:bg-surface-bright text-on-surface font-label-md text-label-md transition-all active:scale-95 hidden">Отмена</button>
+          <button id="modal-alert-cancel" class="px-5 py-2.5 rounded-lg border border-outline-variant hover:bg-surface-bright text-on-surface font-label-md text-label-md transition-all active:scale-95 hidden" data-i18n="btn_cancel">Отмена</button>
           <button id="modal-alert-ok" class="px-6 py-2.5 rounded-lg bg-primary-container text-white font-label-md text-label-md shadow-lg shadow-primary/20 transition-all active:scale-95 flex items-center gap-2">
             <span id="modal-alert-ok-icon" class="material-symbols-outlined text-sm">check</span>
             <span id="modal-alert-ok-text">OK</span>
@@ -844,7 +844,7 @@
   <div id="modal-add-account" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-md bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
       <div class="px-6 py-5 border-b border-outline-variant">
-        <h2 class="font-headline-md text-headline-md text-on-surface">Добавить аккаунт</h2>
+        <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="add_account_title">Добавить аккаунт</h2>
       </div>
       <div class="p-6 space-y-4">
         <button id="btn-add-msa" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
@@ -853,7 +853,7 @@
           </div>
           <div class="text-left">
             <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">Microsoft</p>
-            <p class="font-label-md text-label-md text-text-secondary">Войти через Microsoft (MSA)</p>
+            <p class="font-label-md text-label-md text-text-secondary" data-i18n="msa_login_desc">Войти через Microsoft (MSA)</p>
           </div>
         </button>
         <button id="btn-add-offline" class="w-full flex items-center gap-4 p-4 bg-surface-elevated rounded-xl border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-all cursor-pointer group">
@@ -861,13 +861,13 @@
             <span class="material-symbols-outlined text-text-secondary text-[24px] group-hover:text-primary">person_off</span>
           </div>
           <div class="text-left">
-            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary">Офлайн</p>
-            <p class="font-label-md text-label-md text-text-secondary">Произвольный ник, без лицензии</p>
+            <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary" data-i18n="offline_label">Офлайн</p>
+            <p class="font-label-md text-label-md text-text-secondary" data-i18n="offline_desc">Произвольный ник, без лицензии</p>
           </div>
         </button>
       </div>
       <div class="px-6 py-4 border-t border-outline-variant flex justify-end">
-        <button id="btn-modal-account-close" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
+        <button id="btn-modal-account-close" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md" data-i18n="btn_cancel">Отмена</button>
       </div>
     </div>
   </div>
@@ -876,21 +876,21 @@
   <div id="modal-msa" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-md bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
       <div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center">
-        <h2 class="font-headline-md text-headline-md text-on-surface">Авторизация Microsoft</h2>
+        <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="msa_title">Авторизация Microsoft</h2>
         <button id="btn-msa-cancel" class="text-text-secondary hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
       </div>
       <div class="p-6 text-center space-y-4">
-        <p class="text-body-sm text-text-secondary">Для входа перейдите по ссылке ниже и введите указанный код:</p>
+        <p class="text-body-sm text-text-secondary" data-i18n="msa_subtitle">Для входа перейдите по ссылке ниже и введите указанный код:</p>
         <div class="p-3 bg-surface-dim border border-outline-variant rounded-lg">
           <a id="msa-link" href="#" target="_blank" class="text-primary font-bold text-headline-md underline break-all">https://microsoft.com/link</a>
         </div>
         <div class="p-4 bg-surface-container-high border border-primary/40 rounded-xl inline-block">
-          <p class="text-xs text-text-secondary uppercase tracking-widest font-bold mb-1">Код подтверждения</p>
+          <p class="text-xs text-text-secondary uppercase tracking-widest font-bold mb-1" data-i18n="msa_confirm_code">Код подтверждения</p>
           <p id="msa-code" class="text-3xl font-mono font-extrabold text-primary select-all">--------</p>
         </div>
         <div class="flex items-center justify-center gap-2 text-text-secondary text-body-sm pt-2">
           <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-          <span id="msa-status-text">Ожидание входа в аккаунт...</span>
+          <span id="msa-status-text" data-i18n="msa_waiting">Ожидание входа в аккаунт...</span>
         </div>
       </div>
     </div>
@@ -900,16 +900,16 @@
   <div id="modal-offline" class="fixed inset-0 z-[100] bg-background/60 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-sm bg-surface-card rounded-xl border border-outline-variant shadow-2xl overflow-hidden">
       <div class="px-6 py-5 border-b border-outline-variant">
-        <h2 class="font-headline-md text-headline-md text-on-surface">Офлайн-аккаунт</h2>
-        <p class="text-body-sm text-text-secondary mt-1">Введите желаемый никнейм</p>
+        <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="offline_modal_title">Офлайн-аккаунт</h2>
+        <p class="text-body-sm text-text-secondary mt-1" data-i18n="offline_modal_subtitle">Введите желаемый никнейм</p>
       </div>
       <div class="p-6">
         <input id="offline-username" type="text" placeholder="Никнейм..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" maxlength="16"/>
         <p id="offline-error" class="text-status-error text-body-sm mt-2 hidden"></p>
       </div>
       <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-2">
-        <button id="btn-offline-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
-        <button id="btn-offline-submit" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Добавить</button>
+        <button id="btn-offline-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md" data-i18n="btn_cancel">Отмена</button>
+        <button id="btn-offline-submit" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all" data-i18n="btn_add">Добавить</button>
       </div>
     </div>
   </div>
@@ -923,29 +923,29 @@
         </div>
         <div class="flex-1 grid grid-cols-2 gap-4">
           <div class="flex items-center gap-3">
-            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right">Имя:</label>
-            <input id="wizard-name" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Название сборки...">
+            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right" data-i18n="wizard_name">Имя:</label>
+            <input id="wizard-name" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Название сборки..." data-i18n-placeholder="wizard_name_placeholder">
           </div>
           <div class="flex items-center gap-3">
-            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right">Группа:</label>
-            <input id="wizard-group" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface-variant focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Без группы">
+            <label class="text-label-md text-text-secondary w-20 min-w-[70px] text-right" data-i18n="wizard_group">Группа:</label>
+            <input id="wizard-group" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-3 py-1.5 text-body-md text-on-surface-variant focus:ring-1 focus:ring-primary focus:outline-none" type="text" placeholder="Без группы" data-i18n-placeholder="wizard_group_placeholder">
           </div>
         </div>
       </div>
       <div class="flex-1 flex overflow-hidden">
         <div class="w-48 bg-surface-container border-r border-outline-variant flex flex-col overflow-y-auto shrink-0">
-          <button class="wizard-source sidebar-item-active flex items-center gap-2 px-4 py-2.5 text-body-sm font-medium" data-source="custom"><span class="material-symbols-outlined text-sm">grid_view</span> Пользовательский</button>
-          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="import"><span class="material-symbols-outlined text-sm">upload_file</span> Импорт</button>
-          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="modrinth"><span class="material-symbols-outlined text-sm text-status-success">extension</span> Modrinth</button>
+          <button class="wizard-source sidebar-item-active flex items-center gap-2 px-4 py-2.5 text-body-sm font-medium" data-source="custom"><span class="material-symbols-outlined text-sm">grid_view</span> <span data-i18n="wizard_custom">Пользовательский</span></button>
+          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="import"><span class="material-symbols-outlined text-sm">upload_file</span> <span data-i18n="wizard_import">Импорт</span></button>
+          <button class="wizard-source flex items-center gap-2 px-4 py-2.5 hover:bg-surface-variant text-body-sm text-on-surface-variant transition-colors" data-source="modrinth"><span class="material-symbols-outlined text-sm text-status-success">extension</span> <span data-i18n="wizard_modrinth">Modrinth</span></button>
         </div>
 
         <!-- === CUSTOM PANEL === -->
         <div id="wizard-panel-custom" class="wizard-panel flex-1 flex overflow-hidden p-4 bg-surface-container-low min-h-0">
           <div class="flex-1 flex gap-4 min-h-0">
             <div class="flex-1 flex flex-col gap-2 min-w-0 min-h-0">
-              <div><h3 class="text-body-md font-bold text-on-surface">Пользовательский</h3></div>
+              <div><h3 class="text-body-md font-bold text-on-surface" data-i18n="wizard_custom">Пользовательский</h3></div>
               <div class="version-table-container flex-1 overflow-hidden flex flex-col rounded-sm min-h-0">
-                <div class="flex bg-surface-container-high border-b border-outline-variant text-label-sm font-bold"><div class="px-3 py-1.5 w-48 border-r border-outline-variant">Версия</div><div class="px-3 py-1.5 w-32 border-r border-outline-variant">Выпущено</div><div class="px-3 py-1.5 flex-1">Тип</div></div>
+                <div class="flex bg-surface-container-high border-b border-outline-variant text-label-sm font-bold"><div class="px-3 py-1.5 w-48 border-r border-outline-variant" data-i18n="wizard_version">Версия</div><div class="px-3 py-1.5 w-32 border-r border-outline-variant" data-i18n="wizard_released">Выпущено</div><div class="px-3 py-1.5 flex-1" data-i18n="wizard_type">Тип</div></div>
                 <div class="flex-1 overflow-y-auto bg-surface-container-lowest" id="wizard-version-list"><div class="text-center py-8 text-text-secondary">Загрузка...</div></div>
               </div>
               <input class="bg-surface-container-lowest border border-outline-variant rounded px-3 py-1 text-body-sm w-full focus:outline-none" placeholder="Поиск..." type="text" id="wizard-search">
@@ -955,22 +955,22 @@
             <div class="w-44 shrink-0 flex flex-col gap-2 min-h-0">
               <div class="text-body-md invisible">‎</div>
               <div class="flex-1 flex flex-col justify-center space-y-1.5">
-                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1">Показывать</p>
-                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="release"><span class="text-on-surface group-hover:text-primary transition-colors">Релизы</span></label>
-                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="snapshot"><span class="text-on-surface group-hover:text-primary transition-colors">Снапшоты</span></label>
-                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_beta"><span class="text-on-surface group-hover:text-primary transition-colors">Беты</span></label>
-                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_alpha"><span class="text-on-surface group-hover:text-primary transition-colors">Альфы</span></label>
+                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1" data-i18n="wizard_show">Показывать</p>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="release"><span class="text-on-surface group-hover:text-primary transition-colors" data-i18n="wizard_releases">Релизы</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="snapshot"><span class="text-on-surface group-hover:text-primary transition-colors" data-i18n="wizard_snapshots">Снапшоты</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_beta"><span class="text-on-surface group-hover:text-primary transition-colors" data-i18n="wizard_betas">Беты</span></label>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="rounded border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" type="checkbox" data-filter="old_alpha"><span class="text-on-surface group-hover:text-primary transition-colors" data-i18n="wizard_alphas">Альфы</span></label>
               </div>
-              <button id="btn-refresh-versions" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded">Обновить</button>
+              <button id="btn-refresh-versions" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded" data-i18n="wizard_refresh">Обновить</button>
               <div class="flex-1 flex flex-col justify-center space-y-1.5">
-                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1">Загрузчик модов</p>
-                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value=""><span class="text-on-surface group-hover:text-primary transition-colors">Нет</span></label>
+                <p class="text-label-sm text-text-secondary border-b border-outline-variant pb-1" data-i18n="wizard_modloader">Загрузчик модов</p>
+                <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input checked class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value=""><span class="text-on-surface group-hover:text-primary transition-colors" data-i18n="wizard_none">Нет</span></label>
                 <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="neoforge"><span class="text-on-surface group-hover:text-primary transition-colors">NeoForge</span></label>
                 <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="forge"><span class="text-on-surface group-hover:text-primary transition-colors">Forge</span></label>
                 <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="fabric"><span class="text-on-surface group-hover:text-primary transition-colors">Fabric</span></label>
                 <label class="flex items-center gap-2 text-body-sm cursor-pointer group"><input class="border-outline-variant bg-surface-container-lowest text-primary focus:ring-primary" name="loader" type="radio" value="quilt"><span class="text-on-surface group-hover:text-primary transition-colors">Quilt</span></label>
               </div>
-              <button id="btn-refresh-versions2" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded">Обновить</button>
+              <button id="btn-refresh-versions2" class="w-full py-1 text-label-sm font-medium border border-outline-variant bg-surface-container hover:bg-surface-variant rounded" data-i18n="wizard_refresh">Обновить</button>
             </div>
           </div>
         </div>
@@ -980,8 +980,8 @@
           <div id="wizard-import-drop-zone" class="w-full max-w-lg border-2 border-dashed border-outline-variant rounded-2xl p-10 flex flex-col items-center gap-4 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all group">
             <span class="material-symbols-outlined text-[64px] text-text-secondary group-hover:text-primary transition-colors">upload_file</span>
             <div class="text-center">
-              <p class="font-headline-md text-headline-md text-on-surface font-bold">Перетащите архив сюда</p>
-              <p class="text-body-sm text-text-secondary mt-1">или нажмите кнопку ниже для выбора файла</p>
+              <p class="font-headline-md text-headline-md text-on-surface font-bold" data-i18n="wizard_drag_archive">Перетащите архив сюда</p>
+              <p class="text-body-sm text-text-secondary mt-1" data-i18n="wizard_or_browse">или нажмите кнопку ниже для выбора файла</p>
             </div>
             <div class="flex flex-wrap gap-2 justify-center">
               <span class="px-2.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-full text-label-sm text-text-secondary font-mono">.mrpack</span>
@@ -990,7 +990,7 @@
             </div>
           </div>
           <button id="btn-wizard-pick-file" class="px-8 py-3 bg-primary-container text-on-primary-container rounded-xl font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all flex items-center gap-2 shadow-lg">
-            <span class="material-symbols-outlined">folder_open</span> Выбрать файл
+            <span class="material-symbols-outlined">folder_open</span> <span data-i18n="wizard_pick_file">Выбрать файл</span>
           </button>
           <div id="wizard-import-status" class="text-body-sm text-text-secondary hidden"></div>
         </div>
@@ -1005,7 +1005,7 @@
                 <input id="wizard-modpack-search" type="text" placeholder="Поиск модпаков на Modrinth..." class="bg-transparent border-none text-body-sm text-on-surface w-full focus:outline-none"/>
               </div>
               <select id="wizard-modpack-loader-filter" class="bg-surface-dim border border-outline-variant rounded-lg px-2 py-1.5 text-body-sm text-on-surface focus:outline-none appearance-none cursor-pointer pr-6">
-                <option value="">Все лоадеры</option>
+                <option value="" data-i18n="all_loaders_short">Все лоадеры</option>
                 <option value="fabric">Fabric</option>
                 <option value="forge">Forge</option>
                 <option value="neoforge">NeoForge</option>
@@ -1013,7 +1013,7 @@
               </select>
             </div>
             <div id="wizard-modpack-list" class="flex-1 overflow-y-auto space-y-1 p-2">
-              <div class="text-center py-12 text-text-secondary">Введите запрос для поиска</div>
+              <div class="text-center py-12 text-text-secondary" data-i18n="wizard_enter_query">Введите запрос для поиска</div>
             </div>
           </div>
           <!-- Right: details + version select -->
@@ -1021,7 +1021,7 @@
             <div class="flex-1 flex items-center justify-center text-text-secondary">
               <div class="text-center">
                 <span class="material-symbols-outlined text-[48px] mb-2 block">extension</span>
-                <p class="text-body-sm">Выберите модпак из списка</p>
+                <p class="text-body-sm" data-i18n="wizard_select_modpack">Выберите модпак из списка</p>
               </div>
             </div>
           </div>
@@ -1029,8 +1029,8 @@
       </div>
 
       <div class="px-4 py-3 bg-surface-container-high border-t border-outline-variant flex items-center justify-end gap-2 shrink-0">
-        <button id="btn-wizard-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md">Отмена</button>
-        <button id="btn-wizard-create" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Создать</button>
+        <button id="btn-wizard-cancel" class="px-4 py-2 text-text-secondary hover:text-on-surface rounded-lg hover:bg-surface-variant transition-colors font-label-md text-label-md" data-i18n="wizard_btn_cancel">Отмена</button>
+        <button id="btn-wizard-create" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all" data-i18n="wizard_btn_create">Создать</button>
       </div>
     </div>
   </div>
@@ -1039,59 +1039,59 @@
   <div id="modal-instance-settings" class="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="w-full max-w-[1000px] h-[650px] bg-surface-card rounded-lg border border-outline-variant shadow-2xl overflow-hidden flex flex-col">
       <div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center justify-between shrink-0">
-        <h2 class="font-headline-md text-headline-md text-on-surface" id="settings-modal-title">Настройки экземпляра</h2>
+        <h2 class="font-headline-md text-headline-md text-on-surface" id="settings-modal-title" data-i18n="settings_modal_title">Настройки экземпляра</h2>
         <button id="btn-settings-close" class="p-2 hover:bg-surface-variant rounded-lg text-text-secondary transition-colors"><span class="material-symbols-outlined">close</span></button>
       </div>
       <div class="flex-1 flex overflow-hidden">
         <!-- Sidebar tabs with w-52 width to fit 'Наборы ресурсов' and 'Наборы шейдеров' on 1 line -->
         <div class="w-52 bg-surface-container border-r border-outline-variant flex flex-col overflow-y-auto shrink-0">
-          <button class="settings-tab sidebar-item-active flex items-center gap-2 px-3 py-2.5 text-[12px] whitespace-nowrap overflow-hidden text-ellipsis font-medium" data-tab="general"><span class="material-symbols-outlined text-sm">settings</span> Основные</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="java"><span class="material-symbols-outlined text-sm">coffee</span> Java</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="minecraft"><span class="material-symbols-outlined text-sm">box</span> Minecraft</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="mods"><span class="material-symbols-outlined text-sm">extension</span> Моды</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="resourcepacks"><span class="material-symbols-outlined text-sm">palette</span> Наборы ресурсов</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="shaders"><span class="material-symbols-outlined text-sm">blur_on</span> Наборы шейдеров</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="worlds"><span class="material-symbols-outlined text-sm">public</span> Миры</button>
-          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="servers"><span class="material-symbols-outlined text-sm">dns</span> Серверы</button>
+          <button class="settings-tab sidebar-item-active flex items-center gap-2 px-3 py-2.5 text-[12px] whitespace-nowrap overflow-hidden text-ellipsis font-medium" data-tab="general"><span class="material-symbols-outlined text-sm">settings</span> <span data-i18n="tab_general">Основные</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="java"><span class="material-symbols-outlined text-sm">coffee</span> <span data-i18n="tab_java">Java</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="minecraft"><span class="material-symbols-outlined text-sm">box</span> <span data-i18n="tab_minecraft">Minecraft</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="mods"><span class="material-symbols-outlined text-sm">extension</span> <span data-i18n="tab_mods">Моды</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="resourcepacks"><span class="material-symbols-outlined text-sm">palette</span> <span data-i18n="tab_resourcepacks">Наборы ресурсов</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="shaders"><span class="material-symbols-outlined text-sm">blur_on</span> <span data-i18n="tab_shaders">Наборы шейдеров</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="worlds"><span class="material-symbols-outlined text-sm">public</span> <span data-i18n="tab_worlds">Миры</span></button>
+          <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="servers"><span class="material-symbols-outlined text-sm">dns</span> <span data-i18n="tab_servers">Серверы</span></button>
           <button class="settings-tab flex items-center gap-2 px-3 py-2.5 hover:bg-surface-variant text-[12px] whitespace-nowrap overflow-hidden text-ellipsis text-on-surface-variant transition-colors" data-tab="modrinth"><span class="material-symbols-outlined text-sm">download</span> Modrinth</button>
         </div>
         <div class="flex-1 overflow-y-auto p-6">
           <div id="settings-tab-general" class="settings-content space-y-4">
-            <h3 class="font-headline-md text-headline-md text-on-surface">Основные настройки</h3>
+            <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="settings_general_title">Основные настройки</h3>
             <div class="space-y-4">
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Иконка</p>
-                  <p class="text-body-sm text-text-secondary">Кастомное изображение для сборки</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_icon">Иконка</p>
+                  <p class="text-body-sm text-text-secondary" data-i18n="settings_icon_desc">Кастомное изображение для сборки</p>
                 </div>
                 <button id="btn-settings-icon" class="px-3 py-1.5 bg-surface-variant hover:bg-surface-variant/80 border border-outline-variant rounded text-body-sm text-on-surface transition-colors flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[16px]">image</span> Сменить иконку
+                  <span class="material-symbols-outlined text-[16px]">image</span> <span data-i18n="settings_change_icon">Сменить иконку</span>
                 </button>
               </div>
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Название сборки</p>
-                  <p class="text-body-sm text-text-secondary">Отображаемое имя текущего экземпляра</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_instance_name">Название сборки</p>
+                  <p class="text-body-sm text-text-secondary" data-i18n="settings_instance_name_desc">Отображаемое имя текущего экземпляра</p>
                 </div>
                 <input id="settings-name" type="text" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
               </div>
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Группа</p>
-                  <p class="text-body-sm text-text-secondary">Категория для группировки сборок</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_group">Группа</p>
+                  <p class="text-body-sm text-text-secondary" data-i18n="settings_group_desc">Категория для группировки сборок</p>
                 </div>
                 <input id="settings-group-input" type="text" placeholder="Без группы" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
               </div>
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Версия Minecraft</p>
-                  <p class="text-body-sm text-text-secondary">Версия игры текущего экземпляра</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_mc_version">Версия Minecraft</p>
+                  <p class="text-body-sm text-text-secondary" data-i18n="settings_mc_version_desc">Версия игры текущего экземпляра</p>
                 </div>
                 <input id="settings-mc-version" type="text" placeholder="1.20.1" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none"/>
               </div>
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Загрузчик модов</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_loader_label">Загрузчик модов</p>
                   <p class="text-body-sm text-text-secondary">Vanilla, Fabric, Forge, NeoForge, Quilt</p>
                 </div>
                 <select id="settings-loader" class="bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface w-56 focus:ring-1 focus:ring-primary focus:outline-none">
@@ -1106,43 +1106,43 @@
           </div>
 
           <div id="settings-tab-java" class="settings-content space-y-4 hidden">
-            <h3 class="font-headline-md text-headline-md text-on-surface">Настройки Java и Памяти</h3>
+            <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="settings_java_title">Настройки Java и Памяти</h3>
             <div class="space-y-4">
               <div class="grid grid-cols-2 gap-4">
                 <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Мин. Память (МБ)</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_min_ram">Мин. Память (МБ)</p>
                   <input id="settings-min-ram" type="number" step="512" min="512" placeholder="1024" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
                 </div>
                 <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Макс. Память (МБ)</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_max_ram">Макс. Память (МБ)</p>
                   <input id="settings-max-ram" type="number" step="512" min="1024" placeholder="4096" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
                 </div>
               </div>
               <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
-                <p class="font-label-md text-label-md text-on-surface font-bold">Дополнительные JVM аргументы</p>
-                <p class="text-body-sm text-text-secondary">Дополнительные флаги (без -Xms/-Xmx)</p>
+                <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_jvm_extra">Дополнительные JVM аргументы</p>
+                <p class="text-body-sm text-text-secondary" data-i18n="settings_jvm_extra_desc">Дополнительные флаги (без -Xms/-Xmx)</p>
                 <textarea id="settings-jvm-args" rows="3" placeholder="-XX:+UseG1GC" class="w-full bg-surface-dim border border-outline-variant rounded p-2 text-body-sm text-on-surface font-mono focus:ring-1 focus:ring-primary focus:outline-none"></textarea>
               </div>
             </div>
           </div>
 
           <div id="settings-tab-minecraft" class="settings-content space-y-4 hidden">
-            <h3 class="font-headline-md text-headline-md text-on-surface">Параметры запуска Minecraft</h3>
+            <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="settings_mc_title">Параметры запуска Minecraft</h3>
             <div class="space-y-4">
               <div class="grid grid-cols-2 gap-4">
                 <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Ширина окна (px)</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_width">Ширина окна (px)</p>
                   <input id="settings-game-width" type="number" placeholder="854" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
                 </div>
                 <div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2">
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Высота окна (px)</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_height">Высота окна (px)</p>
                   <input id="settings-game-height" type="number" placeholder="480" class="w-full bg-surface-dim border border-outline-variant rounded px-3 py-1.5 text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none"/>
                 </div>
               </div>
               <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface font-bold">Полноэкранный режим</p>
-                  <p class="text-body-sm text-text-secondary">Запускать игру во весь экран</p>
+                  <p class="font-label-md text-label-md text-on-surface font-bold" data-i18n="settings_fullscreen">Полноэкранный режим</p>
+                  <p class="text-body-sm text-text-secondary" data-i18n="settings_fullscreen_desc">Запускать игру во весь экран</p>
                 </div>
                 <input id="settings-fullscreen" type="checkbox" class="w-5 h-5 accent-primary cursor-pointer"/>
               </div>
@@ -1155,21 +1155,22 @@
             <div id="instance-mods-list-view" class="space-y-4">
               <div class="flex items-center justify-between">
                 <div>
-                  <h3 class="font-headline-md text-headline-md text-on-surface">Установленные моды</h3>
+                  <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_installed_mods">Установленные моды</h3>
                   <div class="flex gap-4 text-label-sm text-text-secondary mt-1">
-                    <span>Установлено: <strong id="mods-count-installed" class="text-on-surface">0</strong></span>
-                    <span>Активно: <strong id="mods-count-active" class="text-status-success">0</strong></span>
+                    <span data-i18n="mods_installed_count">Установлено:</span> <strong id="mods-count-installed" class="text-on-surface">0</strong>
+                    </span>
+                    <span><span data-i18n="mods_active_count">Активно:</span> <strong id="mods-count-active" class="text-status-success">0</strong></span>
                   </div>
                 </div>
                 <div class="flex items-center gap-2">
                   <button id="btn-add-mod-file" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[18px]">upload_file</span> Добавить файл
+                    <span class="material-symbols-outlined text-[18px]">upload_file</span> <span data-i18n="btn_add_mod_file">Добавить файл</span>
                   </button>
                   <button id="btn-open-mods-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                    <span class="material-symbols-outlined text-[18px]">folder</span> <span data-i18n="btn_folder">Папка</span>
                   </button>
                   <button id="btn-open-mod-search" class="px-4 py-1.5 bg-primary-container text-white rounded-lg font-label-md text-label-md font-bold flex items-center gap-1 hover:brightness-110 active:scale-95 transition-all">
-                    <span class="material-symbols-outlined text-[18px]">add</span> Скачать
+                    <span class="material-symbols-outlined text-[18px]">add</span> <span data-i18n="btn_download">Скачать</span>
                   </button>
                 </div>
               </div>
@@ -1179,13 +1180,13 @@
                 <table class="w-full text-left border-collapse">
                   <thead class="bg-surface-container-high border-b border-outline-variant text-label-sm text-text-secondary uppercase">
                     <tr>
-                      <th class="px-4 py-3">Мод</th>
-                      <th class="px-4 py-3 text-center">Статус</th>
-                      <th class="px-4 py-3 text-right">Действия</th>
+                      <th class="px-4 py-3" data-i18n="mods_col_mod">Мод</th>
+                      <th class="px-4 py-3 text-center" data-i18n="mods_col_status">Статус</th>
+                      <th class="px-4 py-3 text-right" data-i18n="mods_col_actions">Действия</th>
                     </tr>
                   </thead>
                   <tbody id="installed-mods-tbody" class="divide-y divide-outline-variant/30">
-                    <tr><td colspan="3" class="text-center py-8 text-text-secondary">Загрузка модов...</td></tr>
+                    <tr><td colspan="3" class="text-center py-8 text-text-secondary" data-i18n="loading_mods">Загрузка модов...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1218,7 +1219,7 @@
                   <!-- Version selector (populated from Modrinth) -->
                   <div id="drawer-version-block" class="mb-3 space-y-1.5">
                     <div class="flex items-center justify-between">
-                      <p class="text-label-sm text-text-secondary font-bold uppercase tracking-wider">Версия мода</p>
+                      <p class="text-label-sm text-text-secondary font-bold uppercase tracking-wider" data-i18n="drawer_mod_version">Версия мода</p>
                       <div id="drawer-versions-spinner" class="hidden w-3.5 h-3.5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
                     </div>
                     <select id="drawer-version-select" class="w-full bg-surface-dim border border-outline-variant rounded-lg px-2.5 py-1.5 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary appearance-none cursor-pointer">
@@ -1228,7 +1229,7 @@
                   </div>
 
                   <button id="btn-drawer-install" class="w-full bg-primary-container text-white py-2 rounded-lg font-bold text-label-md hover:brightness-110 active:scale-95 transition-all mt-auto flex items-center justify-center gap-1.5">
-                    <span class="material-symbols-outlined text-[16px]">download</span> Скачать мод
+                    <span class="material-symbols-outlined text-[16px]">download</span> <span data-i18n="btn_download_mod">Скачать мод</span>
                   </button>
                 </div>
 
@@ -1244,12 +1245,12 @@
           <div id="settings-tab-resourcepacks" class="settings-content space-y-4 hidden">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-headline-md text-headline-md text-on-surface">Наборы ресурсов</h3>
-                <p class="text-body-sm text-text-secondary">Установленные текстур-паки</p>
+                <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_rp_title">Наборы ресурсов</h3>
+                <p class="text-body-sm text-text-secondary" data-i18n="tab_rp_subtitle">Установленные текстур-паки</p>
               </div>
               <div class="flex items-center gap-2">
                 <button id="btn-open-rp-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                  <span class="material-symbols-outlined text-[18px]">folder</span> <span data-i18n="btn_folder">Папка</span>
                 </button>
               </div>
             </div>
@@ -1262,12 +1263,12 @@
           <div id="settings-tab-shaders" class="settings-content space-y-4 hidden">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-headline-md text-headline-md text-on-surface">Наборы шейдеров</h3>
-                <p class="text-body-sm text-text-secondary">Установленные графические шейдеры</p>
+                <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_shaders_title">Наборы шейдеров</h3>
+                <p class="text-body-sm text-text-secondary" data-i18n="tab_shaders_subtitle">Установленные графические шейдеры</p>
               </div>
               <div class="flex items-center gap-2">
                 <button id="btn-open-sp-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                  <span class="material-symbols-outlined text-[18px]">folder</span> <span data-i18n="btn_folder">Папка</span>
                 </button>
               </div>
             </div>
@@ -1280,15 +1281,15 @@
           <div id="settings-tab-worlds" class="settings-content space-y-4 hidden">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-headline-md text-headline-md text-on-surface">Миры</h3>
-                <p class="text-body-sm text-text-secondary">Сохраненные локальные миры</p>
+                <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_worlds_title">Миры</h3>
+                <p class="text-body-sm text-text-secondary" data-i18n="tab_worlds_subtitle">Сохраненные локальные миры</p>
               </div>
               <div class="flex items-center gap-2">
                 <button id="btn-import-world-zip" class="px-3 py-1.5 bg-primary-container text-white rounded-lg font-label-md text-label-md font-bold flex items-center gap-1 hover:brightness-110 active:scale-95 transition-all">
-                  <span class="material-symbols-outlined text-[18px]">file_upload</span> Импортировать мир (.zip)
+                  <span class="material-symbols-outlined text-[18px]">file_upload</span> <span data-i18n="btn_import_world">Импортировать мир (.zip)</span>
                 </button>
                 <button id="btn-open-worlds-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                  <span class="material-symbols-outlined text-[18px]">folder</span> <span data-i18n="btn_folder">Папка</span>
                 </button>
               </div>
             </div>
@@ -1301,11 +1302,11 @@
           <div id="settings-tab-servers" class="settings-content space-y-4 hidden">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-headline-md text-headline-md text-on-surface">Серверы</h3>
-                <p class="text-body-sm text-text-secondary">Сохраненные сетевые сервера (servers.dat)</p>
+                <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_servers_title">Серверы</h3>
+                <p class="text-body-sm text-text-secondary" data-i18n="tab_servers_subtitle">Сохраненные сетевые сервера (servers.dat)</p>
               </div>
               <button id="btn-open-servers-folder" class="px-3 py-1.5 bg-surface-elevated hover:bg-surface-bright text-on-surface rounded-lg font-label-md text-label-md border border-outline-variant flex items-center gap-1">
-                <span class="material-symbols-outlined text-[18px]">folder</span> Папка
+                <span class="material-symbols-outlined text-[18px]">folder</span> <span data-i18n="btn_folder">Папка</span>
               </button>
             </div>
             <div id="servers-list-container" class="space-y-2">
@@ -1315,14 +1316,14 @@
 
           <!-- MODRINTH TAB -->
           <div id="settings-tab-modrinth" class="settings-content space-y-4 hidden">
-            <h3 class="font-headline-md text-headline-md text-on-surface">Интеграция Modrinth</h3>
+            <h3 class="font-headline-md text-headline-md text-on-surface" data-i18n="tab_modrinth_title">Интеграция Modrinth</h3>
             <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded-xl space-y-3">
               <div class="flex items-center justify-between">
                 <div>
-                  <h4 class="font-bold text-on-surface text-body-md">Обновления сборки</h4>
-                  <p class="text-body-sm text-text-secondary">Проверка новой версии сборки на платформе Modrinth</p>
+                  <h4 class="font-bold text-on-surface text-body-md" data-i18n="modrinth_pack_updates">Обновления сборки</h4>
+                  <p class="text-body-sm text-text-secondary" data-i18n="modrinth_updates_desc">Проверка новой версии сборки на платформе Modrinth</p>
                 </div>
-                <button id="btn-modrinth-check-update" class="px-4 py-2 bg-primary-container text-white rounded-lg font-bold text-body-sm hover:brightness-110 active:scale-95 transition-all">
+                <button id="btn-modrinth-check-update" class="px-4 py-2 bg-primary-container text-white rounded-lg font-bold text-body-sm hover:brightness-110 active:scale-95 transition-all" data-i18n="btn_check_updates">
                   Проверить обновления
                 </button>
               </div>
@@ -1332,7 +1333,7 @@
           <div id="settings-tab-screenshots" class="settings-content space-y-4 hidden"><h3 class="font-headline-md text-headline-md text-on-surface">Снимки экрана</h3><p class="text-body-md text-text-secondary">Скриншоты.</p></div>
         </div>
       </div>
-      <div class="px-6 py-3 border-t border-outline-variant flex justify-end gap-2 bg-surface-container-low shrink-0"><button id="btn-settings-cancel" class="px-4 py-2 text-on-surface hover:bg-surface-variant rounded-xl transition-colors font-label-md text-label-md">Отмена</button><button id="btn-settings-save" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-xl font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">Сохранить</button></div>
+      <div class="px-6 py-3 border-t border-outline-variant flex justify-end gap-2 bg-surface-container-low shrink-0"><button id="btn-settings-cancel" class="px-4 py-2 text-on-surface hover:bg-surface-variant rounded-xl transition-colors font-label-md text-label-md" data-i18n="btn_cancel">Отмена</button><button id="btn-settings-save" class="px-6 py-2 bg-primary-container text-on-primary-container rounded-xl font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all" data-i18n="btn_save">Сохранить</button></div>
     </div>
   </div>
   <script src="js/i18n.js"></script>
