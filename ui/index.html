@@ -464,7 +464,7 @@
             <div class="flex items-center gap-4">
               <div class="flex items-center gap-2 bg-surface-card px-3 py-1.5 rounded-lg border border-outline-variant">
                 <span class="material-symbols-outlined text-text-secondary text-[18px]">view_module</span>
-                <span class="font-label-md text-label-md text-text-secondary">Всего экземпляров: <strong id="instance-count" class="text-on-surface font-bold">0</strong></span>
+                <span class="font-label-md text-label-md text-text-secondary"><span data-i18n="total_instances">Всего экземпляров:</span> <strong id="instance-count" class="text-on-surface font-bold">0</strong></span>
               </div>
               <div class="flex items-center bg-surface-card rounded-lg border border-outline-variant p-1 gap-1">
                 <button id="btn-view-grid" class="p-1.5 bg-surface-variant text-primary rounded shadow-sm" title="По квадратикам (Grid)"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
@@ -608,8 +608,8 @@
                     <div class="w-8 h-2 bg-primary rounded"></div>
                     <div class="w-full h-3 bg-surface-container rounded"></div>
                   </div>
-                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary">Prism Dark (Дефолт)</p>
-                  <p class="text-label-sm text-text-secondary">Тёмная тема с фиолетовым акцентом</p>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary" data-i18n="theme_dark_title">Prism Dark (Дефолт)</p>
+                  <p class="text-label-sm text-text-secondary" data-i18n="theme_dark_desc">Тёмная тема с фиолетовым акцентом</p>
                 </div>
 
                 <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#050505] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="onyx">
@@ -617,8 +617,8 @@
                     <div class="w-8 h-2 bg-white rounded"></div>
                     <div class="w-full h-3 bg-surface-variant rounded"></div>
                   </div>
-                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary">Midnight Onyx</p>
-                  <p class="text-label-sm text-text-secondary">Глубокий чёрный цвет</p>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary" data-i18n="theme_onyx_title">Midnight Onyx</p>
+                  <p class="text-label-sm text-text-secondary" data-i18n="theme_onyx_desc">Глубокий чёрный цвет</p>
                 </div>
 
                 <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#ffffff] text-black cursor-pointer hover:scale-[1.02] transition-all group" data-theme="light">
@@ -626,8 +626,8 @@
                     <div class="w-8 h-2 bg-blue-600 rounded"></div>
                     <div class="w-full h-3 bg-gray-200 rounded"></div>
                   </div>
-                  <p class="font-label-md text-label-md font-bold text-gray-900 group-hover:text-blue-600">Cloud White</p>
-                  <p class="text-label-sm text-gray-600">Светлая лаконичная тема</p>
+                  <p class="font-label-md text-label-md font-bold text-gray-900 group-hover:text-blue-600" data-i18n="theme_light_title">Cloud White</p>
+                  <p class="text-label-sm text-gray-600" data-i18n="theme_light_desc">Светлая лаконичная тема</p>
                 </div>
 
                 <div class="theme-card border border-outline-variant rounded-xl p-4 bg-[#181216] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="ember">
@@ -635,8 +635,8 @@
                     <div class="w-8 h-2 bg-orange-500 rounded"></div>
                     <div class="w-full h-3 bg-surface-container rounded"></div>
                   </div>
-                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-orange-400">Ember Flow</p>
-                  <p class="text-label-sm text-text-secondary">Тёплые оранжевые тона</p>
+                  <p class="font-label-md text-label-md font-bold text-on-surface group-hover:text-orange-400" data-i18n="theme_ember_title">Ember Flow</p>
+                  <p class="text-label-sm text-text-secondary" data-i18n="theme_ember_desc">Тёплые оранжевые тона</p>
                 </div>
               </div>
             </section>
@@ -767,11 +767,11 @@
         </button>
       </div>
       <div class="border-t border-outline-variant pt-4">
-        <h4 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-3">Информация</h4>
+        <h4 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-3" data-i18n="info_header">Информация</h4>
         <div class="space-y-2">
-          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary">Версия:</span><span class="font-label-md text-label-md text-on-surface" id="detail-version">—</span></div>
-          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary">Загрузчик:</span><span class="font-label-md text-label-md text-on-surface" id="detail-loader">—</span></div>
-          <div class="flex flex-col gap-1"><span class="font-label-md text-label-md text-text-secondary">Путь:</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate font-mono bg-surface-container-lowest p-1.5 rounded border border-outline-variant/30" id="detail-path" title="">—</span></div>
+          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary" data-i18n="info_version">Версия:</span><span class="font-label-md text-label-md text-on-surface" id="detail-version">—</span></div>
+          <div class="flex justify-between"><span class="font-label-md text-label-md text-text-secondary" data-i18n="info_loader">Загрузчик:</span><span class="font-label-md text-label-md text-on-surface" id="detail-loader">—</span></div>
+          <div class="flex flex-col gap-1"><span class="font-label-md text-label-md text-text-secondary" data-i18n="info_path">Путь:</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate font-mono bg-surface-container-lowest p-1.5 rounded border border-outline-variant/30" id="detail-path" title="">—</span></div>
         </div>
       </div>
     </aside>

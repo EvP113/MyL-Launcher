@@ -131,7 +131,7 @@
     sel.innerHTML = '';
     var defOpt = document.createElement('option');
     defOpt.value = '';
-    defOpt.textContent = 'Целевая сборка: Текущая';
+    defOpt.textContent = window.i18n ? window.i18n.t('target_build', 'Целевая сборка: Текущая') : 'Целевая сборка: Текущая';
     sel.appendChild(defOpt);
     Object.keys(instanceDataMap).forEach(function (id) {
       var inst = instanceDataMap[id];
@@ -793,6 +793,8 @@
           initLauncherSettings();
           renderInstancesUI();
           loadAccounts();
+          updateLaunchButtonState();
+          if (selectedInstanceId) updateDetailPanel(selectedInstanceId);
         }
       };
     });
@@ -909,11 +911,13 @@
   function loadResourcePacks(instanceId) {
     var container = document.getElementById('rp-list-container');
     if (!container) return;
-    container.innerHTML = '<div class="text-center py-8 text-text-secondary">Загрузка ресурс-паков...</div>';
+    var loadingTxt = window.i18n ? window.i18n.t('loading_rp', 'Загрузка ресурс-паков...') : 'Загрузка ресурс-паков...';
+    var noRpTxt = window.i18n ? window.i18n.t('no_rp', 'Нет установленных ресурс-паков') : 'Нет установленных ресурс-паков';
+    container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + loadingTxt + '</div>';
     window.backend.listResourcepacks(instanceId).then(function(json) {
       var list = JSON.parse(json) || [];
       if (!list.length) {
-        container.innerHTML = '<div class="text-center py-8 text-text-secondary">Нет установленных ресурс-паков</div>';
+        container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + noRpTxt + '</div>';
         return;
       }
       container.innerHTML = '';
@@ -939,11 +943,13 @@
   function loadShaderPacks(instanceId) {
     var container = document.getElementById('sp-list-container');
     if (!container) return;
-    container.innerHTML = '<div class="text-center py-8 text-text-secondary">Загрузка шейдеров...</div>';
+    var loadingSpTxt = window.i18n ? window.i18n.t('loading_shaders', 'Загрузка шейдеров...') : 'Загрузка шейдеров...';
+    var noSpTxt = window.i18n ? window.i18n.t('no_shaders', 'Нет установленных шейдеров') : 'Нет установленных шейдеров';
+    container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + loadingSpTxt + '</div>';
     window.backend.listShaderpacks(instanceId).then(function(json) {
       var list = JSON.parse(json) || [];
       if (!list.length) {
-        container.innerHTML = '<div class="text-center py-8 text-text-secondary">Нет установленных шейдеров</div>';
+        container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + noSpTxt + '</div>';
         return;
       }
       container.innerHTML = '';
@@ -968,11 +974,13 @@
   function loadWorlds(instanceId) {
     var container = document.getElementById('worlds-list-container');
     if (!container) return;
-    container.innerHTML = '<div class="text-center py-8 text-text-secondary">Загрузка миров...</div>';
+    var loadingWorldsTxt = window.i18n ? window.i18n.t('loading_worlds', 'Загрузка миров...') : 'Загрузка миров...';
+    var noWorldsTxt = window.i18n ? window.i18n.t('no_worlds', 'Нет сохраненных миров') : 'Нет сохраненных миров';
+    container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + loadingWorldsTxt + '</div>';
     window.backend.listWorlds(instanceId).then(function(json) {
       var list = JSON.parse(json) || [];
       if (!list.length) {
-        container.innerHTML = '<div class="text-center py-8 text-text-secondary">Нет сохраненных миров</div>';
+        container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + noWorldsTxt + '</div>';
         return;
       }
       container.innerHTML = '';
@@ -998,11 +1006,13 @@
   function loadServers(instanceId) {
     var container = document.getElementById('servers-list-container');
     if (!container) return;
-    container.innerHTML = '<div class="text-center py-8 text-text-secondary">Загрузка серверов...</div>';
+    var loadingServersTxt = window.i18n ? window.i18n.t('loading_servers', 'Загрузка серверов...') : 'Загрузка серверов...';
+    var noServersTxt = window.i18n ? window.i18n.t('no_servers', 'Нет сохраненных серверов') : 'Нет сохраненных серверов';
+    container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + loadingServersTxt + '</div>';
     window.backend.listServers(instanceId).then(function(json) {
       var list = JSON.parse(json) || [];
       if (!list.length) {
-        container.innerHTML = '<div class="text-center py-8 text-text-secondary">Нет сохраненных серверов</div>';
+        container.innerHTML = '<div class="text-center py-8 text-text-secondary">' + noServersTxt + '</div>';
         return;
       }
       container.innerHTML = '';
