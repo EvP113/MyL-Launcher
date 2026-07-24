@@ -1305,12 +1305,11 @@
       accs.forEach(function (a) {
         var card = document.createElement('div');
         card.className = (a.is_active ? 'bg-surface-elevated border border-primary/50' : 'bg-surface-container border border-outline-variant/30') + ' rounded-xl p-5 relative group cursor-pointer transition-all';
-        var badge = a.is_active ? '<div class="absolute top-4 right-4"><span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase border border-primary/30">' + activeTxt + '</span></div>' : '';
         var typeLabel = a.account_type === 'microsoft' ? 'Microsoft Account' : offlineTxt;
         var actions = a.is_active
           ? '<div class="mt-6 flex gap-2"><button class="flex-1 bg-surface-variant py-2 rounded-lg font-label-md text-label-md text-text-secondary cursor-default">' + activeTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>'
           : '<div class="mt-6 flex gap-2"><button class="btn-activate flex-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 py-2 rounded-lg font-label-md text-label-md font-bold transition-all">' + makeActiveTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>';
-        card.innerHTML = badge + '<div class="flex items-center gap-4"><canvas class="acc-head-canvas w-12 h-12 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50" width="48" height="48"></canvas><div class="flex-1 overflow-hidden"><h4 class="font-headline-md text-headline-md text-on-surface truncate">' + esc(a.username) + '</h4><p class="font-label-md text-label-md text-text-secondary">' + typeLabel + '</p></div></div>' + actions;
+        card.innerHTML = '<div class="flex items-center gap-4"><canvas class="acc-head-canvas w-12 h-12 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50" width="48" height="48"></canvas><div class="flex-1 overflow-hidden"><h4 class="font-headline-md text-headline-md text-on-surface truncate">' + esc(a.username) + '</h4><p class="font-label-md text-label-md text-text-secondary">' + typeLabel + '</p></div></div>' + actions;
 
         var headCanvas = card.querySelector('.acc-head-canvas');
         drawHeadOnCanvas(headCanvas, a.skin_png_base64);

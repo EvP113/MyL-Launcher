@@ -599,8 +599,8 @@
             <!-- Section 1: Themes (SVG 2/_12) -->
             <section class="space-y-4">
               <div class="flex items-center justify-between">
-                <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Тема оформления</h3>
-                <span class="text-label-sm text-text-secondary">Выберите встроенный стиль</span>
+                <h3 class="font-headline-md text-headline-md font-bold text-on-surface" data-i18n="theme">Тема оформления</h3>
+                <span class="text-label-sm text-text-secondary" data-i18n="select_theme">Выберите встроенный стиль</span>
               </div>
               <div class="grid grid-cols-4 gap-4">
                 <div class="theme-card border-2 border-primary rounded-xl p-4 bg-[#11131b] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="dark">
@@ -645,46 +645,46 @@
             <section class="grid grid-cols-2 gap-6">
               <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Размер шрифта</h4>
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="font_size">Размер шрифта</h4>
                   <span id="font-size-val" class="font-mono text-primary font-bold">14px</span>
                 </div>
                 <input id="font-size-slider" type="range" min="11" max="18" step="0.1" value="14" class="w-full accent-primary cursor-pointer"/>
-                <p class="text-label-sm text-text-secondary">Настройка базового кегля для элементов интерфейса</p>
+                <p class="text-label-sm text-text-secondary" data-i18n="font_size_desc">Настройка базового кегля для элементов интерфейса</p>
               </div>
 
               <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
-                <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Плотность текста (Density)</h4>
+                <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="text_density">Плотность текста (Density)</h4>
                 <div class="flex gap-2">
-                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="compact">Компактная</button>
-                  <button class="density-btn flex-1 py-2 bg-primary/10 text-primary rounded-lg font-label-md text-label-md font-bold border border-primary/30" data-density="normal">Обычная</button>
-                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="spacious">Просторная</button>
+                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="compact" data-i18n="density_compact">Компактная</button>
+                  <button class="density-btn flex-1 py-2 bg-primary/10 text-primary rounded-lg font-label-md text-label-md font-bold border border-primary/30" data-density="normal" data-i18n="density_normal">Обычная</button>
+                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="spacious" data-i18n="density_spacious">Просторная</button>
                 </div>
               </div>
             </section>
 
             <!-- Section 3: General Launcher Options (SVG 2/_10) -->
             <section class="bg-surface-card rounded-xl border border-outline-variant p-6 space-y-6">
-              <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Поведение и Запуск</h3>
+              <h3 class="font-headline-md text-headline-md font-bold text-on-surface" data-i18n="launch_behavior">Поведение и Запуск</h3>
 
               <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30">
                 <div>
-                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Действие после запуска игры</h4>
-                  <p class="font-body-sm text-body-sm text-text-secondary">Поведение главного окна лаунчера при старте Minecraft</p>
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="action_after_launch">Действие после запуска игры</h4>
+                  <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="action_behavior_desc">Поведение главного окна лаунчера при старте Minecraft</p>
                 </div>
                 <select id="global-window-action" class="bg-surface-dim border border-outline-variant rounded-lg px-4 py-2 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
-                  <option value="minimize">Свернуть лаунчер</option>
-                  <option value="close">Закрыть лаунчер</option>
-                  <option value="keep">Оставить открытым</option>
+                  <option value="minimize" data-i18n="action_minimize">Свернуть лаунчер</option>
+                  <option value="close" data-i18n="action_close">Закрывать лаунчер</option>
+                  <option value="keep" data-i18n="action_keep">Оставить открытым</option>
                 </select>
               </div>
 
               <!-- Default JVM Arguments Text Area (Visible & Editable) -->
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Java аргументы по умолчанию</h4>
-                  <span class="text-label-sm text-text-secondary">Универсальные флаги для всех версий</span>
+                  <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="default_jvm_args">Java аргументы по умолчанию</h4>
+                  <span class="text-label-sm text-text-secondary" data-i18n="jvm_args_desc">Универсальные флаги для всех версий</span>
                 </div>
-                <p class="font-body-sm text-body-sm text-text-secondary">Оптимизированные аргументы JVM. Пользователь может свободно изменять их при необходимости:</p>
+                <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="jvm_args_info">Оптимизированные аргументы JVM. Пользователь может свободно изменять их при необходимости:</p>
                 <textarea id="global-default-jvm-args" rows="3" class="w-full bg-surface-dim border border-outline-variant rounded-lg p-3 text-body-sm text-on-surface font-mono focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed" placeholder="-Xmx2G -XX:+UnlockExperimentalVMOptions">-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M</textarea>
               </div>
             </section>
@@ -695,8 +695,8 @@
                 <div class="flex items-center gap-3">
                   <span class="material-symbols-outlined text-primary">animation</span>
                   <div>
-                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Анимации интерфейса</h4>
-                    <p class="font-body-sm text-body-sm text-text-secondary">Плавные переходы и эффекты наведения</p>
+                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="ui_animations">Анимации интерфейса</h4>
+                    <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="ui_anim_desc">Плавные переходы и эффекты наведения</p>
                   </div>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
@@ -709,8 +709,8 @@
                 <div class="flex items-center gap-3">
                   <span class="material-symbols-outlined text-primary">analytics</span>
                   <div>
-                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface">Автопроверка обновлений</h4>
-                    <p class="font-body-sm text-body-sm text-text-secondary">Регулярно проверять новые версии компонентов</p>
+                    <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="auto_updates">Автопроверка обновлений</h4>
+                    <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="auto_updates_desc">Регулярно проверять новые версии компонентов</p>
                   </div>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
@@ -721,7 +721,7 @@
             </section>
 
             <div class="flex justify-end gap-3 pt-4">
-              <button id="btn-save-settings" class="px-8 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">Сохранить настройки</button>
+              <button id="btn-save-settings" class="px-8 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20" data-i18n="btn_save_settings">Сохранить настройки</button>
             </div>
 
           </div>
@@ -755,15 +755,15 @@
       <div class="space-y-1 mb-6">
         <button id="btn-edit-instance" class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
           <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">edit</span>
-          <span class="font-label-md text-label-md">Настройки сборки</span>
+          <span class="font-label-md text-label-md" data-i18n="instance_settings">Настройки сборки</span>
         </button>
         <button id="btn-open-folder" class="w-full flex items-center gap-3 px-3 py-2 text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors group">
           <span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:text-primary">folder_open</span>
-          <span class="font-label-md text-label-md">Папка экземпляра</span>
+          <span class="font-label-md text-label-md" data-i18n="instance_folder">Папка экземпляра</span>
         </button>
         <button id="btn-delete-instance" class="w-full flex items-center gap-3 px-3 py-2 text-status-error hover:bg-status-error/10 rounded-lg transition-colors group">
           <span class="material-symbols-outlined text-[18px] text-status-error">delete</span>
-          <span class="font-label-md text-label-md">Удалить</span>
+          <span class="font-label-md text-label-md" data-i18n="btn_delete">Удалить</span>
         </button>
       </div>
       <div class="border-t border-outline-variant pt-4">
