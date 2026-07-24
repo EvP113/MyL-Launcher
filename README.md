@@ -11,7 +11,7 @@
 
 ---
 
-![Скриншот приложения](ui/screens/_1/screen.png)
+![Скриншот приложения](assets/screenshots/main.png)
 
 </div>
 
@@ -48,10 +48,10 @@
 <div align="center">
 
 ### Главный Экран Сборок
-![Главная страница](ui/screens/_1/screen.png)
+![Главная страница](assets/screenshots/main.png)
 
 ### Создание Нового Экземпляра
-![Создание нового экземпляра](ui/screens/_2/screen.png)
+![Создание нового экземпляра](assets/screenshots/wizard.png)
 
 </div>
 
