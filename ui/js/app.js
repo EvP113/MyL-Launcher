@@ -169,8 +169,9 @@
 
     // Group instances by group name
     var groups = {};
+    var defaultGroupLabel = window.i18n ? window.i18n.t('unassigned_group', 'Без группы') : 'Без группы';
     rawInstancesList.forEach(function (inst) {
-      var gName = inst.group && inst.group.trim() ? inst.group.trim() : 'Без группы';
+      var gName = inst.group && inst.group.trim() ? inst.group.trim() : defaultGroupLabel;
       if (!groups[gName]) groups[gName] = [];
       groups[gName].push(inst);
     });
@@ -271,13 +272,17 @@
     var statusBox = document.getElementById('detail-status-container');
     if (runningInstancePid && runningInstanceId === selectedInstanceId) {
       btnLaunch.className = 'w-full bg-status-error text-white rounded-lg flex items-center overflow-hidden hover:brightness-110 active:scale-[0.98] transition-all group';
-      content.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">stop</span><span class="font-label-md text-label-md font-bold">Закрыть</span>';
-      if (statusText) statusText.textContent = 'В игре (PID: ' + runningInstancePid + ')';
+      var stopTxt = window.i18n ? window.i18n.t('btn_stop', 'Закрыть') : 'Закрыть';
+      var inGameTxt = window.i18n ? window.i18n.t('in_game', 'В игре') : 'В игре';
+      content.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">stop</span><span class="font-label-md text-label-md font-bold">' + stopTxt + '</span>';
+      if (statusText) statusText.textContent = inGameTxt + ' (PID: ' + runningInstancePid + ')';
       if (statusBox) statusBox.className = 'inline-block mt-2 px-3 py-1 bg-status-error/10 border border-status-error/30 rounded-full text-status-error';
     } else {
       btnLaunch.className = 'w-full bg-primary-container text-white rounded-lg flex items-center overflow-hidden hover:brightness-110 active:scale-[0.98] transition-all group';
-      content.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">play_arrow</span><span class="font-label-md text-label-md font-bold">Запустить</span>';
-      if (statusText) statusText.textContent = 'Готов к запуску';
+      var launchTxt = window.i18n ? window.i18n.t('btn_launch', 'Запустить') : 'Запустить';
+      var readyTxt = window.i18n ? window.i18n.t('ready_to_play', 'Готов к запуску') : 'Готов к запуску';
+      content.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">play_arrow</span><span class="font-label-md text-label-md font-bold">' + launchTxt + '</span>';
+      if (statusText) statusText.textContent = readyTxt;
       if (statusBox) statusBox.className = 'inline-block mt-2 px-3 py-1 bg-status-success/10 border border-status-success/30 rounded-full text-status-success';
     }
   }
@@ -777,6 +782,21 @@
 
   // === Launcher Settings (Themes, Typography, Density, Animations) ===
   function initLauncherSettings() {
+    var savedLang = window.i18n ? window.i18n.getCurrentLang() : 'ru';
+    if (window.i18n) window.i18n.applyLanguage(savedLang);
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      var isSel = btn.dataset.lang === savedLang;
+      btn.className = isSel ? 'lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-primary/10 text-primary border-2 border-primary rounded-xl font-bold transition-all shadow-sm cursor-pointer' : 'lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-surface-card hover:bg-surface-variant text-on-surface border border-outline-variant rounded-xl font-bold transition-all cursor-pointer';
+      btn.onclick = function () {
+        if (window.i18n) {
+          window.i18n.applyLanguage(btn.dataset.lang);
+          initLauncherSettings();
+          renderInstancesUI();
+          loadAccounts();
+        }
+      };
+    });
+
     var savedTheme = localStorage.getItem('myl_theme') || 'dark';
     applyTheme(savedTheme);
     document.querySelectorAll('.theme-card').forEach(function (card) {
@@ -1261,29 +1281,35 @@
       var sType = document.getElementById('active-acc-type');
       var sCanvas = document.getElementById('active-acc-head-canvas');
 
+      var offlineTxt = window.i18n ? window.i18n.t('offline_account', 'Офлайн аккаунт') : 'Офлайн аккаунт';
+      var noAccTxt = window.i18n ? window.i18n.t('no_account', 'Нет аккаунта') : 'Нет аккаунта';
+      var activeTxt = window.i18n ? window.i18n.t('active', 'Активен') : 'Активен';
+      var makeActiveTxt = window.i18n ? window.i18n.t('make_active', 'Сделать активным') : 'Сделать активным';
+      var noAccountsTxt = window.i18n ? window.i18n.t('no_accounts', 'Нет аккаунтов') : 'Нет аккаунтов';
+
       if (activeAcc) {
         if (sName) sName.textContent = activeAcc.username;
-        if (sType) sType.textContent = activeAcc.account_type === 'microsoft' ? 'Microsoft Account' : 'Офлайн аккаунт';
+        if (sType) sType.textContent = activeAcc.account_type === 'microsoft' ? 'Microsoft Account' : offlineTxt;
         drawHeadOnCanvas(sCanvas, activeAcc.skin_png_base64);
       } else {
         if (sName) sName.textContent = '—';
-        if (sType) sType.textContent = 'Нет аккаунта';
+        if (sType) sType.textContent = noAccTxt;
         drawHeadOnCanvas(sCanvas, null);
       }
 
       if (!accs || accs.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12"><span class="material-symbols-outlined text-[64px] text-text-secondary">person_off</span><p class="text-headline-md text-on-surface mt-4">Нет аккаунтов</p></div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12"><span class="material-symbols-outlined text-[64px] text-text-secondary">person_off</span><p class="text-headline-md text-on-surface mt-4">' + noAccountsTxt + '</p></div>';
         return;
       }
 
       accs.forEach(function (a) {
         var card = document.createElement('div');
         card.className = (a.is_active ? 'bg-surface-elevated border border-primary/50' : 'bg-surface-container border border-outline-variant/30') + ' rounded-xl p-5 relative group cursor-pointer transition-all';
-        var badge = a.is_active ? '<div class="absolute top-4 right-4"><span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase border border-primary/30">Активен</span></div>' : '';
-        var typeLabel = a.account_type === 'microsoft' ? 'Microsoft Account' : 'Офлайн';
+        var badge = a.is_active ? '<div class="absolute top-4 right-4"><span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase border border-primary/30">' + activeTxt + '</span></div>' : '';
+        var typeLabel = a.account_type === 'microsoft' ? 'Microsoft Account' : offlineTxt;
         var actions = a.is_active
-          ? '<div class="mt-6 flex gap-2"><button class="flex-1 bg-surface-variant py-2 rounded-lg font-label-md text-label-md text-text-secondary cursor-default">Активен</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>'
-          : '<div class="mt-6 flex gap-2"><button class="btn-activate flex-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 py-2 rounded-lg font-label-md text-label-md font-bold transition-all">Сделать активным</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>';
+          ? '<div class="mt-6 flex gap-2"><button class="flex-1 bg-surface-variant py-2 rounded-lg font-label-md text-label-md text-text-secondary cursor-default">' + activeTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>'
+          : '<div class="mt-6 flex gap-2"><button class="btn-activate flex-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 py-2 rounded-lg font-label-md text-label-md font-bold transition-all">' + makeActiveTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>';
         card.innerHTML = badge + '<div class="flex items-center gap-4"><canvas class="acc-head-canvas w-12 h-12 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50" width="48" height="48"></canvas><div class="flex-1 overflow-hidden"><h4 class="font-headline-md text-headline-md text-on-surface truncate">' + esc(a.username) + '</h4><p class="font-label-md text-label-md text-text-secondary">' + typeLabel + '</p></div></div>' + actions;
 
         var headCanvas = card.querySelector('.acc-head-canvas');
@@ -1784,7 +1810,7 @@
   // === Init ===
   loadInstances();
   loadAccounts();
+  if (window.i18n) window.i18n.applyLanguage();
   initLauncherSettings();
   function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 })();
-
