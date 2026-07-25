@@ -389,7 +389,9 @@
   <!-- TITLEBAR -->
   <header data-tauri-drag-region class="h-10 w-full flex items-center justify-between bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant z-50 shrink-0">
     <div class="flex items-center gap-2 pl-3" data-tauri-drag-region>
-      <img src="assets/logo-icon.svg" class="w-6 h-6 object-contain" alt="MyL Logo"/>
+      <div class="w-6 h-6 rounded bg-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+      </div>
       <span class="font-label-md text-label-md text-on-surface font-bold">MyL</span>
     </div>
     <div class="flex items-center" data-tauri-drag-region>
@@ -454,12 +456,12 @@
 
         <!-- PAGE: Instances -->
         <div id="page-instances" class="page active flex-1 flex flex-col overflow-hidden">
-          <div class="flex items-center justify-between px-8 py-6 shrink-0">
-            <div>
-              <h1 class="font-headline-lg text-headline-lg text-on-surface" data-i18n="my_instances">Мои экземпляры</h1>
-              <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="manage_instances">Управление сборками Minecraft</p>
+          <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-8 py-6 shrink-0">
+            <div class="min-w-0 flex-1">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface truncate" data-i18n="my_instances">Мои экземпляры</h1>
+              <p class="font-body-sm text-body-sm text-text-secondary truncate" data-i18n="manage_instances">Управление сборками Minecraft</p>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 shrink-0">
               <div class="flex items-center gap-2 bg-surface-card px-3 py-1.5 rounded-lg border border-outline-variant">
                 <span class="material-symbols-outlined text-text-secondary text-[18px]">view_module</span>
                 <span class="font-label-md text-label-md text-text-secondary"><span data-i18n="total_instances">Всего экземпляров:</span> <strong id="instance-count" class="text-on-surface font-bold">0</strong></span>
@@ -503,7 +505,7 @@
           </div>
 
           <div class="flex-1 overflow-y-auto px-8 pb-20">
-            <div id="accounts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="accounts-grid" class="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))]">
               <div id="add-account-placeholder" class="border-2 border-dashed border-outline-variant hover:border-primary/50 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-center cursor-pointer transition-all hover:bg-surface-variant/20 min-h-[160px]">
                 <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
                   <span class="material-symbols-outlined text-text-secondary">add</span>
@@ -581,26 +583,28 @@
           <div class="flex-1 overflow-y-auto px-8 py-6 space-y-8">
             <!-- Section 0: Language Selection -->
             <section class="space-y-4">
-              <div class="flex items-center justify-between">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 class="font-headline-md text-headline-md font-bold text-on-surface" data-i18n="language_section">Язык интерфейса (Language)</h3>
                 <span class="text-label-sm text-text-secondary" data-i18n="select_language">Выберите язык лаунчера</span>
               </div>
-              <div class="grid grid-cols-2 gap-4 max-w-lg">
-                <button class="lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-primary/10 text-primary border-2 border-primary rounded-xl font-bold transition-all cursor-pointer" data-lang="ru">
-                  <span class="text-xl">🇷🇺</span> Русский (Russian)
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
+                <button class="lang-btn flex items-center justify-center gap-2.5 py-3 px-4 bg-primary/10 text-primary border-2 border-primary rounded-xl font-bold transition-all cursor-pointer min-h-[48px]" data-lang="ru">
+                  <span class="lang-badge px-2 py-0.5 rounded-md bg-primary/20 text-primary text-[11px] font-mono font-extrabold uppercase tracking-wider leading-none inline-flex items-center justify-center shrink-0">RU</span>
+                  <span class="leading-none inline-flex items-center">Русский</span>
                 </button>
-                <button class="lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-surface-card hover:bg-surface-variant text-on-surface border border-outline-variant rounded-xl font-bold transition-all cursor-pointer" data-lang="en">
-                  <span class="text-xl">🇬🇧</span> English (Английский)
+                <button class="lang-btn flex items-center justify-center gap-2.5 py-3 px-4 bg-surface-card hover:bg-surface-variant text-on-surface border-2 border-outline-variant/50 hover:border-outline-variant rounded-xl font-bold transition-all cursor-pointer min-h-[48px]" data-lang="en">
+                  <span class="lang-badge px-2 py-0.5 rounded-md bg-surface-variant text-text-secondary text-[11px] font-mono font-extrabold uppercase tracking-wider leading-none inline-flex items-center justify-center shrink-0">EN</span>
+                  <span class="leading-none inline-flex items-center">English</span>
                 </button>
               </div>
             </section>
             <!-- Section 1: Themes (SVG 2/_12) -->
             <section class="space-y-4">
-              <div class="flex items-center justify-between">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 class="font-headline-md text-headline-md font-bold text-on-surface" data-i18n="theme">Тема оформления</h3>
                 <span class="text-label-sm text-text-secondary" data-i18n="select_theme">Выберите встроенный стиль</span>
               </div>
-              <div class="grid grid-cols-4 gap-4">
+              <div class="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]">
                 <div class="theme-card border-2 border-primary rounded-xl p-4 bg-[#11131b] cursor-pointer hover:scale-[1.02] transition-all group" data-theme="dark">
                   <div class="h-20 rounded-lg bg-[#181a24] mb-3 p-2 flex flex-col justify-between border border-white/10">
                     <div class="w-8 h-2 bg-[#6c5ce7] rounded"></div>
@@ -640,22 +644,22 @@
             </section>
 
             <!-- Section 2: Typography & Density (SVG 2/_12) -->
-            <section class="grid grid-cols-2 gap-6">
+            <section class="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
               <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
                 <div class="flex items-center justify-between">
                   <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="font_size">Размер шрифта</h4>
                   <span id="font-size-val" class="font-mono text-primary font-bold">14px</span>
                 </div>
-                <input id="font-size-slider" type="range" min="11" max="18" step="0.1" value="14" class="w-full accent-primary cursor-pointer"/>
+                <input id="font-size-slider" type="range" min="10" max="12" step="0.1" value="12" class="w-full accent-primary cursor-pointer"/>
                 <p class="text-label-sm text-text-secondary" data-i18n="font_size_desc">Настройка базового кегля для элементов интерфейса</p>
               </div>
 
               <div class="bg-surface-card rounded-xl p-5 border border-outline-variant space-y-4">
                 <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="text_density">Плотность текста (Density)</h4>
-                <div class="flex gap-2">
-                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="compact" data-i18n="density_compact">Компактная</button>
-                  <button class="density-btn flex-1 py-2 bg-primary/10 text-primary rounded-lg font-label-md text-label-md font-bold border border-primary/30" data-density="normal" data-i18n="density_normal">Обычная</button>
-                  <button class="density-btn flex-1 py-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant" data-density="spacious" data-i18n="density_spacious">Просторная</button>
+                <div class="flex flex-wrap gap-2">
+                  <button class="density-btn flex-1 min-w-[110px] py-2.5 px-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant text-center transition-colors" data-density="compact" data-i18n="density_compact">Компактная</button>
+                  <button class="density-btn flex-1 min-w-[110px] py-2.5 px-2 bg-primary/10 text-primary rounded-lg font-label-md text-label-md font-bold border border-primary/30 text-center transition-colors" data-density="normal" data-i18n="density_normal">Обычная</button>
+                  <button class="density-btn flex-1 min-w-[110px] py-2.5 px-2 bg-surface-variant text-on-surface rounded-lg font-label-md text-label-md font-bold border border-outline-variant text-center transition-colors" data-density="spacious" data-i18n="density_spacious">Просторная</button>
                 </div>
               </div>
             </section>
@@ -664,12 +668,12 @@
             <section class="bg-surface-card rounded-xl border border-outline-variant p-6 space-y-6">
               <h3 class="font-headline-md text-headline-md font-bold text-on-surface" data-i18n="launch_behavior">Поведение и Запуск</h3>
 
-              <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-outline-variant/30">
                 <div>
                   <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="action_after_launch">Действие после запуска игры</h4>
                   <p class="font-body-sm text-body-sm text-text-secondary" data-i18n="action_behavior_desc">Поведение главного окна лаунчера при старте Minecraft</p>
                 </div>
-                <select id="global-window-action" class="bg-surface-dim border border-outline-variant rounded-lg px-4 py-2 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+                <select id="global-window-action" class="bg-surface-dim border border-outline-variant rounded-lg px-4 py-2 text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shrink-0">
                   <option value="minimize" data-i18n="action_minimize">Свернуть лаунчер</option>
                   <option value="close" data-i18n="action_close">Закрывать лаунчер</option>
                   <option value="keep" data-i18n="action_keep">Оставить открытым</option>
@@ -678,7 +682,7 @@
 
               <!-- Default JVM Arguments Text Area (Visible & Editable) -->
               <div class="space-y-2">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h4 class="font-body-lg text-body-lg font-bold text-on-surface" data-i18n="default_jvm_args">Java аргументы по умолчанию</h4>
                   <span class="text-label-sm text-text-secondary" data-i18n="jvm_args_desc">Универсальные флаги для всех версий</span>
                 </div>

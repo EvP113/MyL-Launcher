@@ -188,16 +188,16 @@
 
       var itemsWrapper = document.createElement('div');
       if (currentViewMode === 'grid') {
-        itemsWrapper.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6';
+        itemsWrapper.className = 'grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4';
         instList.forEach(function (inst) {
           var card = document.createElement('div');
           var isSelected = selectedInstanceId === inst.id;
-          card.className = 'p-4 bg-surface-card rounded-xl border flex flex-col items-center gap-4 relative group cursor-pointer transition-all ' + (isSelected ? 'border-primary ring-2 ring-primary/20' : 'border-outline-variant hover:border-outline');
+          card.className = 'h-72 p-5 bg-surface-card rounded-xl border flex flex-col items-center justify-between relative group cursor-pointer transition-all ' + (isSelected ? 'border-primary ring-2 ring-primary/20' : 'border-outline-variant hover:border-outline');
           card.dataset.id = inst.id;
-          var iconHtmlGrid = inst.icon ? '<img src="' + esc(inst.icon) + '" class="w-24 h-24 object-cover rounded-2xl bg-surface-container-high shrink-0"/>' : '<div class="w-24 h-24 rounded-2xl bg-surface-container-high p-4 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[40px] text-text-secondary">deployed_code</span></div>';
+          var iconHtmlGrid = inst.icon ? '<img src="' + esc(inst.icon) + '" class="w-24 h-24 object-cover rounded-2xl bg-surface-container-high shrink-0 mt-1 mb-3"/>' : '<div class="w-24 h-24 rounded-2xl bg-surface-container-high p-4 flex items-center justify-center shrink-0 mt-1 mb-3"><span class="material-symbols-outlined text-[44px] text-text-secondary">deployed_code</span></div>';
           card.innerHTML = iconHtmlGrid +
-            '<div class="text-center"><h3 class="font-headline-md text-headline-md font-bold text-on-surface">' + esc(inst.name) + '</h3>' +
-            '<div class="flex items-center justify-center gap-2 text-text-secondary font-label-md text-label-md mt-1"><span class="material-symbols-outlined text-[16px]">box</span>' + esc(inst.mc_version || '—') + (inst.loader ? ' (' + esc(inst.loader) + ')' : '') + '</div></div>';
+            '<div class="text-center w-full min-w-0 flex-1 flex flex-col justify-center mb-1"><h3 class="font-headline-md text-headline-md font-bold text-on-surface truncate leading-snug" title="' + esc(inst.name) + '">' + esc(inst.name) + '</h3>' +
+            '<div class="flex items-center justify-center gap-1.5 text-text-secondary font-label-md text-label-md mt-1 shrink-0"><span class="material-symbols-outlined text-[15px]">box</span><span class="truncate">' + esc(inst.mc_version || '—') + (inst.loader ? ' (' + esc(inst.loader) + ')' : '') + '</span></div></div>';
           card.addEventListener('click', function () { selectInstance(inst.id); });
           itemsWrapper.appendChild(card);
         });
@@ -786,7 +786,16 @@
     if (window.i18n) window.i18n.applyLanguage(savedLang);
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       var isSel = btn.dataset.lang === savedLang;
-      btn.className = isSel ? 'lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-primary/10 text-primary border-2 border-primary rounded-xl font-bold transition-all shadow-sm cursor-pointer' : 'lang-btn flex items-center justify-center gap-3 py-3 px-4 bg-surface-card hover:bg-surface-variant text-on-surface border border-outline-variant rounded-xl font-bold transition-all cursor-pointer';
+      btn.className = isSel
+        ? 'lang-btn flex items-center justify-center gap-2.5 py-3 px-4 bg-primary/10 text-primary border-2 border-primary rounded-xl font-bold transition-all shadow-sm cursor-pointer min-h-[48px]'
+        : 'lang-btn flex items-center justify-center gap-2.5 py-3 px-4 bg-surface-card hover:bg-surface-variant text-on-surface border-2 border-outline-variant/50 hover:border-outline-variant rounded-xl font-bold transition-all cursor-pointer min-h-[48px]';
+      
+      var badge = btn.querySelector('.lang-badge');
+      if (badge) {
+        badge.className = isSel
+          ? 'lang-badge px-2 py-0.5 rounded-md bg-primary/20 text-primary text-[11px] font-mono font-extrabold uppercase tracking-wider leading-none inline-flex items-center justify-center shrink-0'
+          : 'lang-badge px-2 py-0.5 rounded-md bg-surface-variant text-text-secondary text-[11px] font-mono font-extrabold uppercase tracking-wider leading-none inline-flex items-center justify-center shrink-0';
+      }
       btn.onclick = function () {
         if (window.i18n) {
           window.i18n.applyLanguage(btn.dataset.lang);
@@ -820,14 +829,14 @@
     var lastAppliedFontVal = null;
 
     if (fontSlider && fontVal) {
-      fontSlider.value = savedFontSize;
-      var numVal = parseFloat(savedFontSize) || 14;
+      var numVal = Math.min(12, Math.max(10, parseFloat(savedFontSize) || 12));
+      fontSlider.value = numVal.toString();
       fontVal.textContent = (numVal % 1 === 0 ? numVal.toFixed(0) : numVal.toFixed(1)) + 'px';
       document.documentElement.style.fontSize = (numVal / 14 * 100) + '%';
       lastAppliedFontVal = numVal;
 
       fontSlider.oninput = function () {
-        var v = parseFloat(fontSlider.value);
+        var v = Math.min(12, parseFloat(fontSlider.value));
         fontVal.textContent = (v % 1 === 0 ? v.toFixed(0) : v.toFixed(1)) + 'px';
         
         if (lastAppliedFontVal === null || Math.abs(v - lastAppliedFontVal) >= 0.2) {
@@ -839,11 +848,23 @@
         }
       };
       fontSlider.onchange = function () {
-        var v = parseFloat(fontSlider.value);
+        var v = Math.min(12, parseFloat(fontSlider.value));
         lastAppliedFontVal = v;
         document.documentElement.style.fontSize = (v / 14 * 100) + '%';
-        localStorage.setItem('myl_font_size', fontSlider.value);
+        localStorage.setItem('myl_font_size', v.toString());
       };
+
+      // Auto-set 12px font size when window is near minimum resolution (<= 1000px width)
+      function autoCheckFontSizeOnMinRes() {
+        if (window.innerWidth <= 1000) {
+          fontSlider.value = "12";
+          fontVal.textContent = "12px";
+          document.documentElement.style.fontSize = (12 / 14 * 100) + '%';
+          localStorage.setItem('myl_font_size', '12');
+        }
+      }
+      window.addEventListener('resize', autoCheckFontSizeOnMinRes);
+      autoCheckFontSizeOnMinRes();
     }
 
     var savedDensity = localStorage.getItem('myl_density') || 'normal';
@@ -1148,13 +1169,15 @@
   }
 
   // === Canvas Skin Head Renderer ===
+  var skinImageCache = {};
+
   function drawHeadOnCanvas(canvas, skinDataUrl) {
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (!skinDataUrl) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Crisp Offline Steve Head
       ctx.fillStyle = '#C68966';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1173,9 +1196,19 @@
       return;
     }
 
+    if (skinImageCache[skinDataUrl]) {
+      var cachedImg = skinImageCache[skinDataUrl];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(cachedImg, 8, 8, 8, 8, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(cachedImg, 40, 8, 8, 8, 0, 0, canvas.width, canvas.height);
+      return;
+    }
+
     var img = new Image();
     img.onload = function() {
+      skinImageCache[skinDataUrl] = img;
       ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 8, 8, 8, 8, 0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 40, 8, 8, 8, 0, 0, canvas.width, canvas.height);
     };
@@ -1314,20 +1347,67 @@
 
       accs.forEach(function (a) {
         var card = document.createElement('div');
-        card.className = (a.is_active ? 'bg-surface-elevated border border-primary/50' : 'bg-surface-container border border-outline-variant/30') + ' rounded-xl p-5 relative group cursor-pointer transition-all';
+        card.dataset.accId = a.id;
+        var getAccCardClass = function (isSel) {
+          return 'p-5 bg-surface-card rounded-xl border flex items-center justify-between gap-4 cursor-pointer transition-all ' +
+            (isSel ? 'border-primary ring-2 ring-primary/20' : 'border-outline-variant hover:border-outline');
+        };
+
+        card.className = getAccCardClass(a.is_active);
+
         var typeLabel = a.account_type === 'microsoft' ? 'Microsoft Account' : offlineTxt;
-        var actions = a.is_active
-          ? '<div class="mt-6 flex gap-2"><button class="flex-1 bg-surface-variant py-2 rounded-lg font-label-md text-label-md text-text-secondary cursor-default">' + activeTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>'
-          : '<div class="mt-6 flex gap-2"><button class="btn-activate flex-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 py-2 rounded-lg font-label-md text-label-md font-bold transition-all">' + makeActiveTxt + '</button><button class="btn-delete-acc w-10 h-10 flex items-center justify-center bg-surface-variant hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>';
-        card.innerHTML = '<div class="flex items-center gap-4"><canvas class="acc-head-canvas w-12 h-12 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50" width="48" height="48"></canvas><div class="flex-1 overflow-hidden"><h4 class="font-headline-md text-headline-md text-on-surface truncate">' + esc(a.username) + '</h4><p class="font-label-md text-label-md text-text-secondary">' + typeLabel + '</p></div></div>' + actions;
+        var activeBadge = '<span class="acc-active-badge px-2 py-0.5 rounded-md bg-primary/15 text-primary text-[10px] font-extrabold uppercase tracking-wider inline-flex items-center gap-1 shrink-0 ' + (a.is_active ? '' : 'hidden') + '"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0 animate-pulse"></span>' + activeTxt + '</span>';
+
+        card.innerHTML =
+          '<div class="flex items-center gap-4 min-w-0 flex-1">' +
+            '<canvas class="acc-head-canvas w-12 h-12 rounded-lg bg-surface-variant shrink-0 border border-outline-variant/50" width="48" height="48"></canvas>' +
+            '<div class="flex-1 min-w-0">' +
+              '<div class="h-5 flex items-center gap-2 mb-1"><h4 class="font-headline-md text-headline-md font-bold text-on-surface truncate leading-none">' + esc(a.username) + '</h4>' + activeBadge + '</div>' +
+              '<p class="font-label-md text-label-md text-text-secondary truncate leading-none">' + typeLabel + '</p>' +
+            '</div>' +
+          '</div>' +
+          '<button class="btn-delete-acc w-9 h-9 flex items-center justify-center bg-surface-variant/60 hover:bg-status-error/10 hover:text-status-error rounded-lg text-text-secondary transition-colors shrink-0 opacity-80 hover:opacity-100" title="Удалить аккаунт"><span class="material-symbols-outlined text-[18px]">delete</span></button>';
 
         var headCanvas = card.querySelector('.acc-head-canvas');
         drawHeadOnCanvas(headCanvas, a.skin_png_base64);
 
-        var actBtn = card.querySelector('.btn-activate');
-        if (actBtn) actBtn.addEventListener('click', function (e) { e.stopPropagation(); window.backend.setActiveAccount(a.id).then(loadAccounts); });
+        card.addEventListener('click', function () {
+          if (a.is_active) return;
+
+          // 1. In-place smooth CSS selection transition (matching instance cards)
+          document.querySelectorAll('#accounts-grid > div[data-acc-id]').forEach(function (c) {
+            var isThis = c.dataset.accId === a.id;
+            c.className = getAccCardClass(isThis);
+            var b = c.querySelector('.acc-active-badge');
+            if (b) {
+              if (isThis) b.classList.remove('hidden');
+              else b.classList.add('hidden');
+            }
+          });
+
+          accs.forEach(function (item) { item.is_active = (item.id === a.id); });
+
+          // Update sidebar widget immediately
+          var sName = document.getElementById('active-acc-name');
+          var sType = document.getElementById('active-acc-type');
+          var sCanvas = document.getElementById('active-acc-head-canvas');
+          if (sName) sName.textContent = a.username;
+          if (sType) sType.textContent = a.account_type === 'microsoft' ? 'Microsoft Account' : offlineTxt;
+          drawHeadOnCanvas(sCanvas, a.skin_png_base64);
+
+          // 2. Notify backend in background
+          window.backend.setActiveAccount(a.id);
+        });
+
         var delBtn = card.querySelector('.btn-delete-acc');
-        if (delBtn) delBtn.addEventListener('click', function (e) { e.stopPropagation(); showAlert('Удалить аккаунт?', 'Удалить "' + a.username + '"?', true, 'delete').then(function (ok) { if (ok) window.backend.removeAccount(a.id).then(loadAccounts); }); });
+        if (delBtn) {
+          delBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            showAlert('Удалить аккаунт?', 'Удалить "' + a.username + '"?', true, 'delete').then(function (ok) {
+              if (ok) window.backend.removeAccount(a.id).then(loadAccounts);
+            });
+          });
+        }
         grid.appendChild(card);
       });
     }).catch(function (e) { console.warn(e); });
