@@ -134,7 +134,7 @@ Executable installers will be located at:
 
 1. **Клонируйте репозиторий**:
    ```bash
-   git clone https://github.com/ВАШ_ЛОГИН/MyL.git
+   git clone https://github.com/EvP113/MyL.git
    cd MyL
    ```
 
